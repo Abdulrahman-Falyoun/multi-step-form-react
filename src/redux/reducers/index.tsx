@@ -3,33 +3,42 @@ import { MOVE_STEP_FORWARD_OR_BACKWARD } from '../types/actions-types';
 import { ReduxStateInterface } from '../../interfaces/redux-state';
 import { ActionInterface } from '../../interfaces/action-interface';
 import { UserOutlined, SolutionOutlined, LoadingOutlined, SmileOutlined } from '@ant-design/icons';
+import StepOneGeneral from '../../components/steps/step-one-general';
+import StepTwoStore from '../../components/steps/step-two-store';
+import StepThreeDocument from '../../components/steps/step-three-document';
 
 const initialState: ReduxStateInterface = {
     currentStep: 0,
     steps: [
         {
             title: 'General',
-            icon: <UserOutlined />
+            icon: <UserOutlined />,
+            data: <StepOneGeneral />
         },
         {
             title: 'Store',
-            icon: <SolutionOutlined />
+            icon: <SolutionOutlined />,
+            data: <StepTwoStore />
         },
         {
             title: 'Document',
-            icon: <LoadingOutlined />
+            icon: <LoadingOutlined />,
+            data: <StepThreeDocument />
         },
         {
             title: 'Bank',
-            icon: <SmileOutlined />
+            icon: <SmileOutlined />,
+            data: <div></div>
         },
         {
             title: 'VAT',
-            icon: <SmileOutlined />
+            icon: <SmileOutlined />,
+            data: <div></div>
         },
         {
             title: 'End',
-            icon: <SmileOutlined />
+            icon: <SmileOutlined />,
+            data: <div></div>
         }
     ]
 };

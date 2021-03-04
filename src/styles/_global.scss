@@ -33,3 +33,9 @@
   @include flex-direction(column);
   @include justify-align(flex-end, center);
 }
+
+.flex-column-flex-start-main-cross-center {
+  @include flex;
+  @include flex-direction(column);
+  @include justify-align(flex-start, center);
+}

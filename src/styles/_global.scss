@@ -1,0 +1,35 @@
+@import './mixins';
+
+// Row
+.flex-row-center-main-cross {
+  @include flex;
+  @include flex-direction(row);
+  @include justify-align(center, center);
+}
+
+.flex-row-space-between-main-cross-center {
+  @include flex;
+  @include flex-direction(row);
+  @include justify-align(space-between, center);
+}
+
+
+.flex-row-space-evenly-main-cross-center {
+  @include flex;
+  @include flex-direction(row);
+  @include justify-align(space-evenly, center);
+}
+
+
+// Column
+.flex-column-center-main-cross {
+  @include flex;
+  @include flex-direction(column);
+  @include justify-align(center, center);
+}
+
+.flex-column-flex-end-main-cross-center {
+  @include flex;
+  @include flex-direction(column);
+  @include justify-align(flex-end, center);
+}

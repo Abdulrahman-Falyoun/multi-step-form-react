@@ -1,0 +1,9 @@
+{
+    "extends": ["tslint:latest", "tslint-react"],
+    "rules": {
+      "jsx-wrap-multiline": false,
+      "at-rule-no-unknown": [true, {
+        "ignoreAtRules": ["function", "if", "each", "include", "mixin"]
+      }]
+    }
+  }

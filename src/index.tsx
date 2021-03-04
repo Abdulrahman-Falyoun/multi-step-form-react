@@ -1,12 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import './styles/index.sass';
 import reportWebVitals from './reportWebVitals';
+import SellerForm from './components/seller-form';
+import store from './redux/store';
+import { Provider } from 'react-redux';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+    <SellerForm />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -1,0 +1,32 @@
+@mixin flex {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+@mixin justify-align($justify, $align) {
+  justify-content: $justify;
+  align-items: $align;
+}
+@mixin flex-direction($dir) {
+  flex-direction: $dir;
+}
+
+@mixin fullWidthHeight {
+  width: 100%;
+  height: 100%;
+}
+
+
+// Medium devices
+@mixin md {
+    @media (min-width: #{$screen-md-min}) {
+        @content;
+    }
+}
+
+// Large devices
+@mixin lg {
+    @media (min-width: #{$screen-lg-min}) {
+        @content;
+    }
+}

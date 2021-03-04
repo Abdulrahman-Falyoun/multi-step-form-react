@@ -1,0 +1,50 @@
+@import '../styles/_breakpoints.sass'
+
+$grey: #595959
+$yellow: #FCEB55
+
+.steps-action
+    display: flex
+    width: 50%
+    justify-content: space-between
+    align-items: center
+
+
+.multi-step-form-button
+    width: 12rem
+    height: 3.2rem
+    border-radius: .5rem
+    // @media screen and ( max-width: $screen-sm-min )
+       // width: 4rem
+
+.yellow-button
+   background-color: $yellow
+   color: $grey
+   &.ant-btn:focus, .ant-btn.focus
+       background-color: $yellow
+       color: $grey
+   &.ant-btn:hover
+       background: $yellow
+       color: $grey
+
+.grey-button
+    background-color: $grey
+    color: $yellow
+    &.ant-btn:focus, .ant-btn.focus
+       background-color: $grey
+       color: $yellow
+    &.ant-btn:hover
+        background: $grey
+        color: $yellow
+        border-color: transparent
+
+
+
+
+.ant-btn:focus, .ant-btn.focus
+    -webkit-animation: none !important
+    -moz-animation: none !important
+    -o-animation: none !important
+    -ms-animation: none !important
+    animation: none !important
+    border-color: transparent

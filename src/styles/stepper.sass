@@ -6,7 +6,7 @@
   width: 90%
 
 .steps
-  background: #fcfcfc
+  background: #F4F4F4
   border-radius: .9rem
 
 .single-step
@@ -14,6 +14,7 @@
 
 .ant-steps-item
   padding: 0.8rem
+  color: red
 
 .remove-border-from-left
   border-bottom-left-radius: 0
@@ -32,6 +33,8 @@
     padding-left: .5rem
     padding-right: .5rem
     
+.ant-steps-item-finish .ant-steps-item-icon > .ant-steps-icon
+  color: #fceb558f !important
 
 .ant-steps-item-finish
   background: #fceb55 !important
@@ -46,7 +49,19 @@
 .ant-steps-item:first-child
   border-top-left-radius: .9rem !important
   border-bottom-left-radius: .9rem !important
-  background: red im !important
 
 .ant-steps-item > .ant-steps-item-container > .ant-steps-item-content > .ant-steps-item-title::after
     background: transparent !important
+
+
+.ant-steps-item-title
+  color: black !important
+  font-size: .9rem
+
+
+.ant-form-item-label
+  & > label
+    font-size: 1.2rem
+    letter-spacing: .1rem
+    color: #575757
+  text-align: left

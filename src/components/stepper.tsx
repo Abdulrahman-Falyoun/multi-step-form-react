@@ -6,7 +6,6 @@ import '../styles/stepper.sass';
 import { Steps } from 'antd';
 import { connect } from "react-redux";
 import { ReduxStateInterface } from '../interfaces/redux-state';
-import Actions from '../redux/actions/index';
 
 const { Step } = Steps;
 

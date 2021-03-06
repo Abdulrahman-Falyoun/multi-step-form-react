@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Stepper from './stepper';
-import Card from './card';
+import Card from './card/card';
 
 
 // Style

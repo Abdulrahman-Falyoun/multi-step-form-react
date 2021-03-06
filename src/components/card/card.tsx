@@ -2,8 +2,8 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import { ReduxStateInterface } from '../interfaces/redux-state';
-import '../styles/card.sass';
+import { ReduxStateInterface } from '../../interfaces/redux-state';
+import '../../styles/card.sass';
 import CardButtons from './card-buttons';
 
 const Card = (props: any) => {
@@ -11,11 +11,9 @@ const Card = (props: any) => {
     return (
         <div className="card-wrapper">
             <div className="card-content">
-                <div>
-                    {
-                        CardContent
-                    }
-                </div>
+                {
+                    CardContent
+                }
                 <div className="card-buttons">
                     <CardButtons />
                 </div>
@@ -27,7 +25,7 @@ const Card = (props: any) => {
 
 const mapStateToProps = (state: ReduxStateInterface) => {
     return {
-        CardContent: state.steps[state.currentStep].data
+        CardContent: state.steps[state.currentStep].component
     };
 }
 export default connect(mapStateToProps)(Card);

@@ -2,43 +2,50 @@
 import { MOVE_STEP_FORWARD_OR_BACKWARD } from '../types/actions-types';
 import { ReduxStateInterface } from '../../interfaces/redux-state';
 import { ActionInterface } from '../../interfaces/action-interface';
-import { UserOutlined, SolutionOutlined, LoadingOutlined, SmileOutlined } from '@ant-design/icons';
 import StepOneGeneral from '../../components/steps/step-one-general';
 import StepTwoStore from '../../components/steps/step-two-store';
 import StepThreeDocument from '../../components/steps/step-three-document';
-import * as ICONS from '../../components/svg-icon';
+import * as ICONS from '../../components/svg-icons';
 const initialState: ReduxStateInterface = {
     currentStep: 0,
     steps: [
         {
             title: 'General',
             icon: ICONS.BankSVGIcon,
-            data: <StepOneGeneral />
+            data: {},
+            component: <StepOneGeneral />
         },
         {
             title: 'Store',
             icon: ICONS.StoreSVGIcon,
-            data: <StepTwoStore />
+            data: {},
+            component: <StepTwoStore />
         },
         {
             title: 'Document',
             icon: ICONS.DocumentSVGIcon,
-            data: <StepThreeDocument />
+            data: {},
+            component: <StepThreeDocument />
         },
         {
             title: 'Bank',
             icon: ICONS.BankSVGIcon,
-            data: <div></div>
+            data: {},
+            component: <div></div>
         },
         {
             title: 'VAT',
             icon: ICONS.LaptopSVGIcon,
-            data: <div></div>
+            data: {},
+
+            component: <div></div>
         },
         {
             title: 'End',
             icon: ICONS.CheckMarkSVGIcon,
-            data: <div></div>
+            data: {},
+
+            component: <div></div>
         }
     ]
 };

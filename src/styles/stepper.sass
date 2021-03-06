@@ -1,5 +1,6 @@
 
 @import 'mixins'
+@import 'breakpoints'
 
 .stepper-wrapper
   width: 90%
@@ -13,8 +14,6 @@
 
 .ant-steps-item
   padding: 0.8rem
-  border-radius: .9rem
-
 
 .remove-border-from-left
   border-bottom-left-radius: 0
@@ -25,10 +24,29 @@
   border-top-right-radius: 0
 
 
+.ant-steps-item-container
+  font-weight: 700
+  padding-left: 1rem
+  padding-right: 1rem
+  @media screen and ( max-width: $screen-md-min )
+    padding-left: .5rem
+    padding-right: .5rem
+    
 
 .ant-steps-item-finish
   background: #fceb55 !important
   transition: all 1s
-  
+
+.ant-steps-item-active
+  border-radius: .9rem
+  border-top-left-radius: 0
+  border-bottom-left-radius: 0
+  transition: all .1s
+
+.ant-steps-item:first-child
+  border-top-left-radius: .9rem !important
+  border-bottom-left-radius: .9rem !important
+  background: red im !important
+
 .ant-steps-item > .ant-steps-item-container > .ant-steps-item-content > .ant-steps-item-title::after
     background: transparent !important

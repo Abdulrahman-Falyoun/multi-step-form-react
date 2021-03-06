@@ -6,38 +6,38 @@ import { UserOutlined, SolutionOutlined, LoadingOutlined, SmileOutlined } from '
 import StepOneGeneral from '../../components/steps/step-one-general';
 import StepTwoStore from '../../components/steps/step-two-store';
 import StepThreeDocument from '../../components/steps/step-three-document';
-
+import * as ICONS from '../../components/svg-icon';
 const initialState: ReduxStateInterface = {
     currentStep: 0,
     steps: [
         {
             title: 'General',
-            icon: <UserOutlined />,
+            icon: ICONS.BankSVGIcon,
             data: <StepOneGeneral />
         },
         {
             title: 'Store',
-            icon: <SolutionOutlined />,
+            icon: ICONS.StoreSVGIcon,
             data: <StepTwoStore />
         },
         {
             title: 'Document',
-            icon: <LoadingOutlined />,
+            icon: ICONS.DocumentSVGIcon,
             data: <StepThreeDocument />
         },
         {
             title: 'Bank',
-            icon: <SmileOutlined />,
+            icon: ICONS.BankSVGIcon,
             data: <div></div>
         },
         {
             title: 'VAT',
-            icon: <SmileOutlined />,
+            icon: ICONS.LaptopSVGIcon,
             data: <div></div>
         },
         {
             title: 'End',
-            icon: <SmileOutlined />,
+            icon: ICONS.CheckMarkSVGIcon,
             data: <div></div>
         }
     ]

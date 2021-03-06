@@ -44,7 +44,6 @@ const initialState: ReduxStateInterface = {
             title: 'End',
             icon: ICONS.CheckMarkSVGIcon,
             data: {},
-
             component: <div></div>
         }
     ]

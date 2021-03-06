@@ -20,12 +20,12 @@ const StepOneGenerator = () => {
     <div className="step-one-wrapper">
       <h1>General</h1>
       <Form {...layout} form={form} name="control-hooks">
-        <div>
-          <Form.Item name="note" label="Note" rules={[{ required: true }]}>
-            <StepperInput />
+        <div className="flex-row-flex-start-main-cross-center">
+          <Form.Item className="full-flex-item" name="note" label="Note" rules={[{ required: true }]}>
+            <StepperInput onInputChanged={(e: any) => {console.log('changed: ', e.target.value)}} />
           </Form.Item>
-          <Form.Item name="note" label="Note" rules={[{ required: true }]}>
-            <StepperInput />
+          <Form.Item className="full-flex-item" name="note" label="Note" rules={[{ required: true }]}>
+            <StepperInput onInputChanged={(e: any) => {console.log('changed: ', e.target.value)}} />
           </Form.Item>
         </div>
       </Form>

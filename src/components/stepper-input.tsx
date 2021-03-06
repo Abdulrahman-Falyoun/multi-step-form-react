@@ -2,9 +2,10 @@
 import { Input } from 'antd';
 import '../styles/stepper-input.sass'
 
-const StepperInput = () => {
+const StepperInput = (props: any) => {
+    const { type, onInputChanged } = props;
     return (
-        <Input className="stepper-input" />
+        <Input type={type} onChange={(v) => onInputChanged(v)} className="stepper-input" />
     )
 };
 

@@ -13,7 +13,7 @@ const SVGIcon: React.FC<{ svg: any, style: React.CSSProperties }> = ({ svg, styl
     return <Icon style={style} component={svg} />
 };
 
-export const BankSVGIcon = SVGIcon({ svg: ImportedBankSVG, style: {} });
+export const BankSVGIcon = SVGIcon({ svg: ImportedBankSVG, style: { } });
 export const CheckMarkSVGIcon = SVGIcon({ svg: ImportedCheckMarkSVG, style: {} });
 export const DocumentSVGIcon = SVGIcon({ svg: ImportedDocumentSVG, style: {} });
 export const HappyManSVGIcon = SVGIcon({ svg: ImportedHappyMankSVG, style: {} });

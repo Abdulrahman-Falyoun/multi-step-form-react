@@ -13,8 +13,9 @@ const ConnectedCardButtons = (props: any) => {
     const prev = () => {
         nextOrPreviousStepAction(-1);
     }
+    const justifyingAcoordingToCurrentStep = currentStep > 0 ? 'justify-content-space-between' : 'justify-content-center';
     return (
-        <div className="steps-action">
+        <div className={"steps-action " + justifyingAcoordingToCurrentStep}>
             {
                 currentStep > 0
                 &&

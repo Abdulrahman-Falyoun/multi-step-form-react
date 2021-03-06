@@ -7,7 +7,6 @@ import '../styles/card.sass';
 import CardButtons from './card-buttons';
 
 const Card = (props: any) => {
-    console.log('props: ', props);
     const { CardContent } = props;
     return (
         <div className="card-wrapper">

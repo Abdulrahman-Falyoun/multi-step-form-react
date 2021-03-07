@@ -1,0 +1,24 @@
+@import 'partials/breakpoints'
+
+    
+.ant-select:not(.ant-select-customize-input) .ant-select-selector
+    border-color: transparent
+    background: #F5F5F5
+    background-color: #F5F5F5
+    border-radius: .5rem
+    height: 3rem
+    width: 100%
+    @media screen and ( max-width: $screen-md-min )
+        width: 100%
+
+
+.ant-select-selection-placeholder
+    font-size: 1rem
+    letter-spacing: .1rem
+    display: flex
+    justify-content: flex-start
+    align-items: center
+.ant-select-single .ant-select-selector .ant-select-selection-placeholder
+    padding-left: 2rem
+
+.ant-select-arrow

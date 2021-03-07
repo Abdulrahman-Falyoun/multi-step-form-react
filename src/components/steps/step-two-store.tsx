@@ -1,9 +1,9 @@
 
 import React, { useState } from 'react';
-import { Form, Input, Button, Select, Radio } from 'antd';
+import { Form } from 'antd';
 import StepperInput from '../stepper-input';
+import StepperSelect from '../stepper-select';
 import '../../styles/step-two.sass'
-import FancySmallCard from '../card/fancy-small-card';
 const layout = {
   labelCol: { span: 0 },
   wrapperCol: { span: 21 },
@@ -12,6 +12,11 @@ const layout = {
 const StepOneGenerator = () => {
   const [form] = Form.useForm();
   const [radioGroupValue, setRadioGroupValue] = useState('Riyadh');
+  const [options, setOptions] = useState([
+    { value: 'whatever', label: 'whatever'},
+    { value: 'whatever1', label: 'whatever1'},
+    { value: 'whatever2', label: 'whatever2'}
+  ])
   return (
     <div className="step-two-wrapper">
       <p style={{ display: 'block' }}>Store</p>
@@ -48,12 +53,8 @@ const StepOneGenerator = () => {
                   size='large'
                   bordered={false} />
               </Form.Item>
-              <Form.Item className="full-flex-item column-flex-direction" name="legalName" label="Legal Name">
-                <StepperInput
-                  onInputChanged={(e: any) => { console.log('changed: ', e.target.value) }}
-                  placeHolder="Company legal name"
-                  size='large'
-                  bordered={false} />
+              <Form.Item className="full-flex-item column-flex-direction" name="legalName" label="What kind of product do you sell?">
+                <StepperSelect options={options} placeholder='E.G. Electronics' />
               </Form.Item>
             </div>
           </Form>

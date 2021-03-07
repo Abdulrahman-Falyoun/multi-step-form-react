@@ -5,6 +5,7 @@ import { ActionInterface } from '../../interfaces/action-interface';
 import StepOneGeneral from '../../components/steps/step-one-general';
 import StepTwoStore from '../../components/steps/step-two-store';
 import StepThreeDocument from '../../components/steps/step-three-document';
+import EndStep from '../../components/steps/end-step';
 import * as ICONS from '../../components/svg-icons';
 const initialState: ReduxStateInterface = {
     currentStep: 0,
@@ -44,7 +45,7 @@ const initialState: ReduxStateInterface = {
             title: 'End',
             icon: ICONS.CheckMarkSVGIcon,
             data: {},
-            component: <div></div>
+            component: <EndStep />
         }
     ]
 };

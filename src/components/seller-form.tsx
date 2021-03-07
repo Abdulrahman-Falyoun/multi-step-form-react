@@ -9,7 +9,7 @@ import Card from './card/card';
 import '../styles/seller-form.sass'
 export default () => {
     return (
-        <div className="seller-form-wrapper flex-column-center-main-cross">
+        <div className="seller-form-wrapper flex-column-flex-start-main-cross-center">
             <Stepper />
             <Card />
         </div>

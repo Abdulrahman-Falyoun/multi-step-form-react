@@ -17,7 +17,7 @@ const ConnectedCardButtons = (props: any) => {
     return (
         <div className={"steps-action " + justifyingAcoordingToCurrentStep}>
             {
-                currentStep > 0
+                currentStep > 0 && currentStep < totalSteps - 1
                 &&
                 <Button ghost={false} className="multi-step-form-button grey-button" style={{ marginLeft: 8 }} onClick={() => prev()}>
                     Back

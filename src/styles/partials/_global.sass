@@ -1,26 +1,34 @@
 @import 'mixins'
-
+@import 'breakpoints'
 // Row
 .flex-row-center-main-cross
   @include flex
   @include flex-direction(row)
   @include justify-align(center, center)
+  @media screen and ( max-width: $screen-sm-min )
+            flex-direction: column
 
 .flex-row-space-between-main-cross-center
   @include flex
   @include flex-direction(row)
   @include justify-align(space-between, center)
+  @media screen and ( max-width: $screen-sm-min )
+            flex-direction: column
 
 
 .flex-row-space-evenly-main-cross-center
   @include flex
   @include flex-direction(row)
   @include justify-align(space-evenly, center)
+  @media screen and ( max-width: $screen-sm-min )
+            flex-direction: column
 
 .flex-row-flex-start-main-cross-center
   @include flex
   @include flex-direction(row)
   @include justify-align(flex-start, center)
+  @media screen and ( max-width: $screen-sm-min )
+            flex-direction: column
 
 // Column
 .flex-column-center-main-cross
@@ -38,6 +46,10 @@
   @include flex-direction(column)
   @include justify-align(flex-start, center)
 
+.flex-column-space-between-main-cross-center
+  @include flex
+  @include flex-direction(column)
+  @include justify-align(space-between, center)
 
 // Flex items
 .full-flex-item

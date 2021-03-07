@@ -11,9 +11,11 @@ const Card = (props: any) => {
     return (
         <div className="card-wrapper">
             <div className="card-content">
-                {
-                    CardContent
-                }
+                <div className='content-area'>
+                    {
+                        CardContent
+                    }
+                </div>
                 <div className="card-buttons">
                     <CardButtons />
                 </div>

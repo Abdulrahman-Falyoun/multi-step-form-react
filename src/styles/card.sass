@@ -1,10 +1,13 @@
 @import 'partials/mixins'
 @import 'partials/global'
+@import 'partials/breakpoints'
 
 .card-wrapper
     background-color: #fff
     border-radius: 1rem
-    height: 40rem
+    height: fit-content
+    max-height: -webkit-fill-available
+    min-height: 40rem
     margin: 1rem
     width: 89%
     box-shadow: 0 0 2rem rgba($color: #0000, $alpha: .10)
@@ -14,8 +17,11 @@
     @extend .flex-column-space-between-main-cross-center
     padding: 2rem
     & .content-area
-        height: 90%
+        // height: 90%
         width: 80%
+        @media screen and ( max-width: $screen-md-min )
+            width: 100%
+            
 
 
 .card-buttons

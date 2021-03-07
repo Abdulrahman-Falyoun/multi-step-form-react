@@ -1,9 +1,9 @@
 
-import React from 'react';
-import { Form, Input, Button, Select } from 'antd';
+import React, { useState } from 'react';
+import { Form, Input, Button, Select, Radio } from 'antd';
 import StepperInput from '../stepper-input';
-import '../../styles/step-one.sass'
-
+import '../../styles/step-two.sass'
+import FancySmallCard from '../card/fancy-small-card';
 const layout = {
   labelCol: { span: 0 },
   wrapperCol: { span: 21 },
@@ -11,28 +11,98 @@ const layout = {
 
 const StepOneGenerator = () => {
   const [form] = Form.useForm();
-
+  const [radioGroupValue, setRadioGroupValue] = useState('Riyadh');
   return (
-    <div className="step-one-wrapper">
-      <h1>General</h1>
-      <Form {...layout} form={form} name="control-hooks">
-        <div className="flex-row-flex-start-main-cross-center">
-          <Form.Item className="full-flex-item column-flex-direction" name="note" label="Note" rules={[{ required: true }]}>
-            <StepperInput 
-            onInputChanged={(e: any) => {console.log('changed: ', e.target.value)}}
-            placeHolder="Info@Example.com"
-            size='large'
-            bordered={false} />
-          </Form.Item>
-          <Form.Item className="full-flex-item column-flex-direction" name="note" label="Note" rules={[{ required: true }]}>
-            <StepperInput 
-            onInputChanged={(e: any) => {console.log('changed: ', e.target.value)}}
-            placeHolder="Your Full Name"
-            size='large'
-            bordered={false} />
-          </Form.Item>
+    <div className="step-two-wrapper">
+      <p style={{ display: 'block' }}>Store</p>
+      <div>
+        <div>
+          <Form {...layout} form={form} name="control-hooks">
+            <div className="flex-row-flex-start-main-cross-center">
+              <Form.Item className="full-flex-item column-flex-direction" name="storeName" label="Store Name">
+                <StepperInput
+                  onInputChanged={(e: any) => { console.log('changed: ', e.target.value) }}
+                  placeHolder="What's your store name?"
+                  size='large'
+                  bordered={false} />
+              </Form.Item>
+              <Form.Item className="full-flex-item column-flex-direction" name="legalName" label="Legal Name">
+                <StepperInput
+                  onInputChanged={(e: any) => { console.log('changed: ', e.target.value) }}
+                  placeHolder="Company legal name"
+                  size='large'
+                  bordered={false} />
+              </Form.Item>
+            </div>
+          </Form>
         </div>
-      </Form>
+
+
+        <div>
+          <Form {...layout} form={form} name="control-hooks">
+            <div className="flex-row-flex-start-main-cross-center">
+              <Form.Item className="full-flex-item column-flex-direction" name="storeName" label="Store Name">
+                <StepperInput
+                  onInputChanged={(e: any) => { console.log('changed: ', e.target.value) }}
+                  placeHolder="What's your store name?"
+                  size='large'
+                  bordered={false} />
+              </Form.Item>
+              <Form.Item className="full-flex-item column-flex-direction" name="legalName" label="Legal Name">
+                <StepperInput
+                  onInputChanged={(e: any) => { console.log('changed: ', e.target.value) }}
+                  placeHolder="Company legal name"
+                  size='large'
+                  bordered={false} />
+              </Form.Item>
+            </div>
+          </Form>
+        </div>
+
+
+
+        <div>
+          <Form {...layout} form={form} name="control-hooks">
+            <div className="flex-row-flex-start-main-cross-center">
+              <Form.Item className="full-flex-item column-flex-direction" name="storeName" label="Store Name">
+                <StepperInput
+                  onInputChanged={(e: any) => { console.log('changed: ', e.target.value) }}
+                  placeHolder="What's your store name?"
+                  size='large'
+                  bordered={false} />
+              </Form.Item>
+            </div>
+            <div className="flex-row-flex-start-main-cross-center">
+              <Form.Item className="full-flex-item column-flex-direction" name="storeName" label="Store Name">
+                <StepperInput
+                  onInputChanged={(e: any) => { console.log('changed: ', e.target.value) }}
+                  placeHolder="What's your store name?"
+                  size='large'
+                  bordered={false} />
+              </Form.Item>
+            </div>
+            <div className="flex-row-flex-start-main-cross-center">
+              <Form.Item className="full-flex-item column-flex-direction" name="storeName" label="Store Name">
+                <StepperInput
+                  onInputChanged={(e: any) => { console.log('changed: ', e.target.value) }}
+                  placeHolder="What's your store name?"
+                  size='large'
+                  bordered={false} />
+              </Form.Item>
+            </div>
+            <div className="flex-row-flex-start-main-cross-center">
+              <Form.Item className="full-flex-item column-flex-direction" name="storeName" label="Store Name">
+                <StepperInput
+                  onInputChanged={(e: any) => { console.log('changed: ', e.target.value) }}
+                  placeHolder="What's your store name?"
+                  size='large'
+                  bordered={false} />
+              </Form.Item>
+            </div>
+          </Form>
+        </div>
+      </div>
+
     </div>
 
   );

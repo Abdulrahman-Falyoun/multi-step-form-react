@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import { Form } from 'antd';
 import StepperInput from '../stepper-input';
 import StepperSelect from '../stepper-select';
+import StepperPhoneInput from '../stepper-phone-input';
+
 import '../../styles/step-two.sass'
 const layout = {
   labelCol: { span: 0 },
@@ -46,12 +48,8 @@ const StepOneGenerator = () => {
         <div>
           <Form {...layout} form={form} name="control-hooks">
             <div className="flex-row-flex-start-main-cross-center">
-              <Form.Item className="full-flex-item column-flex-direction" name="storeName" label="Store Name">
-                <StepperInput
-                  onInputChanged={(e: any) => { console.log('changed: ', e.target.value) }}
-                  placeHolder="What's your store name?"
-                  size='large'
-                  bordered={false} />
+              <Form.Item className="full-flex-item column-flex-direction" name="phoneNumber" label="Phone Number">
+                <StepperPhoneInput />
               </Form.Item>
               <Form.Item className="full-flex-item column-flex-direction" name="legalName" label="What kind of product do you sell?">
                 <StepperSelect options={options} placeholder='E.G. Electronics' />
@@ -65,28 +63,28 @@ const StepOneGenerator = () => {
         <div>
           <Form {...layout} form={form} name="control-hooks">
             <div className="flex-row-flex-start-main-cross-center">
-              <Form.Item className="full-flex-item column-flex-direction" name="storeName" label="Store Name">
+              <Form.Item className="full-flex-item column-flex-direction" name="address" label="Full Address">
                 <StepperInput
                   onInputChanged={(e: any) => { console.log('changed: ', e.target.value) }}
-                  placeHolder="What's your store name?"
+                  placeHolder="Please Enter Your Full Address"
                   size='large'
                   bordered={false} />
               </Form.Item>
             </div>
             <div className="flex-row-flex-start-main-cross-center">
-              <Form.Item className="full-flex-item column-flex-direction" name="storeName" label="Store Name">
+              <Form.Item className="full-flex-item column-flex-direction" name="facebook" label="Facebook Account">
                 <StepperInput
                   onInputChanged={(e: any) => { console.log('changed: ', e.target.value) }}
-                  placeHolder="What's your store name?"
+                  placeHolder="https://www.facebook.com/..."
                   size='large'
                   bordered={false} />
               </Form.Item>
             </div>
             <div className="flex-row-flex-start-main-cross-center">
-              <Form.Item className="full-flex-item column-flex-direction" name="storeName" label="Store Name">
+              <Form.Item className="full-flex-item column-flex-direction" name="twitter" label="Twitter Account">
                 <StepperInput
                   onInputChanged={(e: any) => { console.log('changed: ', e.target.value) }}
-                  placeHolder="What's your store name?"
+                  placeHolder="https://www.twitter.com/..."
                   size='large'
                   bordered={false} />
               </Form.Item>

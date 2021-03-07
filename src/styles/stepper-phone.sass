@@ -1,0 +1,20 @@
+
+@import 'partials/breakpoints'
+
+.phone-input-wrapper
+    display: flex
+    justify-content: space-between
+    align-items: center
+    & label > input
+        border-color: transparent !important
+        background: #F5F5F5
+        background-color: #F5F5F5
+        border-radius: .5rem
+        height: 3rem
+        display: flex
+        justify-content: center
+        align-items: center
+    & .phone-label
+        width: 20%
+        @media screen and ( max-width: $screen-md-min )
+            width: 30%

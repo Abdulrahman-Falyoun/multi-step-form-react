@@ -90,15 +90,6 @@ const StepOneGenerator = () => {
                   bordered={false} />
               </Form.Item>
             </div>
-            <div className="flex-row-flex-start-main-cross-center">
-              <Form.Item className="full-flex-item column-flex-direction" name="storeName" label="Store Name">
-                <StepperInput
-                  onInputChanged={(e: any) => { console.log('changed: ', e.target.value) }}
-                  placeHolder="What's your store name?"
-                  size='large'
-                  bordered={false} />
-              </Form.Item>
-            </div>
           </Form>
         </div>
       </div>

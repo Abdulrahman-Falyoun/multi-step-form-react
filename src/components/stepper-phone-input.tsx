@@ -6,13 +6,13 @@ const StepperPhoneInput = () => {
     return (
         <div className="phone-input-wrapper">
             <label className="phone-label">
-                <MaskedInput mask="1111" name="card" size='large' onChange={() => {}} />
+                <MaskedInput mask="11111" name="first-cell" size='large' onChange={() => {}} />
             </label>
             <label className="phone-label">
-                <MaskedInput mask="1111" name="card" size='large' onChange={() => {}} />
+                <MaskedInput mask="1111" name="second-cell" size='large' onChange={() => {}} />
             </label>
             <label className="phone-label">
-                <MaskedInput mask="1111" name="card" size='large' onChange={() => {}} />
+                <MaskedInput mask="1111" name="third-cell" size='large' onChange={() => {}} />
             </label>
         </div>
     );

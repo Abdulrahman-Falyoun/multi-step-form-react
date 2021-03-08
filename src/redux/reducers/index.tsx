@@ -6,7 +6,7 @@ import StepOneGeneral from '../../components/steps/step-one-general';
 import StepTwoStore from '../../components/steps/step-two-store';
 import StepThreeDocument from '../../components/steps/step-three-document';
 import StepFourDocument from '../../components/steps/step-four-bank';
-
+import StepFiveVAT from '../../components/steps/step-five-vat';
 import EndStep from '../../components/steps/end-step';
 import * as ICONS from '../../components/svg-icons';
 const initialState: ReduxStateInterface = {
@@ -40,8 +40,7 @@ const initialState: ReduxStateInterface = {
             title: 'VAT',
             icon: ICONS.LaptopSVGIcon,
             data: {},
-
-            component: <div></div>
+            component: <StepFiveVAT />
         },
         {
             title: 'End',

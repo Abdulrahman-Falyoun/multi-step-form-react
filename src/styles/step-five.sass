@@ -1,0 +1,22 @@
+@import 'partials/breakpoints'
+
+.step-five-wrapper
+    width: 100%
+    height: 100%
+    display: flex
+    justify-content: space-around
+    flex-direction: column
+    & > p
+        font-weight: bold
+        font-size: 2.5rem
+        margin: 0
+        padding: 0
+
+.vat-license-wrapper
+    width: 50%
+    @media screen and ( max-width: $screen-md-min)
+        width: 100%
+
+.vat-hint-text
+    font-size: 1rem
+    letter-spacing: .15rem

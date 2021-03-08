@@ -1,3 +1,4 @@
+@import 'partials/breakpoints'
 
 .step-four-wrapper
     width: 100%
@@ -15,6 +16,8 @@
     display: flex
     align-items: center
     justify-content: space-evenly
+    @media screen and ( max-width: $screen-md-min)
+        flex-direction: column
 
 .stamped-document-hint
     padding: 0

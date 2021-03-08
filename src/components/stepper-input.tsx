@@ -2,16 +2,27 @@
 import { Input } from 'antd';
 import '../styles/stepper-input.sass'
 
-const StepperInput = (props: any) => {
-    const { type, onInputChanged, placeHolder, bordered, size } = props;
+const StepperInput = ({
+    type = 'text',
+    onInputChanged = () => { },
+    placeHolder = 'Please enter your text',
+    bordered = false,
+    size = 'large',
+    suffex,
+    prefix,
+    id
+}: any) => {
     return (
-        <Input 
-        type={type}
-        onChange={(v) => onInputChanged(v)} 
-        placeholder={placeHolder}
-        bordered={bordered} 
-        size={size}
-        className="stepper-input" />
+        <Input
+            id={id}
+            type={type}
+            onChange={(v) => onInputChanged(v)}
+            placeholder={placeHolder}
+            bordered={bordered}
+            size={size}
+            suffix={suffex}
+            prefix={prefix}
+            className="stepper-input" />
     )
 };
 

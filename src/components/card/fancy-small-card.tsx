@@ -10,8 +10,8 @@ export default ({
     periodText,
     headerColor,
     borderStyle,
-    borderWidth: borderWidth,
-    borderColor: borderColor
+    borderWidth,
+    borderColor
 }: any) => {
     const period = periodText && <span style={{ fontSize: '.6rem', fontWeight: 'normal', letterSpacing: '0rem' }}>{periodText}</span>;
     return (

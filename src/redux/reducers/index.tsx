@@ -5,6 +5,8 @@ import { ActionInterface } from '../../interfaces/action-interface';
 import StepOneGeneral from '../../components/steps/step-one-general';
 import StepTwoStore from '../../components/steps/step-two-store';
 import StepThreeDocument from '../../components/steps/step-three-document';
+import StepFourDocument from '../../components/steps/step-four-bank';
+
 import EndStep from '../../components/steps/end-step';
 import * as ICONS from '../../components/svg-icons';
 const initialState: ReduxStateInterface = {
@@ -32,7 +34,7 @@ const initialState: ReduxStateInterface = {
             title: 'Bank',
             icon: ICONS.BankSVGIcon,
             data: {},
-            component: <div></div>
+            component: <StepFourDocument />
         },
         {
             title: 'VAT',

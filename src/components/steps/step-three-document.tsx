@@ -4,7 +4,7 @@ import { Form } from 'antd';
 import '../../styles/steps/step-three.sass'
 import StepperUploadFileInput from '../input-fields/stepper-upload-file';
 import FancyCard from '../card/fancy-small-card';
-
+import {getFileName, getFileSize } from '../../utils/file-helper';
 const layout = {
   labelCol: { span: 0 },
   wrapperCol: { span: 21 },
@@ -14,11 +14,6 @@ const StepOneGenerator = () => {
   const [form] = Form.useForm();
   const [tradeLicense, setTradeLicense] = useState(null);
   const [nationalId, setNationalId] = useState(null);
-  const getFileName = (fileInputEvent: any) => fileInputEvent?.target?.files[0].name
-  const getFileSize = (fileInputEvent: any) => {
-    const totalBytes = fileInputEvent?.target?.files[0].size;
-    return totalBytes < 1000000 ? Math.floor(totalBytes / 1000) + 'KB' : Math.floor(totalBytes / 1000000) + 'MB';
-  }
   return (
     <div className="step-three-wrapper">
       <p>Document</p>

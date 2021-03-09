@@ -6,6 +6,7 @@ import '../../styles/steps/step-four.sass'
 import StepperSelect from '../input-fields/stepper-select';
 import StepperUploadFileInput from '../input-fields/stepper-upload-file';
 import FancyCard from '../card/fancy-small-card';
+import {getFileName, getFileSize } from '../../utils/file-helper';
 
 const layout = {
     labelCol: { span: 0 },
@@ -23,11 +24,6 @@ const StepFourBank = () => {
 
     const [stampedCertificate, setStampedCertificate] = useState(null);
 
-    const getFileName = (fileInputEvent: any) => fileInputEvent?.target?.files[0].name
-    const getFileSize = (fileInputEvent: any) => {
-        const totalBytes = fileInputEvent?.target?.files[0].size;
-        return totalBytes < 1000000 ? Math.floor(totalBytes / 1000) + 'KB' : Math.floor(totalBytes / 1000000) + 'MB';
-    }
     return (
         <div className="step-four-wrapper">
             <p>Bank</p>

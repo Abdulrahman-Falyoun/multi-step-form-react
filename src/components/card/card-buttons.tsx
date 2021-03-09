@@ -3,7 +3,7 @@ import { Button } from 'antd';
 import { connect } from 'react-redux';
 import { ReduxStateInterface } from '../../interfaces/redux-state';
 import Actions from '../../redux/actions/index';
-import '../../styles/card-buttons.sass';
+import '../../styles/card/card-buttons.sass';
 
 const ConnectedCardButtons = (props: any) => {
     const { currentStep, totalSteps, nextOrPreviousStepAction } = props;

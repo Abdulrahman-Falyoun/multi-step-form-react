@@ -3,7 +3,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { ReduxStateInterface } from '../../interfaces/redux-state';
-import '../../styles/card.sass';
+import '../../styles/card/card.sass';
 import CardButtons from './card-buttons';
 
 const Card = (props: any) => {
@@ -20,7 +20,6 @@ const Card = (props: any) => {
                     <CardButtons />
                 </div>
             </div>
-
         </div>
     )
 };

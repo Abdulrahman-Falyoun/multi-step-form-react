@@ -1,7 +1,7 @@
 
 
 import React, { useState } from 'react';
-import '../styles/card.sass';
+import '../styles/card/card.sass';
 import '../styles/stepper.sass';
 import { Steps } from 'antd';
 import { connect } from "react-redux";

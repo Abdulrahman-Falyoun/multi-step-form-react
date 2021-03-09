@@ -4,7 +4,7 @@ import { Form } from 'antd';
 import StepperInput from '../stepper-input';
 import StepperSelect from '../stepper-select';
 import StepperPhoneInput from '../stepper-phone-input';
-import '../../styles/step-two.sass'
+import '../../styles/steps/step-two.sass'
 const layout = {
   labelCol: { span: 0 },
   wrapperCol: { span: 21 },

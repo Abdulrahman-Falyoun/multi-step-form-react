@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Form, Input, Button, Select, Radio } from 'antd';
 import StepperInput from '../stepper-input';
-import '../../styles/step-one.sass'
+import '../../styles/steps/step-one.sass'
 import FancySmallCard from '../card/fancy-small-card';
 const layout = {
   labelCol: { span: 0 },

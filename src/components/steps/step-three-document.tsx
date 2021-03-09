@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { Form } from 'antd';
-import '../../styles/step-three.sass'
+import '../../styles/steps/step-three.sass'
 import StepperUploadFileInput from '../stepper-upload-file';
 import FancyCard from '../card/fancy-small-card';
 

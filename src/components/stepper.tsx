@@ -11,13 +11,12 @@ const { Step } = Steps;
 
 const ConnectedToStoreStepper = (props: any) => {
     const { currentStep, steps } = props;
-    const [isResponsive, setIsResponsive] = useState(true);
 
    
     return (
         <div className="stepper-wrapper">
             <div className="flex-row-center-main-cross">
-                <Steps current={currentStep} className="steps" responsive={isResponsive}>
+                <Steps current={currentStep} className="steps"  responsive={true ? true : undefined}>
                     {
                         steps.map((s: any, idx: number) => {
                             return <Step status={idx === currentStep ? "finish" : undefined} key={s.title} title={s.title} icon={s.icon} />;

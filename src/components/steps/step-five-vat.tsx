@@ -6,7 +6,7 @@ import '../../styles/steps/step-five.sass'
 import StepperSelect from '../input-fields/stepper-select';
 import StepperUploadFileInput from '../input-fields/stepper-upload-file';
 import FancyCard from '../card/fancy-small-card';
-import {getFileName, getFileSize } from '../../utils/file-helper';
+import { getFileName, getFileSize } from '../../utils/file-helper';
 const layout = {
     labelCol: { span: 0 },
     wrapperCol: { span: 21 },
@@ -17,7 +17,7 @@ const StepFiveVAT = () => {
 
     const [taxCertificate, setTaxCertificate] = useState(null);
 
-    
+
     return (
         <div className="step-five-wrapper">
             <p>VAT</p>
@@ -25,14 +25,13 @@ const StepFiveVAT = () => {
                 <div>
                     <Form {...layout} form={form} name="control-hooks">
                         <div className="flex-row-flex-start-main-cross-center">
-                            <Form.Item className="double-full-flex-item column-flex-direction" name="beneficiary" label="Tax Registration Number">
-                                <StepperInput
-                                    onInputChanged={(e: any) => { console.log('changed: ', e.target.value) }}
-                                    placeHolder="Enter tax registration number"
-                                    size='large'
-                                    bordered={false} />
+                            <StepperInput
+                                onInputChanged={(e: any) => { console.log('changed: ', e.target.value) }}
+                                placeHolder="Enter tax registration number"
+                                size='large'
+                                bordered={false}
+                                className="double-full-flex-item column-flex-direction" name="beneficiary" label="Tax Registration Number" />
 
-                            </Form.Item>
                             <Form.Item className="full-flex-item column-flex-direction" name="taxCertification" label="Upload TaX Registration Certificate">
                                 <StepperUploadFileInput id="tax-cert-input" placeholder="Browse Files" width="100%" placeHolderFontSize='.8rem' onFileSelected={(file: any) => { console.log('national: ', file); setTaxCertificate(file); }} />
                                 {taxCertificate && <br />}

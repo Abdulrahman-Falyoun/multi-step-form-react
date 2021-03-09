@@ -9,6 +9,8 @@ const layout = {
   wrapperCol: { span: 21 },
 };
 
+
+
 const StepOneGenerator = () => {
   const [form] = Form.useForm();
   const [radioGroupValue, setRadioGroupValue] = useState('Riyadh');
@@ -17,22 +19,30 @@ const StepOneGenerator = () => {
       <p>General</p>
       <div className="form-wrapper">
         <div>
-          <Form {...layout} form={form} name="control-hooks">
+          <Form {...layout} form={form} name="control-hooks" scrollToFirstError>
             <div className="flex-row-flex-start-main-cross-center">
-              <Form.Item className="full-flex-item column-flex-direction" name="email" label="Email Address">
-                <StepperInput
-                  onInputChanged={(e: any) => { console.log('changed: ', e.target.value) }}
-                  placeHolder="Info@Example.com"
-                  size='large'
-                  bordered={false} />
-              </Form.Item>
-              <Form.Item className="full-flex-item column-flex-direction" name="name" label="Full Name">
-                <StepperInput
-                  onInputChanged={(e: any) => { console.log('changed: ', e.target.value) }}
-                  placeHolder="Your Full Name"
-                  size='large'
-                  bordered={false} />
-              </Form.Item>
+              <StepperInput
+                onInputChanged={(e: any) => { console.log('changed: ', e.target.value) }}
+                placeHolder="Info@Example.com"
+                size='large'
+                bordered={false}
+                className="full-flex-item column-flex-direction" hasFeedback name="email" label="Email Address" rules={[
+                  {
+                    type: 'email',
+                    message: 'The input is not valid E-mail!',
+                  },
+                  {
+                    required: true,
+                    message: 'Please input your E-mail!',
+                  },
+                ]} />
+              <StepperInput
+                onInputChanged={(e: any) => { console.log('changed: ', e.target.value) }}
+                placeHolder="Your Full Name"
+                size='large'
+                bordered={false}
+                name="name" label="Full Name"
+                className="full-flex-item column-flex-direction" />
             </div>
           </Form>
         </div>

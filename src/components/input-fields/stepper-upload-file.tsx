@@ -2,7 +2,7 @@
 import { UploadOutlined } from '@ant-design/icons';
 import { Upload, Button, Input } from 'antd';
 import React from 'react';
-import '../styles/stepper-upload-file.sass';
+import '../../styles/stepper-upload-file.sass';
 
 const StepperUploadFileInput = ({ onFileSelected, placeholder, placeHolderFontSize = '1rem', width, id }: any) => {
     if(!id) {

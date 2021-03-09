@@ -1,9 +1,9 @@
 
 import React, { useState } from 'react';
 import { Form } from 'antd';
-import StepperInput from '../stepper-input';
-import StepperSelect from '../stepper-select';
-import StepperPhoneInput from '../stepper-phone-input';
+import StepperInput from '../input-fields/stepper-input';
+import StepperSelect from '../input-fields/stepper-select';
+import StepperPhoneInput from '../input-fields/stepper-phone-input';
 import '../../styles/steps/step-two.sass'
 const layout = {
   labelCol: { span: 0 },

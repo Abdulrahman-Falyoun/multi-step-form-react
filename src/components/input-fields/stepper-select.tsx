@@ -1,6 +1,6 @@
 import { Select } from "antd";
 import React from "react";
-import '../styles/stepper-select.sass'
+import '../../styles/stepper-select.sass'
 const { Option } = Select;
 
 const StepperSelect = (props: any) => {

@@ -1,6 +1,6 @@
 import React from 'react'
 import MaskedInput from 'antd-mask-input'
-import '../styles/stepper-phone.sass';
+import '../../styles/stepper-phone.sass';
 
 const StepperPhoneInput = () => {
     return (

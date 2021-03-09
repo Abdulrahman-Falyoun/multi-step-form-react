@@ -1,10 +1,10 @@
 
 import React, { useState } from 'react';
 import { Form, Input, Button, Select, Radio } from 'antd';
-import StepperInput from '../stepper-input';
+import StepperInput from '../input-fields/stepper-input';
 import '../../styles/steps/step-four.sass'
-import StepperSelect from '../stepper-select';
-import StepperUploadFileInput from '../stepper-upload-file';
+import StepperSelect from '../input-fields/stepper-select';
+import StepperUploadFileInput from '../input-fields/stepper-upload-file';
 import FancyCard from '../card/fancy-small-card';
 
 const layout = {

@@ -6,6 +6,8 @@ $yellow: #FCEB55
 .steps-action
     display: flex
     align-items: center
+    @media screen and ( max-width: $screen-sm-min )
+        flex-direction: column-reverse
 
 .justify-content-space-between
     justify-content: space-between

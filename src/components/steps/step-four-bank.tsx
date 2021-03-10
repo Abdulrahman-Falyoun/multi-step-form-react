@@ -43,7 +43,7 @@ const StepFourBank = () => {
                                 placeHolder="Info@Example.com"
                                 size='large'
                                 bordered={false}
-                                className="double-full-flex-item column-flex-direction" name="name" label="Payoneer Email"
+                                className="double-full-flex-item column-flex-direction" name="name" label="Business Email"
                             />
                         </div>
                     </Form>

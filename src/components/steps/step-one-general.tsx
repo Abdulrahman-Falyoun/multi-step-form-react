@@ -18,7 +18,7 @@ const layout = {
 
 const StepOneGenerator = ({ fillStepDataAction, initialData }: any) => {
   const [form] = Form.useForm();
-  const [cityValue, setCityValue] = useState(initialData.city)
+  const [cityValue, setCityValue] = useState(initialData.city || 'Riyadh')
   const [stepOneData, setStepOneData] = useState({ ...initialData })
   useEffect(() => {
     return () => {
@@ -70,15 +70,26 @@ const StepOneGenerator = ({ fillStepDataAction, initialData }: any) => {
                 size='large'
                 bordered={false}
                 name="name" label="Full Name"
-                className="full-flex-item column-flex-direction" />
+                className="full-flex-item column-flex-direction"
+                rules={[
+                  {
+                    required: true,
+                    message: 'Please input your full name!',
+                  },
+                ]}
+              />
             </div>
           </Form>
         </div>
         <div className='radio-group-wrapper'>
-          <Radio.Group size='large' onChange={(e: any) => {
+          <Radio.Group
+           size='large'
+            onChange={(e: any) => {
             stepOneData.city = e.target.value;
             setCityValue(e.target.value)
-          }} value={cityValue}>
+          }} value={cityValue}
+          
+          >
             <Radio value='Riyadh'>Riyadh</Radio>
             <Radio value='Dammam'>Dammam</Radio>
             <Radio value='Jaddah'>Jaddah</Radio>

@@ -28,7 +28,6 @@ const StepperInput = ({
                 size={size}
                 suffix={suffex}
                 prefix={prefix}
-                value={value}
                 className="stepper-input" />
         </Form.Item>
 

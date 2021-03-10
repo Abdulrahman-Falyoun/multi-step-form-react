@@ -11,11 +11,17 @@ export default ({
     headerColor,
     borderStyle,
     borderWidth,
-    borderColor
+    borderColor,
+    value,
+    onFancyCardClicked = () => {}
 }: any) => {
     const period = periodText && <span style={{ fontSize: '.6rem', fontWeight: 'normal', letterSpacing: '0rem' }}>{periodText}</span>;
     return (
-        <div className='fancy-card' style={{
+        <div className='fancy-card'
+        onClick={() => {
+            onFancyCardClicked(value);
+        }}
+        style={{
             background: bgColor,
             width: width,
             height: height,

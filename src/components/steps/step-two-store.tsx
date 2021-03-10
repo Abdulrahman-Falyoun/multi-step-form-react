@@ -109,24 +109,6 @@ const StepTwoGenerator = ({ fillStepDataAction }: any) => {
                 bordered={false}
                 className="full-flex-item column-flex-direction" name="address" label="Full Address" />
             </div>
-            <div className="flex-row-flex-start-main-cross-center">
-              <StepperInput
-                onInputChanged={(e: any) => { stepTwoData.facebookAccountLink = e.target.value; }}
-                placeHolder="https://www.facebook.com/..."
-                size='large'
-                bordered={false}
-                className="full-flex-item column-flex-direction" name="facebook" label="Facebook Account"
-              />
-            </div>
-            <div className="flex-row-flex-start-main-cross-center">
-              <StepperInput
-                onInputChanged={(e: any) => { stepTwoData.twitterAccountLink = e.target.value; }}
-                placeHolder="https://www.twitter.com/..."
-                size='large'
-                bordered={false}
-                className="full-flex-item column-flex-direction" name="twitter" label="Twitter Account"
-              />
-            </div>
           </Form>
         </div>
       </div>

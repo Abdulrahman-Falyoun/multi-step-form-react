@@ -4,7 +4,7 @@ import { ReduxStateInterface } from '../../interfaces/redux-state';
 import { ActionInterface } from '../../interfaces/action-interface';
 import StepOneGeneral from '../../components/steps/step-one-general';
 import StepTwoStore from '../../components/steps/step-two-store';
-import StepThreeDocument from '../../components/steps/step-three-document';
+import StepThreeSocialMedia from '../../components/steps/step-three-social-medial';
 import StepFourDocument from '../../components/steps/step-four-bank';
 import StepFiveVAT from '../../components/steps/step-five-vat';
 import EndStep from '../../components/steps/end-step';
@@ -28,10 +28,10 @@ const initialState: ReduxStateInterface = {
             component: <StepTwoStore />
         },
         {
-            title: 'Document',
+            title: 'Social Media',
             icon: ICONS.DocumentSVGIcon,
             data: {},
-            component: <StepThreeDocument />
+            component: <StepThreeSocialMedia />
         },
         {
             title: 'Bank',

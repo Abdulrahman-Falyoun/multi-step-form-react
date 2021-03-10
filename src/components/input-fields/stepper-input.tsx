@@ -15,7 +15,8 @@ const StepperInput = ({
     className,
     name,
     label,
-    rules
+    rules,
+    isInputNumber = false
 }: any) => {
     return (
         <Form.Item className={className} initialValue={value} name={name} label={label} rules={rules}>

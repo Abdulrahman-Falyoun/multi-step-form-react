@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import { Form } from 'antd';
 import StepperInput from '../input-fields/stepper-input';
 import StepperSelect from '../input-fields/stepper-select';
-import StepperPhoneInput from '../input-fields/stepper-phone-input';
 import '../../styles/steps/step-two.sass'
 import { connect } from 'react-redux';
 import Actions from '../../redux/actions/index';
@@ -81,12 +80,17 @@ const StepTwoGenerator = ({ fillStepDataAction }: any) => {
         <div>
           <Form {...layout} form={form} name="control-hooks">
             <div className="flex-row-flex-start-main-cross-center">
-              <Form.Item className="full-flex-item column-flex-direction" name="phoneNumber" label="Phone Number">
-                <StepperPhoneInput
-                  firstMaskChanged={(e: any) => modifyPhoneNumber(0, e.target.value)}
-                  secondMaskChanged={(e: any) => modifyPhoneNumber(1, e.target.value)}
-                  thirdMaskChanged={(e: any) => modifyPhoneNumber(2, e.target.value)} />
-              </Form.Item>
+            <StepperInput
+                onInputChanged={() => {}}
+                placeHolder="E.G. 00963..."
+                size='large'
+                bordered={false}
+                className="full-flex-item column-flex-direction" name="phoneNumber" label="Phone Number" rules={[
+                  {
+                    required: true,
+                    message: 'Please input your phone number',
+                  },
+                ]} />
               <Form.Item className="full-flex-item column-flex-direction" name="legalName" label="What kind of product do you sell?">
                 <StepperSelect options={options} placeholder='E.G. Electronics'
                   onValueSelected={(value: any) => {

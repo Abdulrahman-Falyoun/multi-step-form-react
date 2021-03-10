@@ -44,7 +44,7 @@ const StepTwoGenerator = ({ fillStepDataAction }: any) => {
       || stepTwoData.phoneNumber == '--') {
         stepTwoData.phoneNumber = '';
       }
-      fillStepDataAction(stepTwoData);
+      fillStepDataAction(stepTwoData, 1);
     };
   }, []);
 
@@ -138,7 +138,7 @@ const StepTwoGenerator = ({ fillStepDataAction }: any) => {
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    fillStepDataAction: (data: any) => dispatch(Actions.fill_step_data(data))
+    fillStepDataAction: (data: any, stepNumber: number) => dispatch(Actions.fill_step_data(data, stepNumber))
   }
 }
 export default connect(null, mapDispatchToProps)(StepTwoGenerator);

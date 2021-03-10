@@ -11,7 +11,8 @@ class Actions {
     }
 
 
-    public [FILL_STEP_DATA](payload: any) {
+    public [FILL_STEP_DATA](payload: any, stepNumber: number) {
+        payload.stepNumber = stepNumber;
         return {
             type: FILL_STEP_DATA,
             payload

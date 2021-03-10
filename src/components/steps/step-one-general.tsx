@@ -6,6 +6,7 @@ import '../../styles/steps/step-one.sass'
 import FancySmallCard from '../card/fancy-small-card';
 import { connect } from 'react-redux';
 import Actions from '../../redux/actions/index';
+import { ReduxStateInterface } from '../../interfaces/redux-state';
 
 
 const layout = {
@@ -15,19 +16,17 @@ const layout = {
 
 
 
-const StepOneGenerator = ({ fillStepDataAction }: any) => {
+const StepOneGenerator = ({ fillStepDataAction, initialData }: any) => {
   const [form] = Form.useForm();
-  const [radioGroupValue, setRadioGroupValue] = useState('Riyadh');
-  const [stepOneData, setStepOneData] = useState({
-    email: '',
-    name: '',
-    city: radioGroupValue
-  })
-
+  const [cityValue, setCityValue] = useState(initialData.city)
+  const [stepOneData, setStepOneData] = useState({ ...initialData })
   useEffect(() => {
     return () => {
       console.log("cleaned up: ", stepOneData);
-      fillStepDataAction(stepOneData);
+      if (!('city' in stepOneData)) {
+        stepOneData['city'] = cityValue;
+      }
+      fillStepDataAction(stepOneData, 0);
     };
   }, []);
 
@@ -49,6 +48,7 @@ const StepOneGenerator = ({ fillStepDataAction }: any) => {
           <Form {...layout} form={form} name="control-hooks" scrollToFirstError>
             <div className="flex-row-flex-start-main-cross-center">
               <StepperInput
+                value={stepOneData.email}
                 onInputChanged={onEmailFieldValueChanged}
                 placeHolder="Info@Example.com"
                 size='large'
@@ -64,6 +64,7 @@ const StepOneGenerator = ({ fillStepDataAction }: any) => {
                   },
                 ]} />
               <StepperInput
+                value={stepOneData.name}
                 onInputChanged={onFullNameFieldValueChanged}
                 placeHolder="Your Full Name"
                 size='large'
@@ -74,7 +75,10 @@ const StepOneGenerator = ({ fillStepDataAction }: any) => {
           </Form>
         </div>
         <div className='radio-group-wrapper'>
-          <Radio.Group size='large' onChange={(value: any) => { console.log('value: ', value.target.value); setRadioGroupValue(value.target.value) }} value={radioGroupValue}>
+          <Radio.Group size='large' onChange={(e: any) => {
+            stepOneData.city = e.target.value;
+            setCityValue(e.target.value)
+          }} value={cityValue}>
             <Radio value='Riyadh'>Riyadh</Radio>
             <Radio value='Dammam'>Dammam</Radio>
             <Radio value='Jaddah'>Jaddah</Radio>
@@ -100,9 +104,14 @@ const StepOneGenerator = ({ fillStepDataAction }: any) => {
   );
 };
 
-const mapDispatchToProps = (dispatch: any) => {
+const mapStateToProps = (state: ReduxStateInterface) => {
   return {
-    fillStepDataAction: (data: any) => dispatch(Actions.fill_step_data(data))
+    initialData: state.steps[state.currentStep]?.data
   }
 }
-export default connect(null, mapDispatchToProps)(StepOneGenerator);
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    fillStepDataAction: (data: any, stepNumber: number) => dispatch(Actions.fill_step_data(data, stepNumber))
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(StepOneGenerator);

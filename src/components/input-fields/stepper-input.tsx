@@ -4,6 +4,7 @@ import '../../styles/stepper-input.sass'
 
 const StepperInput = ({
     type = 'text',
+    value = '',
     onInputChanged = () => { },
     placeHolder = 'Please enter your text',
     bordered = false,
@@ -17,7 +18,7 @@ const StepperInput = ({
     rules
 }: any) => {
     return (
-        <Form.Item className={className} hasFeedback name={name} label={label} rules={rules}>
+        <Form.Item className={className} initialValue={value} name={name} label={label} rules={rules}>
             <Input
                 id={id}
                 type={type}
@@ -27,6 +28,7 @@ const StepperInput = ({
                 size={size}
                 suffix={suffex}
                 prefix={prefix}
+                value={value}
                 className="stepper-input" />
         </Form.Item>
 

@@ -4,6 +4,10 @@ import { Form, Input, Button, Select, Radio } from 'antd';
 import StepperInput from '../input-fields/stepper-input';
 import '../../styles/steps/step-one.sass'
 import FancySmallCard from '../card/fancy-small-card';
+import { connect } from 'react-redux';
+import Actions from '../../redux/actions/index';
+
+
 const layout = {
   labelCol: { span: 0 },
   wrapperCol: { span: 21 },
@@ -11,7 +15,7 @@ const layout = {
 
 
 
-const StepOneGenerator = () => {
+const StepOneGenerator = ({ fillStepDataAction }: any) => {
   const [form] = Form.useForm();
   const [radioGroupValue, setRadioGroupValue] = useState('Riyadh');
   const [stepOneData, setStepOneData] = useState({
@@ -23,6 +27,7 @@ const StepOneGenerator = () => {
   useEffect(() => {
     return () => {
       console.log("cleaned up: ", stepOneData);
+      fillStepDataAction(stepOneData);
     };
   }, []);
 
@@ -95,4 +100,9 @@ const StepOneGenerator = () => {
   );
 };
 
-export default StepOneGenerator;
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    fillStepDataAction: (data: any) => dispatch(Actions.fill_step_data(data))
+  }
+}
+export default connect(null, mapDispatchToProps)(StepOneGenerator);

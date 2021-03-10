@@ -11,7 +11,7 @@ import { ReduxStateInterface } from '../interfaces/redux-state';
 import Actions from '../redux/actions/index';
 import { connect } from 'react-redux';
 
-const SellerForm =  ({ nextOrPreviousStepAction, CardContent }: any) => {
+const SellerForm =  ({ nextOrPreviousStepAction, CardContent, fillStepDataAction, submitFormAction }: any) => {
 
     const next = () => {
         nextOrPreviousStepAction(1);
@@ -23,7 +23,7 @@ const SellerForm =  ({ nextOrPreviousStepAction, CardContent }: any) => {
     return (
         <div className="seller-form-wrapper flex-column-flex-start-main-cross-center">
             <Stepper />
-            <Card onPressingNextButton={next} onPressingBackButton={prev}  content={CardContent}/>
+            <Card onPressingNextButton={next} onPressingBackButton={prev}  content={CardContent} fillStepDataAction={fillStepDataAction}/>
         </div>
     )
 };
@@ -40,7 +40,8 @@ const mapStateToProps = (state: ReduxStateInterface) => {
 
 const mapDispatchToProps = (dispatch: any) => {
     return {
-        nextOrPreviousStepAction: (stepNumber: number) => dispatch(Actions.move_step_forward_or_backward(stepNumber))
+        nextOrPreviousStepAction: (stepNumber: number) => dispatch(Actions.move_step_forward_or_backward(stepNumber)),
+        
     };
 }
 export default connect(mapStateToProps, mapDispatchToProps)(SellerForm);

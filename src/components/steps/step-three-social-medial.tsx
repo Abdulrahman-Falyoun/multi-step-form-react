@@ -52,6 +52,28 @@ const StepOneGenerator = ({ initialData = {} }: any) => {
               className="full-flex-item column-flex-direction"
             />
           </div>
+          <div className="flex-row-flex-start-main-cross-center">
+            <StepperInput
+              name="linkedin"
+              label="Linkedin Account"
+              onInputChanged={(e: any) => { stepThreeData.twitterAccountLink = e.target.value; }}
+              placeHolder="https://www.linkedin.com/..."
+              size='large'
+              bordered={false}
+              className="full-flex-item column-flex-direction"
+            />
+          </div>
+          <div className="flex-row-flex-start-main-cross-center">
+            <StepperInput
+              name="tumblr"
+              label="Tumblr Account"
+              onInputChanged={(e: any) => { stepThreeData.twitterAccountLink = e.target.value; }}
+              placeHolder="https://www.tumblr.com//..."
+              size='large'
+              bordered={false}
+              className="full-flex-item column-flex-direction"
+            />
+          </div>
         </Form>
       </div>
     </div>

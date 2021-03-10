@@ -1,32 +1,25 @@
 
 
 import React from 'react';
-import { connect } from 'react-redux';
-import { ReduxStateInterface } from '../../interfaces/redux-state';
 import '../../styles/card/card.sass';
 import CardButtons from './card-buttons';
 
-const Card = (props: any) => {
-    const { CardContent } = props;
+const Card = ({ content, onPressingNextButton, onPressingBackButton }: any) => {
     return (
         <div className="card-wrapper">
             <div className="card-content">
                 <div className='content-area'>
                     {
-                        CardContent
+                        content
                     }
                 </div>
                 <div className="card-buttons">
-                    <CardButtons />
+                    <CardButtons onPressingNextButton={onPressingNextButton} onPressingBackButton={onPressingBackButton} />
                 </div>
             </div>
         </div>
     )
 };
 
-const mapStateToProps = (state: ReduxStateInterface) => {
-    return {
-        CardContent: state.steps[state.currentStep].component
-    };
-}
-export default connect(mapStateToProps)(Card);
+
+export default Card;

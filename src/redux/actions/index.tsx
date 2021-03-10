@@ -1,11 +1,19 @@
 
 import { ActionInterface } from '../../interfaces/action-interface';
-import { MOVE_STEP_FORWARD_OR_BACKWARD } from '../types/actions-types';
+import { MOVE_STEP_FORWARD_OR_BACKWARD, FILL_STEP_DATA } from '../types/actions-types';
 
 class Actions {
     public [MOVE_STEP_FORWARD_OR_BACKWARD](payload: number): ActionInterface {
         return {
             type: MOVE_STEP_FORWARD_OR_BACKWARD,
+            payload
+        }
+    }
+
+
+    public [FILL_STEP_DATA](payload: any) {
+        return {
+            type: FILL_STEP_DATA,
             payload
         }
     }

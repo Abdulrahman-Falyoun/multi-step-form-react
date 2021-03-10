@@ -16,7 +16,7 @@ const ConnectedToStoreStepper = (props: any) => {
     return (
         <div className="stepper-wrapper">
             <div className="flex-row-center-main-cross">
-                <Steps current={currentStep} className="steps"  responsive={true ? true : undefined}>
+                <Steps current={currentStep} className="steps"  responsive>
                     {
                         steps.map((s: any, idx: number) => {
                             return <Step status={idx === currentStep ? "finish" : undefined} key={s.title} title={s.title} icon={s.icon} />;

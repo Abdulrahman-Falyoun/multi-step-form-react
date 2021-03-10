@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Form, Input, Button, Select, Radio } from 'antd';
 import StepperInput from '../input-fields/stepper-input';
 import '../../styles/steps/step-one.sass'
@@ -14,6 +14,28 @@ const layout = {
 const StepOneGenerator = () => {
   const [form] = Form.useForm();
   const [radioGroupValue, setRadioGroupValue] = useState('Riyadh');
+  const [stepOneData, setStepOneData] = useState({
+    email: '',
+    name: '',
+    city: radioGroupValue
+  })
+
+  useEffect(() => {
+    return () => {
+      console.log("cleaned up: ", stepOneData);
+    };
+  }, []);
+
+  const onEmailFieldValueChanged = (e: any) => {
+    // console.log('onEmailFieldValueChanged: ', e.target.value);
+    stepOneData.email = e.target.value;
+  }
+
+  const onFullNameFieldValueChanged = (e: any) => {
+    // console.log('onFullNameFieldValueChanged: ', e.target.value);
+    stepOneData.name = e.target.value;
+  }
+
   return (
     <div className="step-one-wrapper">
       <p>General</p>
@@ -22,11 +44,11 @@ const StepOneGenerator = () => {
           <Form {...layout} form={form} name="control-hooks" scrollToFirstError>
             <div className="flex-row-flex-start-main-cross-center">
               <StepperInput
-                onInputChanged={(e: any) => { console.log('changed: ', e.target.value) }}
+                onInputChanged={onEmailFieldValueChanged}
                 placeHolder="Info@Example.com"
                 size='large'
                 bordered={false}
-                className="full-flex-item column-flex-direction" hasFeedback name="email" label="Email Address" rules={[
+                className="full-flex-item column-flex-direction" name="email" label="Email Address" rules={[
                   {
                     type: 'email',
                     message: 'The input is not valid E-mail!',
@@ -37,7 +59,7 @@ const StepOneGenerator = () => {
                   },
                 ]} />
               <StepperInput
-                onInputChanged={(e: any) => { console.log('changed: ', e.target.value) }}
+                onInputChanged={onFullNameFieldValueChanged}
                 placeHolder="Your Full Name"
                 size='large'
                 bordered={false}

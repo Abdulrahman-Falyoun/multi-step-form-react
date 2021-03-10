@@ -1,5 +1,5 @@
 
-import { MOVE_STEP_FORWARD_OR_BACKWARD } from '../types/actions-types';
+import { MOVE_STEP_FORWARD_OR_BACKWARD, FILL_STEP_DATA } from '../types/actions-types';
 import { ReduxStateInterface } from '../../interfaces/redux-state';
 import { ActionInterface } from '../../interfaces/action-interface';
 import StepOneGeneral from '../../components/steps/step-one-general';
@@ -9,6 +9,9 @@ import StepFourDocument from '../../components/steps/step-four-bank';
 import StepFiveVAT from '../../components/steps/step-five-vat';
 import EndStep from '../../components/steps/end-step';
 import * as ICONS from '../../components/svg-icons';
+
+import { fillDataReducer } from './fill-step-data-reducer';
+import { moveStepReducer } from './move-step-reducer';
 const initialState: ReduxStateInterface = {
     currentStep: 0,
     steps: [
@@ -54,10 +57,10 @@ const initialState: ReduxStateInterface = {
 export default (state = initialState, action: ActionInterface) => {
     switch (action.type) {
         case MOVE_STEP_FORWARD_OR_BACKWARD:
-            return {
-                ...state,
-                currentStep: state.currentStep + action.payload
-            }
+            return moveStepReducer(state, action);
+            
+        case FILL_STEP_DATA:
+            return fillDataReducer(state, action);
         default:
             return state;
     }

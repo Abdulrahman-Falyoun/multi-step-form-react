@@ -32,18 +32,32 @@ const StepFourBank = () => {
                     <Form {...layout} form={form} name="control-hooks">
                         <div className="flex-row-flex-start-main-cross-center">
                             <StepperInput
+                                name="beneficiary" label="Beneficiary Name"
                                 onInputChanged={(e: any) => { console.log('changed: ', e.target.value) }}
                                 placeHolder="E.G. Ghayath"
                                 size='large'
                                 bordered={false}
-                                className="full-flex-item column-flex-direction" name="beneficiary" label="Beneficiary Name"
+                                className="full-flex-item column-flex-direction"
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: 'Please input your beneficiary name'
+                                    }
+                                ]}
                             />
                             <StepperInput
+                                name="businessEmail" label="Business Email"
                                 onInputChanged={(e: any) => { console.log('changed: ', e.target.value) }}
                                 placeHolder="Info@Example.com"
                                 size='large'
                                 bordered={false}
-                                className="double-full-flex-item column-flex-direction" name="name" label="Business Email"
+                                className="double-full-flex-item column-flex-direction"
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: 'Please input your business email'
+                                    }
+                                ]}
                             />
                         </div>
                     </Form>
@@ -54,11 +68,17 @@ const StepFourBank = () => {
                     <Form {...layout} form={form} name="control-hooks">
                         <div className="flex-row-flex-start-main-cross-center">
                             <StepperInput
+                                className="full-flex-item column-flex-direction" name="bankName" label="Bank Name"
                                 onInputChanged={(e: any) => { console.log('changed: ', e.target.value) }}
                                 placeHolder="E.G. VISA"
                                 size='large'
                                 bordered={false}
-                                className="full-flex-item column-flex-direction" name="bankName" label="Bank Name"
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: 'Please enter bank name'
+                                    }
+                                ]}
                             />
                             <StepperInput
                                 onInputChanged={(e: any) => { console.log('changed: ', e.target.value) }}

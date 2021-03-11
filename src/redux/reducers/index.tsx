@@ -14,6 +14,7 @@ import { fillDataReducer } from './fill-step-data-reducer';
 import { moveStepReducer } from './move-step-reducer';
 const initialState: ReduxStateInterface = {
     currentStep: 0,
+    currentStepHasErrorAsMandatoryFieldsNotFilled: false,
     steps: [
         {
             title: 'General',

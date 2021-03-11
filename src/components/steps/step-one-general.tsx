@@ -7,7 +7,7 @@ import FancySmallCard from '../card/fancy-small-card';
 import { connect } from 'react-redux';
 import Actions from '../../redux/actions/index';
 import { ReduxStateInterface } from '../../interfaces/redux-state';
-
+import { GeneralDataInterface } from '../../interfaces/steps-data';
 
 const layout = {
   labelCol: { span: 0 },
@@ -19,25 +19,24 @@ const layout = {
 const StepOneGenerator = ({ fillStepDataAction, initialData }: any) => {
   const [form] = Form.useForm();
   const [cityValue, setCityValue] = useState(initialData.city || 'Riyadh')
-  const [stepOneData, setStepOneData] = useState({ ...initialData })
+  const [packageType, setPackageType] = useState(initialData.packageType || 'free')
+  const [stepOneData, setStepOneData] = useState<GeneralDataInterface>({ ...initialData })
   useEffect(() => {
     return () => {
       console.log("cleaned up: ", stepOneData);
-      if (!('city' in stepOneData)) {
-        stepOneData['city'] = cityValue;
+      if (stepOneData.city == '') {
+        stepOneData.city = 'Riyadh';
       }
       fillStepDataAction(stepOneData, 0);
     };
   }, []);
 
   const onEmailFieldValueChanged = (e: any) => {
-    // console.log('onEmailFieldValueChanged: ', e.target.value);
     stepOneData.email = e.target.value;
   }
 
   const onFullNameFieldValueChanged = (e: any) => {
-    // console.log('onFullNameFieldValueChanged: ', e.target.value);
-    stepOneData.name = e.target.value;
+    stepOneData.fullname = e.target.value;
   }
 
   return (
@@ -64,7 +63,7 @@ const StepOneGenerator = ({ fillStepDataAction, initialData }: any) => {
                   },
                 ]} />
               <StepperInput
-                value={stepOneData.name}
+                value={stepOneData.fullname}
                 onInputChanged={onFullNameFieldValueChanged}
                 placeHolder="Your Full Name"
                 size='large'
@@ -83,12 +82,12 @@ const StepOneGenerator = ({ fillStepDataAction, initialData }: any) => {
         </div>
         <div className='radio-group-wrapper'>
           <Radio.Group
-           size='large'
+            size='large'
             onChange={(e: any) => {
-            stepOneData.city = e.target.value;
-            setCityValue(e.target.value)
-          }} value={cityValue}
-          
+              stepOneData.city = e.target.value;
+              setCityValue(e.target.value)
+            }} value={cityValue}
+
           >
             <Radio value='Riyadh'>Riyadh</Radio>
             <Radio value='Dammam'>Dammam</Radio>
@@ -101,12 +100,28 @@ const StepOneGenerator = ({ fillStepDataAction, initialData }: any) => {
             bgColor='#595959'
             txtStyle={{ color: '#FCEB55', letterSpacing: '.1rem' }}
             periodText='/year'
-            headerColor='Sliver' />
-          <FancySmallCard title='999.00 SAR'
+            headerColor='Sliver'
+            value='free'
+            cardSelected={packageType == 'free' ? true : false}
+            onFancyCardClicked={(value: any) => {
+              console.log('value selected for package price: ', value);
+              stepOneData.packageType = value;
+              setPackageType(value);
+            }}
+          />
+          <FancySmallCard
+            title='999.00 SAR'
+            value='999.00 SAR'
             bgColor='#FCEB55'
+            cardSelected={packageType == '999.00 SAR' ? true : false}
             txtStyle={{ color: '#595959', letterSpacing: '.1rem' }}
             periodText='/year'
-            headerColor='GOLD' />
+            headerColor='GOLD'
+            onFancyCardClicked={(value: any) => {
+              console.log('value selected for package price: ', value);
+              stepOneData.packageType = value;
+              setPackageType(value);
+            }} />
         </div>
       </div>
 

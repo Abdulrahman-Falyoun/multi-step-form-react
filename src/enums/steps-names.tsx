@@ -1,0 +1,5 @@
+
+
+export enum STEPS_NAMES {
+    GENERAL, STORE, SOCIAL_MEDIA, BANK, VAT
+}

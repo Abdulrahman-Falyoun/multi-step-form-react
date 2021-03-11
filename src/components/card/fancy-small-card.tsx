@@ -13,11 +13,12 @@ export default ({
     borderWidth,
     borderColor,
     value,
-    onFancyCardClicked = () => { }
+    onFancyCardClicked = () => { },
+    cardSelected = false
 }: any) => {
     const period = periodText && <span style={{ fontSize: '.6rem', fontWeight: 'normal', letterSpacing: '0rem' }}>{periodText}</span>;
     return (
-        <div className='fancy-card'
+        <div className={'fancy-card ' + (cardSelected ? 'fancy-card-selected' : '')}
             onClick={() => {
                 onFancyCardClicked(value);
             }}

@@ -15,14 +15,24 @@ const StepperInput = ({
     className,
     name,
     label,
-    rules
+    rules,
+    // acceptOnlyNumbers = false
 }: any) => {
     return (
         <Form.Item className={className} hasFeedback initialValue={value} name={name} label={label} rules={rules}>
             <Input
-                id={id}
                 type={type}
-                onChange={(v) => onInputChanged(v)}
+                value={value}
+                onChange={(e) => {
+                    // if (acceptOnlyNumbers) {
+                    //     const passedTest = /^[0-9\b]+$/.test(e.target.value)
+                    //     if (e.target.value === '' || !passedTest) {
+                    //         return;
+                    //     }
+                    // }
+                    onInputChanged(e);
+                }}
+                itemID={id}
                 placeholder={placeHolder}
                 bordered={bordered}
                 size={size}

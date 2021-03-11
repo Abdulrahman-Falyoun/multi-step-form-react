@@ -26,7 +26,7 @@ const StepTwoGenerator = ({ fillStepDataAction }: any) => {
   const [stepTwoData, setSteptwoData] = useState({
     storeName: '',
     legalName: '',
-    phoneNumber: '00000-0000-0000',
+    phoneNumber: '',
     productType: '',
     address: '',
     facebookAccountLink: '',
@@ -36,22 +36,10 @@ const StepTwoGenerator = ({ fillStepDataAction }: any) => {
   useEffect(() => {
     return () => {
       console.log("cleaned up: ", stepTwoData);
-      if (stepTwoData.phoneNumber == '00000-0000-0000'
-        || stepTwoData.phoneNumber == '-0000-0000'
-        || stepTwoData.phoneNumber == '00000--0000'
-        || stepTwoData.phoneNumber == '00000-0000-'
-        || stepTwoData.phoneNumber == '--') {
-        stepTwoData.phoneNumber = '';
-      }
       fillStepDataAction(stepTwoData, 1);
     };
   }, []);
 
-  const modifyPhoneNumber = (cellIndex: number, value: any) => {
-    const splittedPhoneNumber = stepTwoData.phoneNumber.split('-')
-    splittedPhoneNumber[cellIndex] = value;
-    stepTwoData.phoneNumber = splittedPhoneNumber.join('-');
-  }
   return (
     <div className="step-two-wrapper">
       <p style={{ display: 'block' }}>Store</p>
@@ -65,14 +53,28 @@ const StepTwoGenerator = ({ fillStepDataAction }: any) => {
                 placeHolder="What's your store name?"
                 size='large'
                 bordered={false}
-                className="full-flex-item column-flex-direction" />
+                className="full-flex-item column-flex-direction"
+                rules={[
+                  {
+                    required: true,
+                    message: 'Please input your store name'
+                  }
+                ]}
+                />
               <StepperInput
                 name="legalName" label="Legal Name"
                 onInputChanged={(e: any) => stepTwoData.legalName = e.target.value}
                 placeHolder="Company legal name"
                 size='large'
                 bordered={false}
-                className="full-flex-item column-flex-direction" />
+                className="full-flex-item column-flex-direction"
+                rules={[
+                  {
+                    required: true,
+                    message: 'Please input your company legal name'
+                  }
+                ]}
+                />
             </div>
           </Form>
         </div>
@@ -81,10 +83,15 @@ const StepTwoGenerator = ({ fillStepDataAction }: any) => {
           <Form {...layout} form={form} name="control-hooks">
             <div className="flex-row-flex-start-main-cross-center">
               <StepperInput
-                onInputChanged={() => { }}
+                acceptOnlyNumbers
+                onInputChanged={(e: any) => {
+                  stepTwoData.phoneNumber = e.target.value;
+                }}
+                value={stepTwoData.phoneNumber}
                 placeHolder="E.G. 00963..."
                 size='large'
                 bordered={false}
+                type='number'
                 className="full-flex-item column-flex-direction" name="phoneNumber" label="Phone Number" rules={[
                   {
                     required: true,

@@ -4,12 +4,11 @@ import { connect } from 'react-redux';
 import { ReduxStateInterface } from '../../interfaces/redux-state';
 import '../../styles/card/card-buttons.sass';
 
-const ConnectedCardButtons = ({ 
-    currentStep, 
-    totalSteps, 
-    nextOrPreviousStepAction, 
+const ConnectedCardButtons = ({
+    currentStep,
+    totalSteps,
     onPressingBackButton,
-    onPressingNextButton}: any) => {
+    onPressingNextButton }: any) => {
 
     const justifyingAcoordingToCurrentStep = currentStep > 0 ? 'justify-content-space-between' : 'justify-content-center';
     return (

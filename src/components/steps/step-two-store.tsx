@@ -36,11 +36,11 @@ const StepTwoGenerator = ({ fillStepDataAction }: any) => {
   useEffect(() => {
     return () => {
       console.log("cleaned up: ", stepTwoData);
-      if (stepTwoData.phoneNumber == '00000-0000-0000' 
-      || stepTwoData.phoneNumber == '-0000-0000'
-      || stepTwoData.phoneNumber == '00000--0000'
-      || stepTwoData.phoneNumber == '00000-0000-'
-      || stepTwoData.phoneNumber == '--') {
+      if (stepTwoData.phoneNumber == '00000-0000-0000'
+        || stepTwoData.phoneNumber == '-0000-0000'
+        || stepTwoData.phoneNumber == '00000--0000'
+        || stepTwoData.phoneNumber == '00000-0000-'
+        || stepTwoData.phoneNumber == '--') {
         stepTwoData.phoneNumber = '';
       }
       fillStepDataAction(stepTwoData, 1);
@@ -80,8 +80,8 @@ const StepTwoGenerator = ({ fillStepDataAction }: any) => {
         <div>
           <Form {...layout} form={form} name="control-hooks">
             <div className="flex-row-flex-start-main-cross-center">
-            <StepperInput
-                onInputChanged={() => {}}
+              <StepperInput
+                onInputChanged={() => { }}
                 placeHolder="E.G. 00963..."
                 size='large'
                 bordered={false}

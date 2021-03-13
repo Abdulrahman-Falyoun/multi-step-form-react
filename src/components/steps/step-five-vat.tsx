@@ -1,24 +1,34 @@
 
-import React, { useState } from 'react';
-import { Form, Input, Button, Select, Radio, Checkbox } from 'antd';
+import React, { useEffect, useState } from 'react';
+import { Form, Checkbox } from 'antd';
 import StepperInput from '../input-fields/stepper-input';
 import '../../styles/steps/step-five.sass'
-import StepperSelect from '../input-fields/stepper-select';
 import StepperUploadFileInput from '../input-fields/stepper-upload-file';
 import FancyCard from '../card/fancy-small-card';
 import { getFileName, getFileSize } from '../../utils/file-helper';
+import { STEPS_NAMES } from '../../enums/steps-names';
+import { ReduxStateInterface } from '../../interfaces/redux-state';
+import { connect } from 'react-redux';
+import Actions from '../../redux/actions/index';
+
 const layout = {
     labelCol: { span: 0 },
     wrapperCol: { span: 21 },
 };
 
-const StepFiveVAT = () => {
+const StepFiveVAT = ({ fillStepDataAction, initialData, applyCurrentStepDataToStore }: any) => {
     const [form] = Form.useForm();
 
     const [taxCertificate, setTaxCertificate] = useState(null);
     const [tradeLicense, setTradeLicense] = useState(null);
     const [nationalId, setNationalId] = useState(null);
+    const [stepFiveData, setStepFiveData] = useState({ ...initialData });
 
+    useEffect(() => {
+        if(applyCurrentStepDataToStore) {
+            fillStepDataAction(stepFiveData);
+        }
+    }, [applyCurrentStepDataToStore])
     return (
         <div className="step-five-wrapper">
             <p>VAT</p>
@@ -66,4 +76,16 @@ const StepFiveVAT = () => {
     );
 };
 
-export default StepFiveVAT;
+
+const mapDispatchToProps = (dispatch: any) => {
+    return {
+        fillStepDataAction: (data: any) => dispatch(Actions.fill_step_data(data, STEPS_NAMES.VAT))
+    }
+}
+const mapStateToProps = (state: ReduxStateInterface) => {
+    return {
+        applyCurrentStepDataToStore: state.applyCurrentStepDataToStore
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(StepFiveVAT);
+

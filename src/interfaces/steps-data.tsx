@@ -39,6 +39,7 @@ export interface VATDataInterface {
     nationalId: any;
     taxRegistrationCertificate: any;
     taxRegistrationNumber: any;
+    acceptArgument: boolean;
 }
 
 export interface StepsDataInterface extends VATDataInterface, BankDataInterface, SocialMediaDataInterface, StoreDataInterface, GeneralDataInterface  {}

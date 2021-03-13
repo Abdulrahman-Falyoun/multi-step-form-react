@@ -19,18 +19,23 @@ export const shouldProceedForward = (stepName: STEPS_NAMES, stepData: StepsDataI
             return false;
 
         case STEPS_NAMES.BANK:
-            const bankData = { ... (stepData as BankDataInterface )};
-            console.log('bankData: ', bankData);
-            if(bankData.bankName && bankData.businessEmail && bankData.beneficiaryName && bankData.bankLetter) {
+            const bankData = { ... (stepData as BankDataInterface) };
+            if (bankData.bankName && bankData.businessEmail && bankData.beneficiaryName && bankData.bankLetter) {
                 return true;
             }
             return false;
         case STEPS_NAMES.VAT:
-            const vatData = { ... (stepData as VATDataInterface )};
-            if(vatData.nationalId && vatData.taxRegistrationCertificate && vatData.taxRegistrationNumber && vatData.tradeLicense) {
+            const vatData = { ... (stepData as VATDataInterface) };
+            if (
+                vatData.nationalId &&
+                vatData.taxRegistrationCertificate &&
+                vatData.taxRegistrationNumber &&
+                vatData.tradeLicense &&
+                vatData.acceptArgument
+            ) {
                 return true;
             }
-        return false;
+            return false;
         default:
             return true;
 

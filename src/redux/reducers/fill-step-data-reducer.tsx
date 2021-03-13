@@ -6,7 +6,6 @@ import { shouldProceedForward } from '../../utils/steps-data-checker'
 export const fillDataReducer = (state: ReduxStateInterface, action: ActionInterface) => {
     let stepName = action.payload?.stepName;
     const currentStepData = state.steps[stepName].data;
-
     // Getting new data in current step
     const newData = {
         ...currentStepData,

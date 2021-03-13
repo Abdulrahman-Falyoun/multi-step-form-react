@@ -16,54 +16,44 @@ import { injectDataFromStepToStoreReducer } from './inject-data-from-step-to-sto
 const initialState: ReduxStateInterface = {
     currentStep: 0,
     applyCurrentStepDataToStore: false,
+    stepErrors: [],
+    stepWarnings: [],
     steps: [
         {
             title: 'General',
             icon: ICONS.BankSVGIcon,
             data: {},
             component: <StepOneGeneral />,
-            errors: [],
-            warnings: []
         },
         {
             title: 'Store',
             icon: ICONS.StoreSVGIcon,
             data: {},
             component: <StepTwoStore />,
-            errors: [],
-            warnings: []
         },
         {
             title: 'Social Media',
             icon: ICONS.DocumentSVGIcon,
             data: {},
             component: <StepThreeSocialMedia />,
-            errors: [],
-            warnings: []
         },
         {
             title: 'Bank',
             icon: ICONS.BankSVGIcon,
             data: {},
             component: <StepFourDocument />,
-            errors: [],
-            warnings: []
         },
         {
             title: 'VAT',
             icon: ICONS.LaptopSVGIcon,
             data: {},
             component: <StepFiveVAT />,
-            errors: [],
-            warnings: []
         },
         {
             title: 'End',
             icon: ICONS.CheckMarkSVGIcon,
             data: {},
             component: <EndStep />,
-            errors: [],
-            warnings: []
         }
     ]
 };

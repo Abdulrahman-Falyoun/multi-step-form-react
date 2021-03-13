@@ -4,7 +4,7 @@ import { Alert } from 'antd';
 import React from 'react';
 import '../../styles/card/card.sass';
 import CardButtons from './card-buttons';
-
+import { uniqueHashCode } from '../../utils/unique-string-generator';
 const Card = ({
     content,
     onPressingNextButton,
@@ -22,7 +22,7 @@ const Card = ({
                     &&
                     <div className="error-area">
                         {
-                            errors.map((err: string) => <Alert key={err} message={err} type="error" showIcon closable />)
+                            errors.map((err: string) => <Alert key={uniqueHashCode(err)} message={err} type="error" showIcon closable />)
                         }
                     </div>
                 }
@@ -31,7 +31,7 @@ const Card = ({
                     &&
                     <div className="warnings-area">
                         {
-                            warnings.map((warni: string) => <Alert key={warni} message={warni} type="error" showIcon closable />)
+                            warnings.map((warni: string) => <Alert key={uniqueHashCode(warni)} message={warni} type="error" showIcon closable />)
                         }
                     </div>
                 }

@@ -26,9 +26,13 @@ const StepOneGenerator = ({ fillStepDataAction, initialData, applyCurrentStepDat
 
   useEffect(() => {
     if (applyCurrentStepDataToStore) {
-      if (stepOneData.city == '') {
+      if (!('city' in stepOneData) || (stepOneData.city == '')) {
         stepOneData.city = 'Riyadh';
       }
+      if (!('packageType' in stepOneData) || (stepOneData.packageType == '')) {
+        stepOneData.packageType = 'free';
+      }
+      console.log('stepOneData: ', stepOneData);
       fillStepDataAction(stepOneData);
     }
   }, [applyCurrentStepDataToStore])

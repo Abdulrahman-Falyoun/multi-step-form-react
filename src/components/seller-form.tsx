@@ -11,12 +11,12 @@ import { ReduxStateInterface } from '../interfaces/redux-state';
 import Actions from '../redux/actions/index';
 import { connect } from 'react-redux';
 
-const SellerForm = ({ 
-    nextOrPreviousStepAction, 
-    CardContent, 
-    fillStepDataAction, 
-    currentStep, 
-    totalSteps, 
+const SellerForm = ({
+    nextOrPreviousStepAction,
+    CardContent,
+    fillStepDataAction,
+    currentStep,
+    totalSteps,
     injectCurrentStepDataToStore,
     errors,
     warnings
@@ -31,15 +31,15 @@ const SellerForm = ({
     return (
         <div className="seller-form-wrapper flex-column-flex-start-main-cross-center">
             <Stepper />
-            <Card 
-            onPressingNextButton={next} 
-            onPressingBackButton={prev} 
-            content={CardContent} 
-            fillStepDataAction={fillStepDataAction} 
-            currentStep={currentStep}
-            totalSteps={totalSteps}
-            errors={errors}
-            warnings={warnings}
+            <Card
+                onPressingNextButton={next}
+                onPressingBackButton={prev}
+                content={CardContent}
+                fillStepDataAction={fillStepDataAction}
+                currentStep={currentStep}
+                totalSteps={totalSteps}
+                errors={errors}
+                warnings={warnings}
             />
         </div>
     )
@@ -52,10 +52,10 @@ const SellerForm = ({
 const mapStateToProps = (state: ReduxStateInterface) => {
     return {
         CardContent: state.steps[state.currentStep].component,
-        currentStep: state.currentStep, 
+        currentStep: state.currentStep,
         totalSteps: state.steps.length,
-        errors: state.steps[state.currentStep].errors,
-        warnings: state.steps[state.currentStep].warnings
+        errors: state.stepErrors,
+        warnings: state.stepWarnings
     };
 }
 

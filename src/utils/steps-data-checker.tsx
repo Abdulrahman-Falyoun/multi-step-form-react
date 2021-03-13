@@ -1,5 +1,5 @@
 import { STEPS_NAMES } from "../enums/steps-names";
-import { StepsDataInterface, GeneralDataInterface, StoreDataInterface } from "../interfaces/steps-data";
+import { StepsDataInterface, GeneralDataInterface, StoreDataInterface, BankDataInterface, VATDataInterface } from "../interfaces/steps-data";
 
 
 
@@ -17,6 +17,19 @@ export const shouldProceedForward = (stepName: STEPS_NAMES, stepData: StepsDataI
                 return true;
             }
             return false;
+
+        case STEPS_NAMES.BANK:
+            const bankData = { ... (stepData as BankDataInterface )};
+            if(bankData.bankName && bankData.businessEmail && bankData.beneficiaryName && bankData.bankLetter) {
+                return true;
+            }
+            return false;
+        case STEPS_NAMES.VAT:
+            const vatData = { ... (stepData as VATDataInterface )};
+            if(vatData.nationalId && vatData.taxRegistrationCertificate && vatData.taxRegistrationNumber && vatData.tradeLicense) {
+                return true;
+            }
+        return false;
         default:
             return true;
 

@@ -4,7 +4,7 @@ import React from 'react';
 import '../../styles/card/card.sass';
 import CardButtons from './card-buttons';
 
-const Card = ({ content, onPressingNextButton, onPressingBackButton }: any) => {
+const Card = ({ content, onPressingNextButton, onPressingBackButton, currentStep, totalSteps }: any) => {
     return (
         <div className="card-wrapper">
             <div className="card-content">
@@ -14,7 +14,12 @@ const Card = ({ content, onPressingNextButton, onPressingBackButton }: any) => {
                     }
                 </div>
                 <div className="card-buttons">
-                    <CardButtons onPressingNextButton={onPressingNextButton} onPressingBackButton={onPressingBackButton} />
+                    <CardButtons
+                        onPressingNextButton={onPressingNextButton}
+                        onPressingBackButton={onPressingBackButton}
+                        currentStep={currentStep}
+                        totalSteps={totalSteps}
+                    />
                 </div>
             </div>
         </div>

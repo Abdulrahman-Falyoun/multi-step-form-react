@@ -11,10 +11,11 @@ import { ReduxStateInterface } from '../interfaces/redux-state';
 import Actions from '../redux/actions/index';
 import { connect } from 'react-redux';
 
-const SellerForm =  ({ nextOrPreviousStepAction, CardContent, fillStepDataAction, submitFormAction }: any) => {
+const SellerForm = ({ nextOrPreviousStepAction, CardContent, fillStepDataAction, currentStep, totalSteps, injectCurrentStepDataToStore }: any) => {
 
     const next = () => {
-        nextOrPreviousStepAction(1);
+        console.log('injectCurrentStepDataToStore()');
+        injectCurrentStepDataToStore();
     };
     const prev = () => {
         nextOrPreviousStepAction(-1);
@@ -23,7 +24,14 @@ const SellerForm =  ({ nextOrPreviousStepAction, CardContent, fillStepDataAction
     return (
         <div className="seller-form-wrapper flex-column-flex-start-main-cross-center">
             <Stepper />
-            <Card onPressingNextButton={next} onPressingBackButton={prev}  content={CardContent} fillStepDataAction={fillStepDataAction}/>
+            <Card 
+            onPressingNextButton={next} 
+            onPressingBackButton={prev} 
+            content={CardContent} 
+            fillStepDataAction={fillStepDataAction} 
+            currentStep={currentStep}
+            totalSteps={totalSteps}
+            />
         </div>
     )
 };
@@ -34,14 +42,17 @@ const SellerForm =  ({ nextOrPreviousStepAction, CardContent, fillStepDataAction
 
 const mapStateToProps = (state: ReduxStateInterface) => {
     return {
-        CardContent: state.steps[state.currentStep].component
+        CardContent: state.steps[state.currentStep].component,
+        currentStep: state.currentStep, 
+        totalSteps: state.steps.length
     };
 }
 
 const mapDispatchToProps = (dispatch: any) => {
     return {
         nextOrPreviousStepAction: (stepNumber: number) => dispatch(Actions.move_step_forward_or_backward(stepNumber)),
-        
+        injectCurrentStepDataToStore: () => dispatch(Actions.inject_data_from_step_to_store())
+
     };
 }
 export default connect(mapStateToProps, mapDispatchToProps)(SellerForm);

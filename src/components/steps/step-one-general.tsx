@@ -16,11 +16,20 @@ const layout = {
 
 
 
-const StepOneGenerator = ({ fillStepDataAction, initialData }: any) => {
+const StepOneGenerator = ({ fillStepDataAction, initialData, applyCurrentStepDataToStore, moveStepForwardOrBackward }: any) => {
   const [form] = Form.useForm();
   const [cityValue, setCityValue] = useState(initialData.city || 'Riyadh')
   const [packageType, setPackageType] = useState(initialData.packageType || 'free')
   const [stepOneData, setStepOneData] = useState<GeneralDataInterface>({ ...initialData })
+
+
+
+  useEffect(() => {
+    if (applyCurrentStepDataToStore) {
+      fillStepDataAction(stepOneData, 0);
+      moveStepForwardOrBackward(1);
+    }
+  }, [applyCurrentStepDataToStore])
   useEffect(() => {
     return () => {
       console.log("cleaned up: ", stepOneData);
@@ -132,12 +141,14 @@ const StepOneGenerator = ({ fillStepDataAction, initialData }: any) => {
 
 const mapStateToProps = (state: ReduxStateInterface) => {
   return {
-    initialData: state.steps[state.currentStep]?.data
+    initialData: state.steps[state.currentStep]?.data,
+    applyCurrentStepDataToStore: state.applyCurrentStepDataToStore
   }
 }
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    fillStepDataAction: (data: any, stepNumber: number) => dispatch(Actions.fill_step_data(data, stepNumber))
+    fillStepDataAction: (data: any, stepNumber: number) => dispatch(Actions.fill_step_data(data, stepNumber)),
+    moveStepForwardOrBackward: (howToMove: number) => dispatch(Actions.move_step_forward_or_backward(howToMove))
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(StepOneGenerator);

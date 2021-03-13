@@ -11,6 +11,7 @@ export const fillDataReducer = (state: ReduxStateInterface, action: ActionInterf
         ...action.payload
     }
     return {
-        ...state
+        ...state,
+        applyCurrentStepDataToStore: false,
     }
 }

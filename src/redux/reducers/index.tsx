@@ -1,5 +1,5 @@
 
-import { MOVE_STEP_FORWARD_OR_BACKWARD, FILL_STEP_DATA } from '../types/actions-types';
+import { MOVE_STEP_FORWARD_OR_BACKWARD, FILL_STEP_DATA, INJECT_DATA_FROM_STEP_TO_STORE } from '../types/actions-types';
 import { ReduxStateInterface } from '../../interfaces/redux-state';
 import { ActionInterface } from '../../interfaces/action-interface';
 import StepOneGeneral from '../../components/steps/step-one-general';
@@ -12,9 +12,11 @@ import * as ICONS from '../../components/svg-icons';
 
 import { fillDataReducer } from './fill-step-data-reducer';
 import { moveStepReducer } from './move-step-reducer';
+import { injectDataFromStepToStoreReducer } from './inject-data-from-step-to-store-reducer';
 const initialState: ReduxStateInterface = {
     currentStep: 0,
     currentStepHasErrorAsMandatoryFieldsNotFilled: false,
+    applyCurrentStepDataToStore: false,
     steps: [
         {
             title: 'General',
@@ -62,6 +64,9 @@ export default (state = initialState, action: ActionInterface) => {
             
         case FILL_STEP_DATA:
             return fillDataReducer(state, action);
+
+        case INJECT_DATA_FROM_STEP_TO_STORE:
+            return injectDataFromStepToStoreReducer(state, action);
         default:
             return state;
     }

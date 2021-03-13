@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { ReduxStateInterface } from '../../interfaces/redux-state';
 import '../../styles/card/card-buttons.sass';
 
-const ConnectedCardButtons = ({
+const CardButtons = ({
     currentStep,
     totalSteps,
     onPressingBackButton,
@@ -29,9 +29,6 @@ const ConnectedCardButtons = ({
     )
 };
 
-const mapStateToProps = (state: ReduxStateInterface) => {
-    return { currentStep: state.currentStep, totalSteps: state.steps.length };
-};
 
 
-export default connect(mapStateToProps)(ConnectedCardButtons);
+export default CardButtons;

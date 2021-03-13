@@ -9,19 +9,22 @@ import StepperInput from '../input-fields/stepper-input';
 import { ReduxStateInterface } from '../../interfaces/redux-state';
 import { connect } from 'react-redux';
 import Actions from '../../redux/actions/index';
+import { STEPS_NAMES } from '../../enums/steps-names';
+
+
 const layout = {
   labelCol: { span: 0 },
   wrapperCol: { span: 21 },
 };
 
-const StepOneGenerator = ({ fillStepDataAction, applyCurrentStepDataToStore, initialData = {} }: any) => {
+const StepThreeSocialMedia = ({ fillStepDataAction, applyCurrentStepDataToStore, initialData = {} }: any) => {
   const [form] = Form.useForm();
   const [stepThreeData, setStepThreeData] = useState({ ...initialData });
 
 
   useEffect(() => {
     if (applyCurrentStepDataToStore) {
-      fillStepDataAction(stepThreeData, 2);
+      fillStepDataAction(stepThreeData);
     }
   }, [applyCurrentStepDataToStore]);
   return (
@@ -92,7 +95,7 @@ const StepOneGenerator = ({ fillStepDataAction, applyCurrentStepDataToStore, ini
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    fillStepDataAction: (data: any, stepNumber: number) => dispatch(Actions.fill_step_data(data, stepNumber))
+    fillStepDataAction: (data: any) => dispatch(Actions.fill_step_data(data, STEPS_NAMES.SOCIAL_MEDIA))
   }
 }
 const mapStateToProps = (state: ReduxStateInterface) => {
@@ -100,4 +103,4 @@ const mapStateToProps = (state: ReduxStateInterface) => {
     applyCurrentStepDataToStore: state.applyCurrentStepDataToStore
   }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(StepOneGenerator);
+export default connect(mapStateToProps, mapDispatchToProps)(StepThreeSocialMedia);

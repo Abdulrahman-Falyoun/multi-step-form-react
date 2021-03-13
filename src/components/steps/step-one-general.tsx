@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import Actions from '../../redux/actions/index';
 import { ReduxStateInterface } from '../../interfaces/redux-state';
 import { GeneralDataInterface } from '../../interfaces/steps-data';
-
+import { STEPS_NAMES } from '../../enums/steps-names';
 const layout = {
   labelCol: { span: 0 },
   wrapperCol: { span: 21 },
@@ -16,7 +16,7 @@ const layout = {
 
 
 
-const StepOneGenerator = ({ fillStepDataAction, initialData, applyCurrentStepDataToStore, moveStepForwardOrBackward }: any) => {
+const StepOneGenerator = ({ fillStepDataAction, initialData, applyCurrentStepDataToStore }: any) => {
   const [form] = Form.useForm();
   const [cityValue, setCityValue] = useState(initialData.city || 'Riyadh')
   const [packageType, setPackageType] = useState(initialData.packageType || 'free')
@@ -29,7 +29,7 @@ const StepOneGenerator = ({ fillStepDataAction, initialData, applyCurrentStepDat
       if (stepOneData.city == '') {
         stepOneData.city = 'Riyadh';
       }
-      fillStepDataAction(stepOneData, 0);
+      fillStepDataAction(stepOneData);
     }
   }, [applyCurrentStepDataToStore])
 
@@ -141,8 +141,8 @@ const mapStateToProps = (state: ReduxStateInterface) => {
 }
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    fillStepDataAction: (data: any, stepNumber: number) => {
-      dispatch(Actions.fill_step_data(data, stepNumber));
+    fillStepDataAction: (data: any) => {
+      dispatch(Actions.fill_step_data(data, STEPS_NAMES.GENERAL));
     }
   }
 }

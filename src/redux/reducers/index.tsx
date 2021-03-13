@@ -15,44 +15,55 @@ import { moveStepReducer } from './move-step-reducer';
 import { injectDataFromStepToStoreReducer } from './inject-data-from-step-to-store-reducer';
 const initialState: ReduxStateInterface = {
     currentStep: 0,
-    currentStepHasErrorAsMandatoryFieldsNotFilled: false,
     applyCurrentStepDataToStore: false,
     steps: [
         {
             title: 'General',
             icon: ICONS.BankSVGIcon,
             data: {},
-            component: <StepOneGeneral />
+            component: <StepOneGeneral />,
+            errors: [],
+            warnings: []
         },
         {
             title: 'Store',
             icon: ICONS.StoreSVGIcon,
             data: {},
-            component: <StepTwoStore />
+            component: <StepTwoStore />,
+            errors: [],
+            warnings: []
         },
         {
             title: 'Social Media',
             icon: ICONS.DocumentSVGIcon,
             data: {},
-            component: <StepThreeSocialMedia />
+            component: <StepThreeSocialMedia />,
+            errors: [],
+            warnings: []
         },
         {
             title: 'Bank',
             icon: ICONS.BankSVGIcon,
             data: {},
-            component: <StepFourDocument />
+            component: <StepFourDocument />,
+            errors: [],
+            warnings: []
         },
         {
             title: 'VAT',
             icon: ICONS.LaptopSVGIcon,
             data: {},
-            component: <StepFiveVAT />
+            component: <StepFiveVAT />,
+            errors: [],
+            warnings: []
         },
         {
             title: 'End',
             icon: ICONS.CheckMarkSVGIcon,
             data: {},
-            component: <EndStep />
+            component: <EndStep />,
+            errors: [],
+            warnings: []
         }
     ]
 };

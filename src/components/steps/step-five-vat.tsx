@@ -59,11 +59,6 @@ const StepFiveVAT = () => {
                         </div>
                     </Form>
                 </div>
-
-
-
-
-
             </div>
 
         </div>

@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Form, Input, Button, Select, Radio } from 'antd';
 import StepperInput from '../input-fields/stepper-input';
 import '../../styles/steps/step-four.sass'
@@ -7,13 +7,16 @@ import StepperSelect from '../input-fields/stepper-select';
 import StepperUploadFileInput from '../input-fields/stepper-upload-file';
 import FancyCard from '../card/fancy-small-card';
 import { getFileName, getFileSize } from '../../utils/file-helper';
-
+import { STEPS_NAMES } from '../../enums/steps-names';
+import { ReduxStateInterface } from '../../interfaces/redux-state';
+import { connect } from 'react-redux';
+import Actions from '../../redux/actions/index';
 const layout = {
     labelCol: { span: 0 },
     wrapperCol: { span: 21 },
 };
 
-const StepFourBank = () => {
+const StepFourBank = ({ fillStepDataAction, initialData, applyCurrentStepDataToStore }: any) => {
     const [form] = Form.useForm();
     const [radioGroupValue, setRadioGroupValue] = useState('Riyadh');
     const [options, setOptions] = useState([
@@ -21,9 +24,13 @@ const StepFourBank = () => {
         { value: 'whatever1', label: 'whatever1' },
         { value: 'whatever2', label: 'whatever2' }
     ])
-
+    const [stepFourData, setStepFourData] = useState({ ...initialData })
     const [stampedCertificate, setStampedCertificate] = useState(null);
-
+    useEffect(() => {
+        if (applyCurrentStepDataToStore) {
+            fillStepDataAction(stepFourData);
+        }
+    }, [applyCurrentStepDataToStore])
     return (
         <div className="step-four-wrapper">
             <p>Bank</p>
@@ -143,4 +150,14 @@ const StepFourBank = () => {
     );
 };
 
-export default StepFourBank;
+const mapDispatchToProps = (dispatch: any) => {
+    return {
+        fillStepDataAction: (data: any) => dispatch(Actions.fill_step_data(data, STEPS_NAMES.BANK))
+    }
+}
+const mapStateToProps = (state: ReduxStateInterface) => {
+    return {
+        applyCurrentStepDataToStore: state.applyCurrentStepDataToStore
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(StepFourBank);

@@ -1,13 +1,40 @@
 
 
+import { Alert } from 'antd';
 import React from 'react';
 import '../../styles/card/card.sass';
 import CardButtons from './card-buttons';
 
-const Card = ({ content, onPressingNextButton, onPressingBackButton, currentStep, totalSteps }: any) => {
+const Card = ({
+    content,
+    onPressingNextButton,
+    onPressingBackButton,
+    currentStep,
+    totalSteps,
+    errors,
+    warnings
+}: any) => {
     return (
         <div className="card-wrapper">
             <div className="card-content">
+                {
+                    errors && errors?.length > 1
+                    &&
+                    <div className="error-area">
+                        {
+                            errors.map((err: string) => <Alert key={err} message={err} type="error" showIcon closable />)
+                        }
+                    </div>
+                }
+                {
+                    warnings && warnings?.length > 1
+                    &&
+                    <div className="error-area">
+                        {
+                            warnings.map((warni: string) => <Alert key={warni} message={warni} type="error" showIcon closable />)
+                        }
+                    </div>
+                }
                 <div className='content-area'>
                     {
                         content

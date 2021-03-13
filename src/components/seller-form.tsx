@@ -11,7 +11,16 @@ import { ReduxStateInterface } from '../interfaces/redux-state';
 import Actions from '../redux/actions/index';
 import { connect } from 'react-redux';
 
-const SellerForm = ({ nextOrPreviousStepAction, CardContent, fillStepDataAction, currentStep, totalSteps, injectCurrentStepDataToStore }: any) => {
+const SellerForm = ({ 
+    nextOrPreviousStepAction, 
+    CardContent, 
+    fillStepDataAction, 
+    currentStep, 
+    totalSteps, 
+    injectCurrentStepDataToStore,
+    errors,
+    warnings
+}: any) => {
 
     const next = () => {
         console.log('injectCurrentStepDataToStore()');
@@ -31,6 +40,8 @@ const SellerForm = ({ nextOrPreviousStepAction, CardContent, fillStepDataAction,
             fillStepDataAction={fillStepDataAction} 
             currentStep={currentStep}
             totalSteps={totalSteps}
+            errors={errors}
+            warnings={warnings}
             />
         </div>
     )
@@ -44,7 +55,9 @@ const mapStateToProps = (state: ReduxStateInterface) => {
     return {
         CardContent: state.steps[state.currentStep].component,
         currentStep: state.currentStep, 
-        totalSteps: state.steps.length
+        totalSteps: state.steps.length,
+        errors: state.steps[state.currentStep].errors,
+        warnings: state.steps[state.currentStep].warnings
     };
 }
 

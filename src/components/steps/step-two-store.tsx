@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import Actions from '../../redux/actions/index';
 import { useEffect } from 'react';
 import { ReduxStateInterface } from '../../interfaces/redux-state';
+import { STEPS_NAMES } from '../../enums/steps-names';
 
 const layout = {
   labelCol: { span: 0 },
@@ -37,7 +38,7 @@ const StepTwoGenerator = ({ fillStepDataAction, applyCurrentStepDataToStore }: a
 
   useEffect(() => {
     if (applyCurrentStepDataToStore) {
-      fillStepDataAction(stepTwoData, 1);
+      fillStepDataAction(stepTwoData);
     }
   }, [applyCurrentStepDataToStore]);
 
@@ -133,7 +134,7 @@ const StepTwoGenerator = ({ fillStepDataAction, applyCurrentStepDataToStore }: a
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    fillStepDataAction: (data: any, stepNumber: number) => dispatch(Actions.fill_step_data(data, stepNumber))
+    fillStepDataAction: (data: any) => dispatch(Actions.fill_step_data(data, STEPS_NAMES.STORE))
   }
 }
 const mapStateToProps = (state: ReduxStateInterface) => {

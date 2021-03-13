@@ -146,7 +146,9 @@ const mapStateToProps = (state: ReduxStateInterface) => {
 const mapDispatchToProps = (dispatch: any) => {
   return {
     fillStepDataAction: (data: any) => {
-      dispatch(Actions.fill_step_data(data, STEPS_NAMES.GENERAL));
+      setTimeout(() => {
+        dispatch(Actions.fill_step_data(data, STEPS_NAMES.GENERAL));
+      }, 5000)
     }
   }
 }

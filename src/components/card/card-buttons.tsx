@@ -8,7 +8,8 @@ const CardButtons = ({
     currentStep,
     totalSteps,
     onPressingBackButton,
-    onPressingNextButton }: any) => {
+    onPressingNextButton,
+    submitting }: any) => {
 
     const justifyingAcoordingToCurrentStep = currentStep > 0 ? 'justify-content-space-between' : 'justify-content-center';
     return (
@@ -16,14 +17,14 @@ const CardButtons = ({
             {
                 currentStep > 0 && currentStep < totalSteps - 1
                 &&
-                <Button ghost={false} className="multi-step-form-button grey-button" style={{ marginLeft: 8 }} onClick={() => onPressingBackButton()}>
+                <Button disabled={submitting} ghost={false} className="multi-step-form-button grey-button" style={{ marginLeft: 8 }} onClick={() => onPressingBackButton()}>
                     Back
                 </Button>
             }
             {
                 currentStep < totalSteps - 1
                 &&
-                <Button className="multi-step-form-button yellow-button" size="large" onClick={() => onPressingNextButton()}>Next</Button>
+                <Button disabled={submitting} className="multi-step-form-button yellow-button" size="large" onClick={() => onPressingNextButton()}>Next</Button>
             }
         </div>
     )

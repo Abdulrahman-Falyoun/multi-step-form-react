@@ -1,6 +1,6 @@
 
 
-import { Alert } from 'antd';
+import { Alert, Spin } from 'antd';
 import React from 'react';
 import '../../styles/card/card.sass';
 import CardButtons from './card-buttons';
@@ -12,10 +12,12 @@ const Card = ({
     currentStep,
     totalSteps,
     errors,
-    warnings
+    warnings,
+    submitting
 }: any) => {
     return (
         <div className="card-wrapper">
+
             <div className="card-content">
                 {
                     errors && errors?.length > 0
@@ -46,8 +48,15 @@ const Card = ({
                         onPressingBackButton={onPressingBackButton}
                         currentStep={currentStep}
                         totalSteps={totalSteps}
+                        submitting={submitting}
                     />
                 </div>
+
+                {submitting &&
+                    <div className="submitting-spinner">
+                        <Spin tip="Submitting..." size="large" />
+                    </div>
+                }
             </div>
         </div>
     )

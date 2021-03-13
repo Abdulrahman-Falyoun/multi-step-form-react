@@ -10,6 +10,7 @@ import '../styles/seller-form.sass'
 import { ReduxStateInterface } from '../interfaces/redux-state';
 import Actions from '../redux/actions/index';
 import { connect } from 'react-redux';
+import { Spin } from 'antd';
 
 const SellerForm = ({
     nextOrPreviousStepAction,
@@ -19,7 +20,8 @@ const SellerForm = ({
     totalSteps,
     injectCurrentStepDataToStore,
     errors,
-    warnings
+    warnings,
+    submitting
 }: any) => {
     const next = () => {
         injectCurrentStepDataToStore();
@@ -29,19 +31,26 @@ const SellerForm = ({
     }
 
     return (
-        <div className="seller-form-wrapper flex-column-flex-start-main-cross-center">
-            <Stepper />
-            <Card
-                onPressingNextButton={next}
-                onPressingBackButton={prev}
-                content={CardContent}
-                fillStepDataAction={fillStepDataAction}
-                currentStep={currentStep}
-                totalSteps={totalSteps}
-                errors={errors}
-                warnings={warnings}
-            />
-        </div>
+        <React.Fragment>
+            <div className="seller-form-wrapper flex-column-flex-start-main-cross-center">
+                <Stepper />
+                <Card
+                    onPressingNextButton={next}
+                    onPressingBackButton={prev}
+                    content={CardContent}
+                    fillStepDataAction={fillStepDataAction}
+                    currentStep={currentStep}
+                    totalSteps={totalSteps}
+                    errors={errors}
+                    warnings={warnings}
+                    submitting={submitting}
+                />
+                
+            </div>
+
+        </React.Fragment>
+
+
     )
 };
 
@@ -55,7 +64,8 @@ const mapStateToProps = (state: ReduxStateInterface) => {
         currentStep: state.currentStep,
         totalSteps: state.steps.length,
         errors: state.stepErrors,
-        warnings: state.stepWarnings
+        warnings: state.stepWarnings,
+        submitting: state.applyCurrentStepDataToStore
     };
 }
 

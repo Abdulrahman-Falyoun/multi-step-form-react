@@ -26,19 +26,13 @@ const StepOneGenerator = ({ fillStepDataAction, initialData, applyCurrentStepDat
 
   useEffect(() => {
     if (applyCurrentStepDataToStore) {
-      fillStepDataAction(stepOneData, 0);
-      moveStepForwardOrBackward(1);
-    }
-  }, [applyCurrentStepDataToStore])
-  useEffect(() => {
-    return () => {
-      console.log("cleaned up: ", stepOneData);
       if (stepOneData.city == '') {
         stepOneData.city = 'Riyadh';
       }
       fillStepDataAction(stepOneData, 0);
-    };
-  }, []);
+    }
+  }, [applyCurrentStepDataToStore])
+
 
   const onEmailFieldValueChanged = (e: any) => {
     stepOneData.email = e.target.value;
@@ -147,8 +141,9 @@ const mapStateToProps = (state: ReduxStateInterface) => {
 }
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    fillStepDataAction: (data: any, stepNumber: number) => dispatch(Actions.fill_step_data(data, stepNumber)),
-    moveStepForwardOrBackward: (howToMove: number) => dispatch(Actions.move_step_forward_or_backward(howToMove))
+    fillStepDataAction: (data: any, stepNumber: number) => {
+      dispatch(Actions.fill_step_data(data, stepNumber));
+    }
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(StepOneGenerator);

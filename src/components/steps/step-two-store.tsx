@@ -7,13 +7,14 @@ import '../../styles/steps/step-two.sass'
 import { connect } from 'react-redux';
 import Actions from '../../redux/actions/index';
 import { useEffect } from 'react';
+import { ReduxStateInterface } from '../../interfaces/redux-state';
 
 const layout = {
   labelCol: { span: 0 },
   wrapperCol: { span: 21 },
 };
 
-const StepTwoGenerator = ({ fillStepDataAction }: any) => {
+const StepTwoGenerator = ({ fillStepDataAction, applyCurrentStepDataToStore }: any) => {
   const [form] = Form.useForm();
   const [radioGroupValue, setRadioGroupValue] = useState('Riyadh');
   const [options, setOptions] = useState([
@@ -33,12 +34,13 @@ const StepTwoGenerator = ({ fillStepDataAction }: any) => {
     twitterAccountLink: ''
   })
 
+
   useEffect(() => {
-    return () => {
-      console.log("cleaned up: ", stepTwoData);
+    if (applyCurrentStepDataToStore) {
       fillStepDataAction(stepTwoData, 1);
-    };
-  }, []);
+    }
+  }, [applyCurrentStepDataToStore]);
+
 
   return (
     <div className="step-two-wrapper">
@@ -60,7 +62,7 @@ const StepTwoGenerator = ({ fillStepDataAction }: any) => {
                     message: 'Please input your store name'
                   }
                 ]}
-                />
+              />
               <StepperInput
                 name="legalName" label="Legal Name"
                 onInputChanged={(e: any) => stepTwoData.legalName = e.target.value}
@@ -74,7 +76,7 @@ const StepTwoGenerator = ({ fillStepDataAction }: any) => {
                     message: 'Please input your company legal name'
                   }
                 ]}
-                />
+              />
             </div>
           </Form>
         </div>
@@ -134,4 +136,9 @@ const mapDispatchToProps = (dispatch: any) => {
     fillStepDataAction: (data: any, stepNumber: number) => dispatch(Actions.fill_step_data(data, stepNumber))
   }
 }
-export default connect(null, mapDispatchToProps)(StepTwoGenerator);
+const mapStateToProps = (state: ReduxStateInterface) => {
+  return {
+    applyCurrentStepDataToStore: state.applyCurrentStepDataToStore
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(StepTwoGenerator);

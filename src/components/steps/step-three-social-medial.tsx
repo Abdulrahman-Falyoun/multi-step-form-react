@@ -1,20 +1,29 @@
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Form } from 'antd';
 import '../../styles/steps/step-three.sass'
 import StepperUploadFileInput from '../input-fields/stepper-upload-file';
 import FancyCard from '../card/fancy-small-card';
 import { getFileName, getFileSize } from '../../utils/file-helper';
 import StepperInput from '../input-fields/stepper-input';
-
+import { ReduxStateInterface } from '../../interfaces/redux-state';
+import { connect } from 'react-redux';
+import Actions from '../../redux/actions/index';
 const layout = {
   labelCol: { span: 0 },
   wrapperCol: { span: 21 },
 };
 
-const StepOneGenerator = ({ initialData = {} }: any) => {
+const StepOneGenerator = ({ fillStepDataAction, applyCurrentStepDataToStore, initialData = {} }: any) => {
   const [form] = Form.useForm();
   const [stepThreeData, setStepThreeData] = useState({ ...initialData });
+
+
+  useEffect(() => {
+    if (applyCurrentStepDataToStore) {
+      fillStepDataAction(stepThreeData, 2);
+    }
+  }, [applyCurrentStepDataToStore]);
   return (
     <div className="step-three-wrapper">
       <p>Social Media</p>
@@ -81,4 +90,14 @@ const StepOneGenerator = ({ initialData = {} }: any) => {
   );
 };
 
-export default StepOneGenerator;
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    fillStepDataAction: (data: any, stepNumber: number) => dispatch(Actions.fill_step_data(data, stepNumber))
+  }
+}
+const mapStateToProps = (state: ReduxStateInterface) => {
+  return {
+    applyCurrentStepDataToStore: state.applyCurrentStepDataToStore
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(StepOneGenerator);

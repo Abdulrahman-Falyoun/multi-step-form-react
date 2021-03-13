@@ -61,7 +61,7 @@ export default (state = initialState, action: ActionInterface) => {
     switch (action.type) {
         case MOVE_STEP_FORWARD_OR_BACKWARD:
             return moveStepReducer(state, action);
-            
+
         case FILL_STEP_DATA:
             return fillDataReducer(state, action);
 

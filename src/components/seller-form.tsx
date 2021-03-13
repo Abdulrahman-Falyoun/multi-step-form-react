@@ -1,6 +1,6 @@
 
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import Stepper from './stepper';
 import Card from './card/card';
 
@@ -21,9 +21,7 @@ const SellerForm = ({
     errors,
     warnings
 }: any) => {
-
     const next = () => {
-        console.log('injectCurrentStepDataToStore()');
         injectCurrentStepDataToStore();
     };
     const prev = () => {
@@ -65,7 +63,6 @@ const mapDispatchToProps = (dispatch: any) => {
     return {
         nextOrPreviousStepAction: (stepNumber: number) => dispatch(Actions.move_step_forward_or_backward(stepNumber)),
         injectCurrentStepDataToStore: () => dispatch(Actions.inject_data_from_step_to_store())
-
     };
 }
 export default connect(mapStateToProps, mapDispatchToProps)(SellerForm);

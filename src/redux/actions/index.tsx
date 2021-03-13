@@ -1,4 +1,5 @@
 
+import { STEPS_NAMES } from '../../enums/steps-names';
 import { ActionInterface } from '../../interfaces/action-interface';
 import { MOVE_STEP_FORWARD_OR_BACKWARD, FILL_STEP_DATA, INJECT_DATA_FROM_STEP_TO_STORE } from '../types/actions-types';
 
@@ -11,8 +12,8 @@ class Actions {
     }
 
 
-    public [FILL_STEP_DATA](payload: any, stepNumber: number) {
-        payload.stepNumber = stepNumber;
+    public [FILL_STEP_DATA](payload: any, stepName: STEPS_NAMES) {
+        payload.stepName = stepName;
         return {
             type: FILL_STEP_DATA,
             payload

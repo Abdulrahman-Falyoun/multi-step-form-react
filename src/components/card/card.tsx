@@ -18,7 +18,7 @@ const Card = ({
         <div className="card-wrapper">
             <div className="card-content">
                 {
-                    errors && errors?.length > 1
+                    errors && errors?.length > 0
                     &&
                     <div className="error-area">
                         {
@@ -27,9 +27,9 @@ const Card = ({
                     </div>
                 }
                 {
-                    warnings && warnings?.length > 1
+                    warnings && warnings?.length > 0
                     &&
-                    <div className="error-area">
+                    <div className="warnings-area">
                         {
                             warnings.map((warni: string) => <Alert key={warni} message={warni} type="error" showIcon closable />)
                         }

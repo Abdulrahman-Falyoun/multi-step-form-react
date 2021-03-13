@@ -12,6 +12,7 @@ import { ReduxStateInterface } from '../../interfaces/redux-state';
 import { connect } from 'react-redux';
 import Actions from '../../redux/actions/index';
 import { BankDataInterface } from '../../interfaces/steps-data';
+import { readFileInBinary } from '../../utils/file-helper';
 const layout = {
     labelCol: { span: 0 },
     wrapperCol: { span: 21 },
@@ -137,7 +138,17 @@ const StepFourBank = ({ fillStepDataAction, initialData, applyCurrentStepDataToS
                                 <div className="stamped-document-wrapper">
                                     <p className="stamped-document-hint">Upload either certified or stamped document by the bank</p>
                                     <div className="flex-column-center-main-cross">
-                                        <StepperUploadFileInput id="national-id-input" placeholder="Browse Files" width="100%" placeHolderFontSize='.8rem' onFileSelected={(e: any) => { console.log('national: ', e); setStampedCertificate(e.target.files[0]); stepFourData.bankLetter = e.target.files[0] }} />
+                                        <StepperUploadFileInput id="national-id-input" placeholder="Browse Files" width="100%" placeHolderFontSize='.8rem'
+                                            onFileSelected={(e: any) => {
+                                                setStampedCertificate(e);
+                                                readFileInBinary(e?.target?.files[0])
+                                                    .then(resultInBinary => {
+                                                        stepFourData.bankLetter = resultInBinary
+                                                    })
+                                                    .catch(err => {
+                                                        console.log('Could not read file with error: ', err);
+                                                    })
+                                            }} />
                                         {stampedCertificate && <br />}
                                         {stampedCertificate && <FancyCard title={getFileName(stampedCertificate) + '  ' + getFileSize(stampedCertificate)} width='100%' bgColor='#F9F9F9' txtStyle={{ color: 'black', fontSize: '.8rem', letterSpacing: '.1rem' }} borderStyle='dashed' borderWidth='2px' borderColor='#EAEAEA' />}
                                     </div>

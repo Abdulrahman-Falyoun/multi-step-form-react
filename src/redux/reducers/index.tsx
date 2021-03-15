@@ -32,7 +32,7 @@ const initialState: ReduxStateInterface = {
             component: <StepTwoStore />,
         },
         {
-            title: 'social Media',
+            title: 'social media',
             icon: ICONS.DocumentSVGIcon,
             data: {},
             component: <StepThreeSocialMedia />,

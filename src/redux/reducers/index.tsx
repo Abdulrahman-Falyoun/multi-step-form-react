@@ -20,37 +20,37 @@ const initialState: ReduxStateInterface = {
     stepWarnings: [],
     steps: [
         {
-            title: 'General',
+            title: 'general',
             icon: ICONS.BankSVGIcon,
             data: {},
             component: <StepOneGeneral />,
         },
         {
-            title: 'Store',
+            title: 'store',
             icon: ICONS.StoreSVGIcon,
             data: {},
             component: <StepTwoStore />,
         },
         {
-            title: 'Social Media',
+            title: 'social Media',
             icon: ICONS.DocumentSVGIcon,
             data: {},
             component: <StepThreeSocialMedia />,
         },
         {
-            title: 'Bank',
+            title: 'bank',
             icon: ICONS.BankSVGIcon,
             data: {},
             component: <StepFourDocument />,
         },
         {
-            title: 'VAT',
+            title: 'vat',
             icon: ICONS.LaptopSVGIcon,
             data: {},
             component: <StepFiveVAT />,
         },
         {
-            title: 'End',
+            title: 'end',
             icon: ICONS.CheckMarkSVGIcon,
             data: {},
             component: <EndStep />,

@@ -11,6 +11,7 @@ import { ReduxStateInterface } from '../interfaces/redux-state';
 import Actions from '../redux/actions/index';
 import { connect } from 'react-redux';
 import { Spin } from 'antd';
+import { useTranslation } from 'react-i18next';
 
 const SellerForm = ({
     nextOrPreviousStepAction,
@@ -23,6 +24,8 @@ const SellerForm = ({
     warnings,
     submitting
 }: any) => {
+    const { t, i18n } = useTranslation('common');
+
     const next = () => {
         injectCurrentStepDataToStore();
     };
@@ -32,7 +35,7 @@ const SellerForm = ({
 
     return (
         <React.Fragment>
-            <div className="seller-form-wrapper flex-column-flex-start-main-cross-center">
+            <div className={"seller-form-wrapper flex-column-flex-start-main-cross-center " + (i18n.language === 'en' ? 'english-container' : 'arabic-container')}>
                 <Stepper />
                 <Card
                     onPressingNextButton={next}

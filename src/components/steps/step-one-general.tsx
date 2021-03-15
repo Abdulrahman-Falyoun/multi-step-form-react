@@ -9,6 +9,7 @@ import Actions from '../../redux/actions/index';
 import { ReduxStateInterface } from '../../interfaces/redux-state';
 import { GeneralDataInterface } from '../../interfaces/steps-data';
 import { STEPS_NAMES } from '../../enums/steps-names';
+import { useTranslation } from 'react-i18next';
 const layout = {
   labelCol: { span: 0 },
   wrapperCol: { span: 21 },
@@ -21,6 +22,7 @@ const StepOneGenerator = ({ fillStepDataAction, initialData, applyCurrentStepDat
   const [cityValue, setCityValue] = useState(initialData.city || 'Riyadh')
   const [packageType, setPackageType] = useState(initialData.packageType || 'free')
   const [stepOneData, setStepOneData] = useState<GeneralDataInterface>({ ...initialData })
+  const { t, i18n } = useTranslation('common');
 
 
 
@@ -48,7 +50,7 @@ const StepOneGenerator = ({ fillStepDataAction, initialData, applyCurrentStepDat
 
   return (
     <div className="step-one-wrapper">
-      <p>General</p>
+      <p>{t('general')}</p>
       <div className="form-wrapper">
         <div>
           <Form {...layout} form={form} name="control-hooks" scrollToFirstError>
@@ -59,28 +61,28 @@ const StepOneGenerator = ({ fillStepDataAction, initialData, applyCurrentStepDat
                 placeHolder="Info@Example.com"
                 size='large'
                 bordered={false}
-                className="full-flex-item column-flex-direction" name="email" label="Email Address" rules={[
+                className="full-flex-item column-flex-direction" name="email" label={t("email address")} rules={[
                   {
                     type: 'email',
-                    message: 'The input is not valid E-mail!',
+                    message: t('the input is not valid E-mail!'),
                   },
                   {
                     required: true,
-                    message: 'Please input your E-mail!',
+                    message: t('please input your E-mail!'),
                   },
                 ]} />
               <StepperInput
                 value={stepOneData.fullname}
                 onInputChanged={onFullNameFieldValueChanged}
-                placeHolder="Your Full Name"
+                placeHolder={t("your full name")}
                 size='large'
                 bordered={false}
-                name="name" label="Full Name"
+                name="name" label={t("full name")}
                 className="full-flex-item column-flex-direction"
                 rules={[
                   {
                     required: true,
-                    message: 'Please input your full name!',
+                    message: t('please input your full name!'),
                   },
                 ]}
               />
@@ -96,9 +98,9 @@ const StepOneGenerator = ({ fillStepDataAction, initialData, applyCurrentStepDat
             }} value={cityValue}
 
           >
-            <Radio value='Riyadh'>Riyadh</Radio>
-            <Radio value='Dammam'>Dammam</Radio>
-            <Radio value='Jaddah'>Jaddah</Radio>
+            <Radio value='Riyadh'>{t('riyadh')}</Radio>
+            <Radio value='Dammam'>{t('dammam')}</Radio>
+            <Radio value='Jaddah'>{t('jaddah')}</Radio>
           </Radio.Group>
         </div>
         <div className='fancy-cards-wrapper'>
@@ -111,7 +113,6 @@ const StepOneGenerator = ({ fillStepDataAction, initialData, applyCurrentStepDat
             value='free'
             cardSelected={packageType == 'free' ? true : false}
             onFancyCardClicked={(value: any) => {
-              console.log('value selected for package price: ', value);
               stepOneData.packageType = value;
               setPackageType(value);
             }}
@@ -125,7 +126,6 @@ const StepOneGenerator = ({ fillStepDataAction, initialData, applyCurrentStepDat
             periodText='/year'
             headerColor='GOLD'
             onFancyCardClicked={(value: any) => {
-              console.log('value selected for package price: ', value);
               stepOneData.packageType = value;
               setPackageType(value);
             }} />

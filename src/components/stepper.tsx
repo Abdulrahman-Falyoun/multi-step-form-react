@@ -6,20 +6,22 @@ import '../styles/stepper.sass';
 import { Steps } from 'antd';
 import { connect } from "react-redux";
 import { ReduxStateInterface } from '../interfaces/redux-state';
+import { useTranslation } from 'react-i18next';
 
 const { Step } = Steps;
 
 const ConnectedToStoreStepper = (props: any) => {
     const { currentStep, steps } = props;
+    const { t, i18n } = useTranslation('common');
 
    
     return (
-        <div className="stepper-wrapper">
+        <div className="stepper-wrapper" >
             <div className="flex-row-center-main-cross">
                 <Steps current={currentStep} className="steps"  responsive>
                     {
                         steps.map((s: any, idx: number) => {
-                            return <Step status={idx === currentStep ? "finish" : undefined} key={s.title} title={s.title} icon={s.icon} />;
+                            return <Step status={idx === currentStep ? "finish" : undefined} key={s.title} title={t(s.title)} icon={s.icon} />;
                         })
                     }
                 </Steps>

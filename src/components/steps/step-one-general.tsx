@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from 'react';
 import { Form, Input, Button, Select, Radio } from 'antd';
 import StepperInput from '../input-fields/stepper-input';
-import '../../styles/steps/step-one.sass'
 import FancySmallCard from '../card/fancy-small-card';
 import { connect } from 'react-redux';
 import Actions from '../../redux/actions/index';

@@ -1,7 +1,6 @@
 
 import { Button } from 'antd';
 import { useTranslation } from 'react-i18next';
-import '../../styles/card/card-buttons.sass';
 
 const CardButtons = ({
     currentStep,

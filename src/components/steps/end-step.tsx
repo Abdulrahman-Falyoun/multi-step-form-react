@@ -2,7 +2,6 @@
 import { SuccessManSVGIcon } from '../svg-icons';
 import React from 'react';
 import { Button } from 'antd';
-import '../../styles/steps/end-step.sass'
 const EndStep = () => {
     return (
         <div className="flex-column-center-main-cross">

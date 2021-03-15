@@ -1,6 +1,5 @@
 
 import { Form, Input } from 'antd';
-import '../../styles/stepper-input.sass'
 
 const StepperInput = ({
     type = 'text',

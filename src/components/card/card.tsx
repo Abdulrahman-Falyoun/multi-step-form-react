@@ -2,7 +2,6 @@
 
 import { Alert, Spin } from 'antd';
 import React, { useState } from 'react';
-import '../../styles/card/card.sass';
 import CardButtons from './card-buttons';
 import { uniqueHashCode } from '../../utils/unique-string-generator';
 import { useTranslation } from 'react-i18next';
@@ -19,7 +18,7 @@ const Card = ({
     const { t, i18n } = useTranslation('common');
     const [currentLanguage, setCurrentLanguage] = useState('en');
     return (
-        <div className={"card-wrapper " + (i18n.language === 'en' ? 'english-container' : 'arabic-container')}>
+        <div className="card-wrapper">
 
             <div className="card-content">
                 {

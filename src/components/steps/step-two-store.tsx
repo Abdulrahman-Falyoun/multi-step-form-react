@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import { Form } from 'antd';
 import StepperInput from '../input-fields/stepper-input';
 import StepperSelect from '../input-fields/stepper-select';
-import '../../styles/steps/step-two.sass'
 import { connect } from 'react-redux';
 import Actions from '../../redux/actions/index';
 import { useEffect } from 'react';

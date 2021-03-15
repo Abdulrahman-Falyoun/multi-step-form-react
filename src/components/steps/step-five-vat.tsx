@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from 'react';
 import { Form, Checkbox } from 'antd';
 import StepperInput from '../input-fields/stepper-input';
-import '../../styles/steps/step-five.sass'
 import StepperUploadFileInput from '../input-fields/stepper-upload-file';
 import FancyCard from '../card/fancy-small-card';
 import { getFileName, getFileSize } from '../../utils/file-helper';

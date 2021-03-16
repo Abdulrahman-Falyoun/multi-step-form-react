@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './styles/index.sass';
 import reportWebVitals from './reportWebVitals';
 import SellerForm from './components/seller-form';
-import store from './redux/store';
+import {store} from './redux/store';
 import { Provider } from 'react-redux';
 import { I18nextProvider } from "react-i18next";
 import i18next from "i18next";

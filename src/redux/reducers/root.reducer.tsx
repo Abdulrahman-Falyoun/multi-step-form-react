@@ -13,6 +13,12 @@ import * as ICONS from '../../components/svg-icons';
 import { fillDataReducer } from './fill-step-data-reducer';
 import { moveStepReducer } from './move-step-reducer';
 import { injectDataFromStepToStoreReducer } from './inject-data-from-step-to-store-reducer';
+import { combineReducers } from 'redux';
+
+
+const rootReducer = combineReducers({});
+export type RootState = ReturnType<typeof rootReducer>;
+
 const initialState: ReduxStateInterface = {
     currentStep: 0,
     applyCurrentStepDataToStore: false,

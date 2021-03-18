@@ -26,5 +26,24 @@
     "please input your full name!": "رجاءا قم بإدخال اسمك الثلاثي",
     "riyadh": "الرياض",
     "dammam": "دمام",
-    "jaddah": "جدة"
+    "jaddah": "جدة",
+
+
+
+
+
+    
+    "store name": "اسم المتجر",
+    "what's your store name?": "ما هو اسم المتجر الخاص بك؟",
+    "please input your store name": "الرجاء إدخال اسم المتجر",
+    "legal name": "الاسم القانوني",
+    "company legal name": "اسم الشركة القانوني",
+    "please input your company legal name": "الرجاء إدخال اسم الشركة القانوني",
+    "for example 00963": "مثل ...00963",
+    "phone number": "رقم الهاتف",
+    "please input your phone number": "الرجاء إدخال رقم الهاتف",
+    "what kind of product do you sell?": "ما هي المنتجات التي تبيعها؟",
+    "for example electronics":"مثل الكترونيات",
+    "please enter your full address": "الرجاء إدخال العنوان كاملا",
+    "full address": "العنوان كاملا"
 }

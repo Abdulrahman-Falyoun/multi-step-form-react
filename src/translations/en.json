@@ -23,5 +23,20 @@
     "please input your full name!": "Please input your full name!",
     "riyadh": "Riyadh",
     "dammam": "Dammam",
-    "jaddah": "Jaddah"
+    "jaddah": "Jaddah",
+
+
+    "store name": "Store name",
+    "what's your store name?": "what's your store name?",
+    "please input your store name": "Please input your store name",
+    "legal name": "Legal name",
+    "company legal name": "Company legal name",
+    "please input your company legal name": "Please input your company legal name",
+    "for example 00963": "E.G. 00963...",
+    "phone number": "Phone Number",
+    "please input your phone number": "Please input your phone number",
+    "what kind of product do you sell?": "What kind of product do you sell?",
+    "for example electronics":"E.G. Electronics",
+    "please enter your full address": "Please enter your full address",
+    "full address": "Full Address"
 }

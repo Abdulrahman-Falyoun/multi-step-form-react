@@ -1,12 +1,12 @@
 
-import { SuccessManSVGIcon } from '../svg-icons';
+import { FinalStepSVGIcon } from '../svg-icons';
 import React from 'react';
 import { Button } from 'antd';
 const EndStep = () => {
     return (
         <div className="flex-column-center-main-cross">
             <div className="happy-man">
-                {SuccessManSVGIcon}
+                {FinalStepSVGIcon}
             </div>
             <div className="success-msg">
                 <p className="success-title-word">SUCCESS</p>

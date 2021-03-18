@@ -8,6 +8,7 @@ import Actions from '../../redux/actions/index';
 import { useEffect } from 'react';
 import { ReduxStateInterface } from '../../interfaces/redux-state';
 import { STEPS_NAMES } from '../../enums/steps-names';
+import { useTranslation } from 'react-i18next';
 
 const layout = {
   labelCol: { span: 0 },
@@ -23,7 +24,7 @@ const StepTwoGenerator = ({ fillStepDataAction, applyCurrentStepDataToStore }: a
     { value: 'whatever2', label: 'whatever2' }
   ])
 
-
+  const { t, i18n } = useTranslation('common');
   const [stepTwoData, setSteptwoData] = useState({
     storeName: '',
     legalName: '',
@@ -44,36 +45,36 @@ const StepTwoGenerator = ({ fillStepDataAction, applyCurrentStepDataToStore }: a
 
   return (
     <div className="step-two-wrapper">
-      <p style={{ display: 'block' }}>Store</p>
+      <p style={{ display: 'block' }}>{t('store')}</p>
       <div>
         <div>
           <Form {...layout} form={form} name="control-hooks">
             <div className="flex-row-flex-start-main-cross-center">
               <StepperInput
-                name="storeName" label="Store Name"
+                name="storeName" label={t("store name")}
                 onInputChanged={(e: any) => stepTwoData.storeName = e.target.value}
-                placeHolder="What's your store name?"
+                placeHolder={t("what's your store name?")}
                 size='large'
                 bordered={false}
                 className="full-flex-item column-flex-direction"
                 rules={[
                   {
                     required: true,
-                    message: 'Please input your store name'
+                    message: t('please input your store name')
                   }
                 ]}
               />
               <StepperInput
-                name="legalName" label="Legal Name"
+                name="legalName" label={t("legal name")}
                 onInputChanged={(e: any) => stepTwoData.legalName = e.target.value}
-                placeHolder="Company legal name"
+                placeHolder={t("company legal name")}
                 size='large'
                 bordered={false}
                 className="full-flex-item column-flex-direction"
                 rules={[
                   {
                     required: true,
-                    message: 'Please input your company legal name'
+                    message: t('please input your company legal name')
                   }
                 ]}
               />
@@ -90,18 +91,18 @@ const StepTwoGenerator = ({ fillStepDataAction, applyCurrentStepDataToStore }: a
                   stepTwoData.phoneNumber = e.target.value;
                 }}
                 value={stepTwoData.phoneNumber}
-                placeHolder="E.G. 00963..."
+                placeHolder={t("for example 00963")}
                 size='large'
                 bordered={false}
                 type='number'
-                className="full-flex-item column-flex-direction" name="phoneNumber" label="Phone Number" rules={[
+                className="full-flex-item column-flex-direction" name="phoneNumber" label={t("phone number")} rules={[
                   {
                     required: true,
-                    message: 'Please input your phone number',
+                    message: t('please input your phone number'),
                   },
                 ]} />
-              <Form.Item className="full-flex-item column-flex-direction" name="legalName" label="What kind of product do you sell?">
-                <StepperSelect options={options} placeholder='E.G. Electronics'
+              <Form.Item className="full-flex-item column-flex-direction" name="legalName" label={t("what kind of product do you sell?")}>
+                <StepperSelect options={options} placeholder={t("for example electronics")}
                   onValueSelected={(value: any) => {
                     stepTwoData.productType = value;
                   }} />
@@ -116,11 +117,12 @@ const StepTwoGenerator = ({ fillStepDataAction, applyCurrentStepDataToStore }: a
           <Form {...layout} form={form} name="control-hooks">
             <div className="flex-row-flex-start-main-cross-center">
               <StepperInput
+                label={t("full address")}
                 onInputChanged={(e: any) => { stepTwoData.address = e.target.value; }}
-                placeHolder="Please Enter Your Full Address"
+                placeHolder={t("please enter your full address")}
                 size='large'
                 bordered={false}
-                className="full-flex-item column-flex-direction" name="address" label="Full Address" />
+                className="full-flex-item column-flex-direction" name="address" />
             </div>
           </Form>
         </div>

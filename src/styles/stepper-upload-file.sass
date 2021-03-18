@@ -12,36 +12,35 @@
 .upload-element
     display: none !important
 
-.english-container .upload-icon-button
+._iconUploadBtnHelper
     background: transparent
     box-shadow: unset
     border-color: transparent
-    padding: 0 1rem 0 0
     margin: 0
+
+._uploadInputTextHelper
+    margin: 0
+    flex: 1 1 auto
+    letter-spacing: .1rem
+    font-weight: 900
+.english-container .upload-icon-button
+    @extend ._iconUploadBtnHelper
+    padding: 0 1rem 0 0
 
 
 .english-container .upload-input-text
     padding: 0 0 0 2rem
-    margin: 0
-    flex: 1 1 auto
-    letter-spacing: .1rem
-    font-weight: 900
+    @extend ._uploadInputTextHelper
 
 
 .arabic-container .upload-icon-button
-    background: transparent
-    box-shadow: unset
-    border-color: transparent
+    @extend ._iconUploadBtnHelper
     padding: 0 0rem 0 1rem
-    margin: 0
 
 
 .arabic-container .upload-input-text
     padding: 0 2rem 0 0
-    margin: 0
-    flex: 1 1 auto
-    letter-spacing: .1rem
-    font-weight: 900
+    @extend ._uploadInputTextHelper
 
 
 .ant-btn:hover, .ant-btn:focus, .ant-btn:active, .ant-btn::after

@@ -82,6 +82,11 @@
     "tax registration number": "رقم التسجيل الضريبي",
     "upload tax registration certificate": "تحميل شهادة التسجيل الضريبي",
     "i acknowledge and agree that oda will be raising and facilitating VAT invoices and credit notes on behalf of my company in relation to consumer transactions on oda site": "أقر وأوافق على أن oda سترفع وتسهل فواتير ضريبة القيمة المضافة والإشعارات الائتمانية نيابة عن شركتي فيما يتعلق بمعاملات المستهلكين على موقع oda",
-    "i Agree": "أنا موافق"
+    "i Agree": "أنا موافق",
+
+
+    "success": "تهانينا",
+    "you have been successfully registerd as seller": "لقد تم تسجيلك كبائع بنجاح",
+    "done": "انتهى"
 
 }

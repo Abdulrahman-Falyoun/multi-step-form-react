@@ -6,6 +6,7 @@ import { ReduxStateInterface } from '../../interfaces/redux-state';
 import { connect } from 'react-redux';
 import Actions from '../../redux/actions/index';
 import { STEPS_NAMES } from '../../enums/steps-names';
+import { useTranslation } from 'react-i18next';
 
 
 const layout = {
@@ -16,8 +17,10 @@ const layout = {
 const StepThreeSocialMedia = ({ fillStepDataAction, applyCurrentStepDataToStore, initialData = {} }: any) => {
   const [form] = Form.useForm();
   const [stepThreeData, setStepThreeData] = useState({ ...initialData });
+  const { t, i18n } = useTranslation('common');
 
 
+  const isEnglish = i18n.language === 'en' ? true : false;
   useEffect(() => {
     if (applyCurrentStepDataToStore) {
       fillStepDataAction(stepThreeData);
@@ -25,15 +28,15 @@ const StepThreeSocialMedia = ({ fillStepDataAction, applyCurrentStepDataToStore,
   }, [applyCurrentStepDataToStore]);
   return (
     <div className="step-three-wrapper">
-      <p>Social Media</p>
+      <p>{t('social media')}</p>
       <div>
         <Form {...layout} form={form} name="control-hooks">
           <div className="flex-row-flex-start-main-cross-center">
             <StepperInput
               name="instagram"
-              label="Instagram Account"
+              label={t("social media account", {media: isEnglish ? 'Instagram': 'الانستغرام'})}
               onInputChanged={(e: any) => { stepThreeData.address = e.target.value; }}
-              placeHolder="https://www.instagram.com/..."
+              placeHolder="https://www.instagram.com/"
               size='large'
               bordered={false}
               className="full-flex-item column-flex-direction" />
@@ -41,9 +44,9 @@ const StepThreeSocialMedia = ({ fillStepDataAction, applyCurrentStepDataToStore,
           <div className="flex-row-flex-start-main-cross-center">
             <StepperInput
               name="facebook"
-              label="Facebook Account"
+              label={t("social media account", {media: isEnglish ? 'Facebook' : 'الفيسبوك'})}
               onInputChanged={(e: any) => { stepThreeData.facebookAccountLink = e.target.value; }}
-              placeHolder="https://www.facebook.com/..."
+              placeHolder="https://www.facebook.com/"
               size='large'
               bordered={false}
               className="full-flex-item column-flex-direction"
@@ -52,9 +55,9 @@ const StepThreeSocialMedia = ({ fillStepDataAction, applyCurrentStepDataToStore,
           <div className="flex-row-flex-start-main-cross-center">
             <StepperInput
               name="twitter"
-              label="Twitter Account"
+              label={t("social media account", {media: isEnglish ? 'Twitter': 'التويتر'})}
               onInputChanged={(e: any) => { stepThreeData.twitterAccountLink = e.target.value; }}
-              placeHolder="https://www.twitter.com/..."
+              placeHolder="https://www.twitter.com/"
               size='large'
               bordered={false}
               className="full-flex-item column-flex-direction"
@@ -63,9 +66,9 @@ const StepThreeSocialMedia = ({ fillStepDataAction, applyCurrentStepDataToStore,
           <div className="flex-row-flex-start-main-cross-center">
             <StepperInput
               name="linkedin"
-              label="Linkedin Account"
+              label={t("social media account", {media: isEnglish ? 'Linkedin' : 'اللينكدان'})}
               onInputChanged={(e: any) => { stepThreeData.twitterAccountLink = e.target.value; }}
-              placeHolder="https://www.linkedin.com/..."
+              placeHolder="https://www.linkedin.com/"
               size='large'
               bordered={false}
               className="full-flex-item column-flex-direction"
@@ -74,9 +77,9 @@ const StepThreeSocialMedia = ({ fillStepDataAction, applyCurrentStepDataToStore,
           <div className="flex-row-flex-start-main-cross-center">
             <StepperInput
               name="tumblr"
-              label="Tumblr Account"
+              label={t("social media account", {media: isEnglish ? 'Tumblr' : 'التامبلر'})}
               onInputChanged={(e: any) => { stepThreeData.twitterAccountLink = e.target.value; }}
-              placeHolder="https://www.tumblr.com//..."
+              placeHolder="https://www.tumblr.com/"
               size='large'
               bordered={false}
               className="full-flex-item column-flex-direction"

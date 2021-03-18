@@ -45,5 +45,31 @@
     "what kind of product do you sell?": "ما هي المنتجات التي تبيعها؟",
     "for example electronics":"مثل الكترونيات",
     "please enter your full address": "الرجاء إدخال العنوان كاملا",
-    "full address": "العنوان كاملا"
+    "full address": "العنوان كاملا",
+
+
+
+
+
+    "social media account": "حساب {{media}}",
+
+
+
+    "beneficiary name": "اسم المستفيد",
+    "for example ghayath": "غياث",
+    "please input your beneficiary name": "الرجاء إدخال اسم المستفيد",
+    "business email": "البريد الالكتروني للنشاط التجاري",
+    "please input your business email": "الرجاء إدخال البريد الالكتروني",
+    "bank name": "اسم البنك",
+    "please enter bank name": "الرجاء إدخال اسم البنك",
+    "branch name": "اسم الفرع",
+    "bank account number": "رقم حساب البنك",
+    "swift code": "رمز السويفت الخاص بالبنك",
+    "currency": "العملة",
+    "upload either certified or stamped document by the bank": "تحميل مستند مصدق أو مختوم من البنك",
+    "browse files": "استعراض الملفات",
+    "for example visa": "مثل VISA",
+    "for example riyadh": "الرياض",
+    "sar": "ريال سعودي"
+
 }

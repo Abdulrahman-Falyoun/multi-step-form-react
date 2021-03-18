@@ -12,6 +12,7 @@ import { connect } from 'react-redux';
 import Actions from '../../redux/actions/index';
 import { BankDataInterface } from '../../interfaces/steps-data';
 import { readFileInBinary } from '../../utils/file-helper';
+import { useTranslation } from 'react-i18next';
 const layout = {
     labelCol: { span: 0 },
     wrapperCol: { span: 21 },
@@ -32,29 +33,31 @@ const StepFourBank = ({ fillStepDataAction, initialData, applyCurrentStepDataToS
             fillStepDataAction(stepFourData);
         }
     }, [applyCurrentStepDataToStore])
+    const { t, i18n } = useTranslation('common');
+
     return (
         <div className="step-four-wrapper">
-            <p>Bank</p>
+            <p>{t('bank')}</p>
             <div >
                 <div>
                     <Form {...layout} form={form} name="control-hooks">
                         <div className="flex-row-flex-start-main-cross-center">
                             <StepperInput
-                                name="beneficiary" label="Beneficiary Name"
+                                name="beneficiary" label={t("beneficiary name")}
                                 onInputChanged={(e: any) => { stepFourData.beneficiaryName = e.target.value; }}
-                                placeHolder="E.G. Ghayath"
+                                placeHolder={t("for example ghayath")}
                                 size='large'
                                 bordered={false}
                                 className="full-flex-item column-flex-direction"
                                 rules={[
                                     {
                                         required: true,
-                                        message: 'Please input your beneficiary name'
+                                        message: t('please input your beneficiary name')
                                     }
                                 ]}
                             />
                             <StepperInput
-                                name="businessEmail" label="Business Email"
+                                name="businessEmail" label={t("business email")}
                                 onInputChanged={(e: any) => { stepFourData.businessEmail = e.target.value; }}
                                 placeHolder="Info@Example.com"
                                 size='large'
@@ -64,11 +67,11 @@ const StepFourBank = ({ fillStepDataAction, initialData, applyCurrentStepDataToS
                                     {
                                         required: true,
                                         type: 'email',
-                                        message: 'Please input a valid email'
+                                        message: t('the input is not valid E-mail!')
                                     },
                                     {
                                         required: true,
-                                        message: 'Please input your business email'
+                                        message: t('please input your business email')
                                     }
                                 ]}
                             />
@@ -81,24 +84,24 @@ const StepFourBank = ({ fillStepDataAction, initialData, applyCurrentStepDataToS
                     <Form {...layout} form={form} name="control-hooks">
                         <div className="flex-row-flex-start-main-cross-center">
                             <StepperInput
-                                className="full-flex-item column-flex-direction" name="bankName" label="Bank Name"
+                                className="full-flex-item column-flex-direction" name="bankName" label={t("bank name")}
                                 onInputChanged={(e: any) => { stepFourData.bankName = e.target.value; }}
-                                placeHolder="E.G. VISA"
+                                placeHolder={t("for example visa")}
                                 size='large'
                                 bordered={false}
                                 rules={[
                                     {
                                         required: true,
-                                        message: 'Please enter bank name'
+                                        message: t('please enter bank name')
                                     }
                                 ]}
                             />
                             <StepperInput
                                 onInputChanged={(e: any) => { stepFourData.branchName = e.target.value; }}
-                                placeHolder="E.G. Riyadh"
+                                placeHolder={t("for example riyadh")}
                                 size='large'
                                 bordered={false}
-                                className="double-full-flex-item column-flex-direction" name="branchName" label="Branch Name"
+                                className="double-full-flex-item column-flex-direction" name="branchName" label={t("branch name")}
                             />
                         </div>
                     </Form>
@@ -112,14 +115,14 @@ const StepFourBank = ({ fillStepDataAction, initialData, applyCurrentStepDataToS
                                 placeHolder="(0000) - 0000 - 0000"
                                 size='large'
                                 bordered={false}
-                                className="double-full-flex-item column-flex-direction" name="accountNumber" label="Bank Account Number"
+                                className="double-full-flex-item column-flex-direction" name="accountNumber" label={t("bank account number")}
                             />
                             <StepperInput
                                 onInputChanged={(e: any) => { stepFourData.swiftCode = e.target.value; }}
                                 placeHolder="000-000"
                                 size='large'
                                 bordered={false}
-                                className="full-flex-item column-flex-direction" name="swiftCode" label="Swift Code"
+                                className="full-flex-item column-flex-direction" name="swiftCode" label={t("swift code")}
                             />
                         </div>
                     </Form>
@@ -130,14 +133,18 @@ const StepFourBank = ({ fillStepDataAction, initialData, applyCurrentStepDataToS
                 <div>
                     <Form {...layout} form={form} name="control-hooks">
                         <div className="flex-row-flex-start-main-cross-center">
-                            <Form.Item className="full-flex-item column-flex-direction" name="currency" label="Currency">
-                                <StepperSelect options={options} placeholder='SAR' onValueSelected={(value: any) => { stepFourData.currency = value; }} />
+                            <Form.Item className="full-flex-item column-flex-direction" name="currency" label={t("currency")}>
+                                <StepperSelect options={options} placeholder={t('sar')} onValueSelected={(value: any) => { stepFourData.currency = value; }} />
                             </Form.Item>
                             <Form.Item className="double-full-flex-item column-flex-direction" name="phoneNumber" label=" ">
                                 <div className="stamped-document-wrapper">
-                                    <p className="stamped-document-hint">Upload either certified or stamped document by the bank</p>
+                                    <p className="stamped-document-hint">{t('upload either certified or stamped document by the bank')}</p>
                                     <div className="flex-column-center-main-cross">
-                                        <StepperUploadFileInput id="national-id-input" placeholder="Browse Files" width="100%" placeHolderFontSize='.8rem'
+                                        <StepperUploadFileInput 
+                                        id="national-id-input" 
+                                        placeholder={t("browse files" )}
+                                        width="100%" 
+                                        placeHolderFontSize='.8rem'
                                             onFileSelected={(e: any) => {
                                                 setStampedCertificate(e);
                                                 readFileInBinary(e?.target?.files[0])
@@ -149,7 +156,14 @@ const StepFourBank = ({ fillStepDataAction, initialData, applyCurrentStepDataToS
                                                     })
                                             }} />
                                         {stampedCertificate && <br />}
-                                        {stampedCertificate && <FancyCard title={getFileName(stampedCertificate) + '  ' + getFileSize(stampedCertificate)} width='100%' bgColor='#F9F9F9' txtStyle={{ color: 'black', fontSize: '.8rem', letterSpacing: '.1rem' }} borderStyle='dashed' borderWidth='2px' borderColor='#EAEAEA' />}
+                                        {stampedCertificate && 
+                                        <FancyCard 
+                                        title={getFileName(stampedCertificate) + '  ' + getFileSize(stampedCertificate)} 
+                                        width='100%' bgColor='#F9F9F9' 
+                                        txtStyle={{ color: 'black', fontSize: '.8rem', letterSpacing: '.1rem' }} 
+                                        borderStyle='dashed' 
+                                        borderWidth='2px' 
+                                        borderColor='#EAEAEA' />}
                                     </div>
                                 </div>
                             </Form.Item>

@@ -38,5 +38,29 @@
     "what kind of product do you sell?": "What kind of product do you sell?",
     "for example electronics":"E.G. Electronics",
     "please enter your full address": "Please enter your full address",
-    "full address": "Full Address"
+    "full address": "Full Address",
+
+
+
+
+    "social media account": "{{media}} Account",
+
+
+
+    "beneficiary name": "Beneficiary Name",
+    "for example ghayath": "E.G. Ghayath",
+    "please input your beneficiary name": "Please input your beneficiary name",
+    "business email": "Business Email",
+    "please input your business email": "Please input your business email",
+    "bank name": "Bank Name",
+    "please enter bank name": "Please enter bank name",
+    "branch name": "Branch Name",
+    "bank account number": "Bank Account Number",
+    "swift code": "Swift Code",
+    "currency": "Currency",
+    "upload either certified or stamped document by the bank": "Upload either certified or stamped document by the bank",
+    "browse files": "Browse Files",
+    "for example visa": "E.G. VISA",
+    "for example riyadh": "E.G. Riyadh",
+    "sar": "SAR"
 }

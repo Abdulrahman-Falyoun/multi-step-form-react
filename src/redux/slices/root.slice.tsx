@@ -56,7 +56,8 @@ const rootSlice = createSlice({
                 data: {},
                 component: <EndStep />,
             }
-        ]
+        ],
+        systemLanguage: 'en'
     },
     reducers: {
         injectDataFromStepToStoreReducer(state, action) {
@@ -94,11 +95,14 @@ const rootSlice = createSlice({
         },
         submittingReducer(state, action) {
             state.submitting = action.payload;
+        },
+        changeSystemLanguageReducer(state, action) {
+            state.systemLanguage = action.payload;
         }
 
     }
 });
 
 
-export const { fillDataReducer, injectDataFromStepToStoreReducer, moveStepReducer, submittingReducer } = rootSlice.actions;
+export const { fillDataReducer, injectDataFromStepToStoreReducer, moveStepReducer, submittingReducer, changeSystemLanguageReducer } = rootSlice.actions;
 export default rootSlice.reducer;

@@ -10,6 +10,7 @@ import { useTranslation } from 'react-i18next';
 import { RootState } from '../../redux/reducers/root.reducer';
 import { useAppDispatch } from '../../redux/store';
 import { fillDataReducer } from '../../redux/slices/root.slice';
+import { makeGetRequest } from '../../axios-requester/http-requester';
 
 const layout = {
   labelCol: { span: 0 },
@@ -17,18 +18,35 @@ const layout = {
 };
 
 const StepTwoGenerator = () => {
-  const { steps, currentStep, applyCurrentStepDataToStore } = useSelector((s: RootState) => s.commonReducer);
+  const { steps, currentStep, applyCurrentStepDataToStore, systemLanguage } = useSelector((s: RootState) => s.commonReducer);
   const initialData: any = steps[currentStep]?.data;
   const dispatch = useAppDispatch();
 
   const [form] = Form.useForm();
   const [radioGroupValue, setRadioGroupValue] = useState('Riyadh');
-  const [options, setOptions] = useState([
-    { value: 'whatever', label: 'whatever' },
-    { value: 'whatever1', label: 'whatever1' },
-    { value: 'whatever2', label: 'whatever2' }
-  ])
+  const [categories, setCategories] = useState<any>([]);
+  const [options, setOptions] = useState<any>([]);
 
+  useEffect(() => {
+    if (categories) {
+      const data = categories.map((d: any) => {
+        return ({ value: d.category_id, label: systemLanguage === 'en' ? JSON.parse(d.translations).en : JSON.parse(d.translations).ar })
+      });
+      setOptions(data);
+    }
+  }, [systemLanguage])
+  useEffect(() => {
+    // Getting all available plans
+    makeGetRequest('/categories2')
+      .then(res => {
+        setCategories(res.data);
+        const data = res.data.map((d: any) => ({ value: d.category_id, label: systemLanguage === 'en' ? JSON.parse(d.translations).en : JSON.parse(d.translations).ar }));
+        setOptions(data);
+      })
+      .catch(err => {
+        console.log('err: ', err);
+      });
+  }, []);
   const { t, i18n } = useTranslation('common');
   const [stepTwoData, setSteptwoData] = useState({
     storeName: '',
@@ -43,7 +61,7 @@ const StepTwoGenerator = () => {
 
   useEffect(() => {
     if (applyCurrentStepDataToStore) {
-      dispatch(fillDataReducer({data: stepTwoData, stepNumber: STEPS_NAMES.STORE }))
+      dispatch(fillDataReducer({ data: stepTwoData, stepNumber: STEPS_NAMES.STORE }))
 
     }
   }, [applyCurrentStepDataToStore]);

@@ -82,6 +82,15 @@
 
     "success": "SUCCESS",
     "you have been successfully registerd as seller": "You have been successfully registerd as seller",
-    "done": "Done"
+    "done": "Done",
+
+
+
+
+    "become a seller": "Become a seller",
+    "language": "Language",
+    "english": "English",
+    "arabic": "Arabic",
+    "oda": "Oda"
 
 }

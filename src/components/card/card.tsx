@@ -16,7 +16,6 @@ const Card = ({
     submitting
 }: any) => {
     const { t, i18n } = useTranslation('common');
-    const [currentLanguage, setCurrentLanguage] = useState('en');
     return (
         <div className="card-wrapper">
 
@@ -52,16 +51,6 @@ const Card = ({
                         totalSteps={totalSteps}
                         submitting={submitting}
                     />
-                </div>
-                <div>
-                    <button onClick={() => {
-                        i18n.changeLanguage(currentLanguage === 'en' ? 'ar' : 'en')
-                            .then(_ => {
-                                setCurrentLanguage(i18n.language)
-                            }).catch(console.log);
-                    }}>
-                        alter language
-                    </button>
                 </div>
                 {submitting &&
                     <div className="submitting-spinner">

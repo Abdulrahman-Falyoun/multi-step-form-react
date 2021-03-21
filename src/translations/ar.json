@@ -87,6 +87,16 @@
 
     "success": "تهانينا",
     "you have been successfully registerd as seller": "لقد تم تسجيلك كبائع بنجاح",
-    "done": "انتهى"
+    "done": "انتهى",
+
+
+
+    
+
+    "become a seller": "هل تريد أن تصبح بائعا",
+    "language": "اللغة",
+    "english": "الانكليزية",
+    "arabic": "العربية",
+    "oda": "أودا"
 
 }

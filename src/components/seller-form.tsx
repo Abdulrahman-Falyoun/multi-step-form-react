@@ -36,10 +36,10 @@ const SellerForm = ({
     const menu = (
         <Menu onClick={e => i18n.changeLanguage((e.key as string))}>
             <Menu.Item key='en'>
-                <div>English</div>
+                <div>{t('english')}</div>
             </Menu.Item>
             <Menu.Item key='ar'>
-                <div>Arabic</div>
+                <div>{t('arabic')}</div>
             </Menu.Item>
         </Menu>
     );
@@ -49,12 +49,12 @@ const SellerForm = ({
             <div className={"seller-form-wrapper flex-column-flex-start-main-cross-center " + (i18n.language === 'en' ? 'english-container' : 'arabic-container')}>
                 <PageHeader
                     className="site-page-header"
-                    title="Oda"
-                    subTitle="Become a seller"
+                    title={t("oda")}
+                    subTitle={t("become a seller")}
                     extra={[
                         <Dropdown overlay={menu}>
                             <a className="lang-dropdown-link" onClick={e => e.preventDefault()}>
-                                Language <DownOutlined />
+                                {t('language')} <DownOutlined />
                             </a>
                         </Dropdown>,
                     ]}

@@ -135,7 +135,7 @@ const StepOneGenerator = () => {
                   periodText={`/${plan.periodicity}`}
                   headerColor={i18n.language == 'en' ? plan.translations.en : plan.translations.ar }
                   value={plan.plan_id}
-                  cardSelected={packageType == 'free' ? true : false}
+                  cardSelected={plan.plan_id === packageType ? true : false}
                   onFancyCardClicked={(value: any) => {
                     stepOneData.packageType = value;
                     setPackageType(value);

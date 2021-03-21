@@ -6,6 +6,6 @@ import { ReduxStateInterface } from "../../interfaces/redux-state";
 export const injectDataFromStepToStoreReducer = (state: ReduxStateInterface, action: ActionInterface) => {
     return {
         ...state,
-        applyCurrentStepDataToStore: true
+        applyCurrentStepDataToStore: action.payload
     }
 }

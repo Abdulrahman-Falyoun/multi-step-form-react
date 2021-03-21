@@ -1,5 +1,5 @@
 
-import { MOVE_STEP_FORWARD_OR_BACKWARD, FILL_STEP_DATA, INJECT_DATA_FROM_STEP_TO_STORE } from '../types/actions-types';
+import { MOVE_STEP_FORWARD_OR_BACKWARD, FILL_STEP_DATA, INJECT_DATA_FROM_STEP_TO_STORE, SUBMITTING } from '../types/actions-types';
 import { ReduxStateInterface } from '../../interfaces/redux-state';
 import { ActionInterface } from '../../interfaces/action-interface';
 import StepOneGeneral from '../../components/steps/step-one-general';
@@ -24,6 +24,7 @@ const initialState: ReduxStateInterface = {
     applyCurrentStepDataToStore: false,
     stepErrors: [],
     stepWarnings: [],
+    submitting: false,
     steps: [
         {
             title: 'general',
@@ -74,6 +75,12 @@ export default (state = initialState, action: ActionInterface) => {
 
         case INJECT_DATA_FROM_STEP_TO_STORE:
             return injectDataFromStepToStoreReducer(state, action);
+
+        case SUBMITTING:
+            return {
+                ...state,
+                submitting: action.payload
+            }
         default:
             return state;
     }

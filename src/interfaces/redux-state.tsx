@@ -6,4 +6,5 @@ export interface ReduxStateInterface {
     applyCurrentStepDataToStore: boolean;
     stepErrors: Array<string>;
     stepWarnings: Array<string>;
+    submitting: boolean;
 };

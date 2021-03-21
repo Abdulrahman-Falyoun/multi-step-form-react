@@ -22,8 +22,8 @@ export type RootState = ReturnType<typeof rootReducer>;
 const initialState: ReduxStateInterface = {
     currentStep: 0,
     applyCurrentStepDataToStore: false,
-    stepErrors: [],
-    stepWarnings: [],
+    currentStepError: '',
+    currentStepWarning: '',
     submitting: false,
     steps: [
         {

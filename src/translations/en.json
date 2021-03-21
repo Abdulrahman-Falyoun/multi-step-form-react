@@ -91,6 +91,12 @@
     "language": "Language",
     "english": "English",
     "arabic": "Arabic",
-    "oda": "Oda"
+    "oda": "Oda",
 
+
+
+    "submitting": "Submitting",
+
+
+    "mandatory fields should be filled out!": "Mandatory fields should be filled out!"
 }

@@ -21,8 +21,8 @@ const SellerForm = ({
     currentStep,
     totalSteps,
     injectCurrentStepDataToStore,
-    errors,
-    warnings,
+    currentStepError,
+    currentStepWarning,
     submitting
 }: any) => {
     const { t, i18n } = useTranslation('common');
@@ -67,8 +67,8 @@ const SellerForm = ({
                     fillStepDataAction={fillStepDataAction}
                     currentStep={currentStep}
                     totalSteps={totalSteps}
-                    errors={errors}
-                    warnings={warnings}
+                    currentStepError={currentStepError}
+                    currentStepWarning={currentStepWarning}
                     submitting={submitting}
                 />
 
@@ -89,8 +89,8 @@ const mapStateToProps = (state: ReduxStateInterface) => {
         CardContent: state.steps[state.currentStep].component,
         currentStep: state.currentStep,
         totalSteps: state.steps.length,
-        errors: state.stepErrors,
-        warnings: state.stepWarnings,
+        currentStepError: state.currentStepError,
+        currentStepWarning: state.currentStepWarning,
         submitting: state.submitting
     };
 }

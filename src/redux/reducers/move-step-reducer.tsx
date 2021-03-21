@@ -7,8 +7,8 @@ import { GeneralDataInterface, StepsDataInterface, StoreDataInterface } from "..
 export const moveStepReducer = (state: ReduxStateInterface, action: ActionInterface) => {
     return {
         ...state,
-        stepErrors: [],
-        stepWarnings: [],
+        currentStepError: '',
+        currentStepWarning: '',
         currentStep: state.currentStep + action.payload
     }
 }

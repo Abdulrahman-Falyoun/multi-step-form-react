@@ -18,8 +18,8 @@ export const fillDataReducer = (state: ReduxStateInterface, action: ActionInterf
         return {
             ...state,
             applyCurrentStepDataToStore: false,
-            stepErrors: [],
-            stepWarnings: [],
+            currentStepError: '',
+            currentStepWarning: '',
             currentStep: state.currentStep + 1
         }
     }
@@ -28,7 +28,7 @@ export const fillDataReducer = (state: ReduxStateInterface, action: ActionInterf
     // We should inject an error to show
     return {
         ...state,
-        stepErrors: [...state.stepErrors, 'Mandatory fields should be filled out!'],
+        currentStepError: 'mandatory fields should be filled out!',
         applyCurrentStepDataToStore: false,
     };
 

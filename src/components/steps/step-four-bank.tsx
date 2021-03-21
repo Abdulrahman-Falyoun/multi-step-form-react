@@ -8,17 +8,25 @@ import FancyCard from '../card/fancy-small-card';
 import { getFileName, getFileSize } from '../../utils/file-helper';
 import { STEPS_NAMES } from '../../enums/steps-names';
 import { ReduxStateInterface } from '../../interfaces/redux-state';
-import { connect } from 'react-redux';
-import Actions from '../../redux/actions/index';
+import { connect, useSelector } from 'react-redux';
 import { BankDataInterface } from '../../interfaces/steps-data';
 import { readFileInBinary } from '../../utils/file-helper';
 import { useTranslation } from 'react-i18next';
+import { RootState } from '../../redux/reducers/root.reducer';
+import { useAppDispatch } from '../../redux/store';
+
+import { fillDataReducer } from '../../redux/reducers/root.reducer';
+
 const layout = {
     labelCol: { span: 0 },
     wrapperCol: { span: 21 },
 };
 
-const StepFourBank = ({ fillStepDataAction, initialData, applyCurrentStepDataToStore }: any) => {
+const StepFourBank = () => {
+
+    const { steps, currentStep, applyCurrentStepDataToStore } = useSelector((s: RootState) => s.commonReducer);
+    const initialData: any = steps[currentStep]?.data;
+    const dispatch = useAppDispatch();
     const [form] = Form.useForm();
     const [radioGroupValue, setRadioGroupValue] = useState('Riyadh');
     const [options, setOptions] = useState([
@@ -30,7 +38,7 @@ const StepFourBank = ({ fillStepDataAction, initialData, applyCurrentStepDataToS
     const [stampedCertificate, setStampedCertificate] = useState(null);
     useEffect(() => {
         if (applyCurrentStepDataToStore) {
-            fillStepDataAction(stepFourData);
+            dispatch(fillDataReducer({data: stepFourData, stepNumber: STEPS_NAMES.BANK }))
         }
     }, [applyCurrentStepDataToStore])
     const { t, i18n } = useTranslation('common');
@@ -180,14 +188,4 @@ const StepFourBank = ({ fillStepDataAction, initialData, applyCurrentStepDataToS
     );
 };
 
-const mapDispatchToProps = (dispatch: any) => {
-    return {
-        fillStepDataAction: (data: any) => dispatch(Actions.fill_step_data(data, STEPS_NAMES.BANK))
-    }
-}
-const mapStateToProps = (state: ReduxStateInterface) => {
-    return {
-        applyCurrentStepDataToStore: state.applyCurrentStepDataToStore
-    }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(StepFourBank);
+export default StepFourBank

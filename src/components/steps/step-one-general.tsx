@@ -3,12 +3,16 @@ import React, { useEffect, useState } from 'react';
 import { Form, Input, Button, Select, Radio } from 'antd';
 import StepperInput from '../input-fields/stepper-input';
 import FancySmallCard from '../card/fancy-small-card';
-import { connect } from 'react-redux';
-import Actions from '../../redux/actions/index';
+import { connect, useSelector } from 'react-redux';
 import { ReduxStateInterface } from '../../interfaces/redux-state';
 import { GeneralDataInterface } from '../../interfaces/steps-data';
 import { STEPS_NAMES } from '../../enums/steps-names';
 import { useTranslation } from 'react-i18next';
+import { RootState } from '../../redux/reducers/root.reducer';
+import { useAppDispatch } from '../../redux/store';
+import { fillDataReducer } from '../../redux/reducers/root.reducer';
+
+
 const layout = {
   labelCol: { span: 0 },
   wrapperCol: { span: 21 },
@@ -16,7 +20,11 @@ const layout = {
 
 
 
-const StepOneGenerator = ({ fillStepDataAction, initialData, applyCurrentStepDataToStore }: any) => {
+const StepOneGenerator = () => {
+  const { steps, currentStep, applyCurrentStepDataToStore } = useSelector((s: RootState) => s.commonReducer);
+  const initialData: any = steps[currentStep]?.data;
+  const dispatch = useAppDispatch();
+
   const [form] = Form.useForm();
   const [cityValue, setCityValue] = useState(initialData.city || 'Riyadh')
   const [packageType, setPackageType] = useState(initialData.packageType || 'free')
@@ -34,7 +42,8 @@ const StepOneGenerator = ({ fillStepDataAction, initialData, applyCurrentStepDat
         stepOneData.packageType = 'free';
       }
       console.log('stepOneData: ', stepOneData);
-      fillStepDataAction(stepOneData);
+      dispatch(fillDataReducer({ data: stepOneData, stepNumber: STEPS_NAMES.GENERAL }))
+
     }
   }, [applyCurrentStepDataToStore])
 
@@ -136,17 +145,5 @@ const StepOneGenerator = ({ fillStepDataAction, initialData, applyCurrentStepDat
   );
 };
 
-const mapStateToProps = (state: ReduxStateInterface) => {
-  return {
-    initialData: state.steps[state.currentStep]?.data,
-    applyCurrentStepDataToStore: state.applyCurrentStepDataToStore
-  }
-}
-const mapDispatchToProps = (dispatch: any) => {
-  return {
-    fillStepDataAction: (data: any) => {
-      dispatch(Actions.fill_step_data(data, STEPS_NAMES.GENERAL));
-    }
-  }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(StepOneGenerator);
+
+export default StepOneGenerator;

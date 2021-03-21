@@ -8,30 +8,24 @@ import Card from './card/card';
 // Style
 import '../styles/seller-form.sass'
 import { ReduxStateInterface } from '../interfaces/redux-state';
-import Actions from '../redux/actions/index';
-import { connect } from 'react-redux';
+import { useSelector } from "react-redux";
 import { Dropdown, Menu, PageHeader, Spin } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { DownOutlined } from '@ant-design/icons';
-
-const SellerForm = ({
-    nextOrPreviousStepAction,
-    CardContent,
-    fillStepDataAction,
-    currentStep,
-    totalSteps,
-    injectCurrentStepDataToStore,
-    currentStepError,
-    currentStepWarning,
-    submitting
-}: any) => {
+import { RootState } from '../redux/reducers/root.reducer';
+import { useAppDispatch } from '../redux/store';
+import { fillDataReducer, injectDataFromStepToStoreReducer, moveStepReducer } from '../redux/reducers/root.reducer';
+const SellerForm = () => {
     const { t, i18n } = useTranslation('common');
-
+    const { currentStep, steps, currentStepError, currentStepWarning, submitting } = useSelector((s: RootState) => s.commonReducer);
+    const dispatch = useAppDispatch();
+    const CardContent = steps[currentStep]?.component;
+    const totalSteps = steps.length;
     const next = () => {
-        injectCurrentStepDataToStore();
+        dispatch(injectDataFromStepToStoreReducer(true));
     };
     const prev = () => {
-        nextOrPreviousStepAction(-1);
+        dispatch(moveStepReducer(-1));
     }
     const menu = (
         <Menu onClick={e => i18n.changeLanguage((e.key as string))}>
@@ -64,7 +58,6 @@ const SellerForm = ({
                     onPressingNextButton={next}
                     onPressingBackButton={prev}
                     content={CardContent}
-                    fillStepDataAction={fillStepDataAction}
                     currentStep={currentStep}
                     totalSteps={totalSteps}
                     currentStepError={currentStepError}
@@ -84,21 +77,4 @@ const SellerForm = ({
 
 
 
-const mapStateToProps = (state: ReduxStateInterface) => {
-    return {
-        CardContent: state.steps[state.currentStep].component,
-        currentStep: state.currentStep,
-        totalSteps: state.steps.length,
-        currentStepError: state.currentStepError,
-        currentStepWarning: state.currentStepWarning,
-        submitting: state.submitting
-    };
-}
-
-const mapDispatchToProps = (dispatch: any) => {
-    return {
-        nextOrPreviousStepAction: (stepNumber: number) => dispatch(Actions.move_step_forward_or_backward(stepNumber)),
-        injectCurrentStepDataToStore: () => dispatch(Actions.inject_data_from_step_to_store(true))
-    };
-}
-export default connect(mapStateToProps, mapDispatchToProps)(SellerForm);
+export default SellerForm;

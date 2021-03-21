@@ -7,18 +7,26 @@ import FancyCard from '../card/fancy-small-card';
 import { getFileName, getFileSize } from '../../utils/file-helper';
 import { STEPS_NAMES } from '../../enums/steps-names';
 import { ReduxStateInterface } from '../../interfaces/redux-state';
-import { connect } from 'react-redux';
-import Actions from '../../redux/actions/index';
+import { connect, useSelector } from 'react-redux';
 import { readFileInBinary } from '../../utils/file-helper';
 import { VATDataInterface } from '../../interfaces/steps-data';
 import { useTranslation } from 'react-i18next';
 import { makePostRequest } from '../../axios-requester/http-requester';
+import { RootState } from '../../redux/reducers/root.reducer';
+import { useAppDispatch } from '../../redux/store';
+import { fillDataReducer, injectDataFromStepToStoreReducer, submittingReducer } from '../../redux/reducers/root.reducer';
+
+
 const layout = {
     labelCol: { span: 0 },
     wrapperCol: { span: 21 },
 };
 
-const StepFiveVAT = ({ fillStepDataAction, initialData, applyCurrentStepDataToStore, stepsData }: any) => {
+const StepFiveVAT = () => {
+
+    const { steps, currentStep, applyCurrentStepDataToStore } = useSelector((s: RootState) => s.commonReducer);
+    const initialData: any = steps[currentStep]?.data;
+    const dispatch = useAppDispatch();
     const [form] = Form.useForm();
 
     const [taxCertificate, setTaxCertificate] = useState(null);
@@ -26,9 +34,27 @@ const StepFiveVAT = ({ fillStepDataAction, initialData, applyCurrentStepDataToSt
     const [nationalId, setNationalId] = useState(null);
     const [stepFiveData, setStepFiveData] = useState<VATDataInterface>({ ...initialData });
     const { t, i18n } = useTranslation('common');
+    const fillStepDataAction = async (data: any) => {
+        dispatch(submittingReducer(true));
+        console.log('form data: ', data);
+        setTimeout(() => {
+            makePostRequest('', data)
+                .then(res => {
+                    dispatch(fillDataReducer({data: stepFiveData, stepNumber: STEPS_NAMES.VAT }))
+                })
+                .catch(err => {
+                    console.log('submitting: ', err);
+                    dispatch(injectDataFromStepToStoreReducer(false))
+                })
+                .finally(() => {
+                    dispatch(submittingReducer(false));
+                });
+        }, 3000);
 
+    }
     useEffect(() => {
         if (applyCurrentStepDataToStore) {
+            const stepsData = steps.map(st => st.data);
             stepsData[stepsData.length - 2] = { ...stepFiveData };
             fillStepDataAction(stepsData);
         }
@@ -147,33 +173,6 @@ const StepFiveVAT = ({ fillStepDataAction, initialData, applyCurrentStepDataToSt
 };
 
 
-const mapDispatchToProps = (dispatch: any) => {
-    return {
-        fillStepDataAction: async (data: any) => {
-            dispatch(Actions.submitting(true));
-            console.log('form data: ', data);
-            setTimeout(() => {
-                makePostRequest('', data)
-                    .then(res => {
-                        dispatch(Actions.fill_step_data(data, STEPS_NAMES.VAT))
-                    })
-                    .catch(err => {
-                        console.log('submitting: ', err);
-                        dispatch(Actions.inject_data_from_step_to_store(false))
-                    })
-                    .finally(() => {
-                        dispatch(Actions.submitting(false));
-                    });
-            }, 3000);
 
-        }
-    }
-}
-const mapStateToProps = (state: ReduxStateInterface) => {
-    return {
-        applyCurrentStepDataToStore: state.applyCurrentStepDataToStore,
-        stepsData: state.steps.map(st => st.data)
-    }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(StepFiveVAT);
+export default StepFiveVAT;
 

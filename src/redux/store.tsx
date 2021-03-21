@@ -1,7 +1,7 @@
 
 
 import { createStore, applyMiddleware } from "redux";
-import rootReducer, { RootState } from "./reducers/root.reducer";
+import  { RootState , rootReducer} from "./reducers/root.reducer";
 import thunkMiddleware from 'redux-thunk'
 import { Action, configureStore, getDefaultMiddleware, Middleware } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";

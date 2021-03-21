@@ -129,12 +129,12 @@ const StepOneGenerator = () => {
             availablePlans.map(plan => {
               return (
                 <FancySmallCard
-                  title='Free'
+                  title={(+plan.price === 0 ? 'free' : plan.price)}
                   bgColor='#595959'
                   txtStyle={{ color: '#FCEB55', letterSpacing: '.1rem' }}
-                  periodText='/year'
-                  headerColor='Sliver'
-                  value='free'
+                  periodText={`/${plan.periodicity}`}
+                  headerColor={i18n.language == 'en' ? plan.translations.en : plan.translations.ar }
+                  value={plan.plan_id}
                   cardSelected={packageType == 'free' ? true : false}
                   onFancyCardClicked={(value: any) => {
                     stepOneData.packageType = value;

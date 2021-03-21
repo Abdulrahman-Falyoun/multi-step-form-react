@@ -5,7 +5,6 @@ import StepperInput from '../input-fields/stepper-input';
 import StepperSelect from '../input-fields/stepper-select';
 import { connect, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { ReduxStateInterface } from '../../interfaces/redux-state';
 import { STEPS_NAMES } from '../../enums/steps-names';
 import { useTranslation } from 'react-i18next';
 import { RootState } from '../../redux/reducers/root.reducer';

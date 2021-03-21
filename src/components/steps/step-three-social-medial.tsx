@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from 'react';
 import { Form } from 'antd';
 import StepperInput from '../input-fields/stepper-input';
-import { ReduxStateInterface } from '../../interfaces/redux-state';
 import { connect, useSelector } from 'react-redux';
 import { STEPS_NAMES } from '../../enums/steps-names';
 import { useTranslation } from 'react-i18next';

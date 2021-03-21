@@ -6,5 +6,9 @@ import axios from 'axios';
 // axios.interceptors.response.use(axiosResponseSanitizerMiddleware)
 
 export default axios.create({
-  baseURL: `http://jsonplaceholder.typicode.com/`
+  baseURL: `http://oda.sa/store/api/`,
+  headers: {
+    // "Access-Control-Allow-Origin": "*",
+    // "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
+  }
 });

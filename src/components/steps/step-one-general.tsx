@@ -4,14 +4,13 @@ import { Form, Input, Button, Select, Radio } from 'antd';
 import StepperInput from '../input-fields/stepper-input';
 import FancySmallCard from '../card/fancy-small-card';
 import { connect, useSelector } from 'react-redux';
-import { ReduxStateInterface } from '../../interfaces/redux-state';
 import { GeneralDataInterface } from '../../interfaces/steps-data';
 import { STEPS_NAMES } from '../../enums/steps-names';
 import { useTranslation } from 'react-i18next';
 import { RootState } from '../../redux/reducers/root.reducer';
 import { useAppDispatch } from '../../redux/store';
 import { fillDataReducer } from '../../redux/slices/root.slice';
-
+import { makeGetRequest } from '../../axios-requester/http-requester';
 
 
 const layout = {
@@ -29,11 +28,23 @@ const StepOneGenerator = () => {
   const [form] = Form.useForm();
   const [cityValue, setCityValue] = useState(initialData.city || 'Riyadh')
   const [packageType, setPackageType] = useState(initialData.packageType || 'free')
-  const [stepOneData, setStepOneData] = useState<GeneralDataInterface>({ ...initialData })
+  const [stepOneData, setStepOneData] = useState<GeneralDataInterface>({ ...initialData });
+  const [availablePlans, setAvailablePlans] = useState<[{ plan_id: string, price: string, translations: { ar: string, en: string }, periodicity: string }]>();
   const { t, i18n } = useTranslation('common');
 
 
 
+  useEffect(() => {
+    // Getting all available plans
+    makeGetRequest('/plans')
+      .then(res => {
+        console.log('res: ', res);
+        setAvailablePlans(res.data);
+      })
+      .catch(err => {
+        console.log('err: ', err);
+      });
+  }, []);
   useEffect(() => {
     if (applyCurrentStepDataToStore) {
       if (!('city' in stepOneData) || (stepOneData.city == '')) {
@@ -113,20 +124,40 @@ const StepOneGenerator = () => {
           </Radio.Group>
         </div>
         <div className='fancy-cards-wrapper'>
-          <FancySmallCard
-            title='Free'
-            bgColor='#595959'
-            txtStyle={{ color: '#FCEB55', letterSpacing: '.1rem' }}
-            periodText='/year'
-            headerColor='Sliver'
-            value='free'
-            cardSelected={packageType == 'free' ? true : false}
-            onFancyCardClicked={(value: any) => {
-              stepOneData.packageType = value;
-              setPackageType(value);
-            }}
-          />
-          <FancySmallCard
+          {
+            availablePlans && availablePlans.length > 0 &&
+            availablePlans.map(plan => {
+              return (
+                <FancySmallCard
+                  title='Free'
+                  bgColor='#595959'
+                  txtStyle={{ color: '#FCEB55', letterSpacing: '.1rem' }}
+                  periodText='/year'
+                  headerColor='Sliver'
+                  value='free'
+                  cardSelected={packageType == 'free' ? true : false}
+                  onFancyCardClicked={(value: any) => {
+                    stepOneData.packageType = value;
+                    setPackageType(value);
+                  }}
+                />
+              );
+            })
+          }
+          {/* <FancySmallCard
+                  title='Free'
+                  bgColor='#595959'
+                  txtStyle={{ color: '#FCEB55', letterSpacing: '.1rem' }}
+                  periodText='/year'
+                  headerColor='Sliver'
+                  value='free'
+                  cardSelected={packageType == 'free' ? true : false}
+                  onFancyCardClicked={(value: any) => {
+                    stepOneData.packageType = value;
+                    setPackageType(value);
+                  }}
+                /> */}
+          {/* <FancySmallCard
             title='999.00 SAR'
             value='999.00 SAR'
             bgColor='#FCEB55'
@@ -137,7 +168,7 @@ const StepOneGenerator = () => {
             onFancyCardClicked={(value: any) => {
               stepOneData.packageType = value;
               setPackageType(value);
-            }} />
+            }} /> */}
         </div>
       </div>
 

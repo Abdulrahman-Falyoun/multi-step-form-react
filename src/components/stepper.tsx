@@ -3,7 +3,6 @@
 import React, { useState } from 'react';
 import { Steps } from 'antd';
 import { connect, useSelector } from "react-redux";
-import { ReduxStateInterface } from '../interfaces/redux-state';
 import { useTranslation } from 'react-i18next';
 import { RootState } from '../redux/reducers/root.reducer';
 

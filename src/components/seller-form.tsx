@@ -7,7 +7,6 @@ import Card from './card/card';
 
 // Style
 import '../styles/seller-form.sass'
-import { ReduxStateInterface } from '../interfaces/redux-state';
 import { useSelector } from "react-redux";
 import { Dropdown, Menu, PageHeader, Spin } from 'antd';
 import { useTranslation } from 'react-i18next';

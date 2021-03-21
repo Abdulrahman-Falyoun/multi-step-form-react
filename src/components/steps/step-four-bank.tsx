@@ -7,7 +7,6 @@ import StepperUploadFileInput from '../input-fields/stepper-upload-file';
 import FancyCard from '../card/fancy-small-card';
 import { getFileName, getFileSize } from '../../utils/file-helper';
 import { STEPS_NAMES } from '../../enums/steps-names';
-import { ReduxStateInterface } from '../../interfaces/redux-state';
 import { connect, useSelector } from 'react-redux';
 import { BankDataInterface } from '../../interfaces/steps-data';
 import { readFileInBinary } from '../../utils/file-helper';

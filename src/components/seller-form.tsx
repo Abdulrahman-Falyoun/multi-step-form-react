@@ -14,7 +14,7 @@ import { useTranslation } from 'react-i18next';
 import { DownOutlined } from '@ant-design/icons';
 import { RootState } from '../redux/reducers/root.reducer';
 import { useAppDispatch } from '../redux/store';
-import { fillDataReducer, injectDataFromStepToStoreReducer, moveStepReducer } from '../redux/reducers/root.reducer';
+import { fillDataReducer, injectDataFromStepToStoreReducer, moveStepReducer } from '../redux/slices/root.slice';
 const SellerForm = () => {
     const { t, i18n } = useTranslation('common');
     const { currentStep, steps, currentStepError, currentStepWarning, submitting } = useSelector((s: RootState) => s.commonReducer);

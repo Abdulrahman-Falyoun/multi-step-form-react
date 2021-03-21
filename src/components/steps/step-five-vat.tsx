@@ -14,7 +14,7 @@ import { useTranslation } from 'react-i18next';
 import { makePostRequest } from '../../axios-requester/http-requester';
 import { RootState } from '../../redux/reducers/root.reducer';
 import { useAppDispatch } from '../../redux/store';
-import { fillDataReducer, injectDataFromStepToStoreReducer, submittingReducer } from '../../redux/reducers/root.reducer';
+import { fillDataReducer, injectDataFromStepToStoreReducer, submittingReducer } from '../../redux/slices/root.slice';
 
 
 const layout = {

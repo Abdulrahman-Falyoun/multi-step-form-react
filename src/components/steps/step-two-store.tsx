@@ -10,7 +10,7 @@ import { STEPS_NAMES } from '../../enums/steps-names';
 import { useTranslation } from 'react-i18next';
 import { RootState } from '../../redux/reducers/root.reducer';
 import { useAppDispatch } from '../../redux/store';
-import { fillDataReducer } from '../../redux/reducers/root.reducer';
+import { fillDataReducer } from '../../redux/slices/root.slice';
 
 const layout = {
   labelCol: { span: 0 },

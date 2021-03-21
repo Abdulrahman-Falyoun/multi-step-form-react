@@ -15,6 +15,7 @@ import { RootState } from '../../redux/reducers/root.reducer';
 import { useAppDispatch } from '../../redux/store';
 
 import { fillDataReducer } from '../../redux/slices/root.slice';
+import { makeGetRequest } from '../../axios-requester/http-requester';
 
 const layout = {
     labelCol: { span: 0 },
@@ -35,6 +36,24 @@ const StepFourBank = () => {
     ])
     const [stepFourData, setStepFourData] = useState<BankDataInterface>({ ...initialData })
     const [stampedCertificate, setStampedCertificate] = useState(null);
+    const [availableCurrencies, setAvailableCurrencies] = useState([]);
+    useEffect(() => {
+        // Getting all available plans
+        makeGetRequest('/currencies2')
+          .then(res => {
+            console.log('res: ', res);
+            const currencies = res.data.map((d: any) => ({
+                value: d.currency_code,
+                label: d.currency_code
+            }));
+            setAvailableCurrencies(currencies);
+          })
+          .catch(err => {
+            console.log('err: ', err);
+          });
+      }, []);
+
+
     useEffect(() => {
         if (applyCurrentStepDataToStore) {
             dispatch(fillDataReducer({data: stepFourData, stepNumber: STEPS_NAMES.BANK }))
@@ -141,7 +160,7 @@ const StepFourBank = () => {
                     <Form {...layout} form={form} name="control-hooks">
                         <div className="flex-row-flex-start-main-cross-center">
                             <Form.Item className="full-flex-item column-flex-direction" name="currency" label={t("currency")}>
-                                <StepperSelect options={options} placeholder={t('sar')} onValueSelected={(value: any) => { stepFourData.currency = value; }} />
+                                <StepperSelect options={availableCurrencies} placeholder={t('sar')} onValueSelected={(value: any) => { stepFourData.currency = value; }} />
                             </Form.Item>
                             <Form.Item className="double-full-flex-item column-flex-direction" name="phoneNumber" label=" ">
                                 <div className="stamped-document-wrapper">

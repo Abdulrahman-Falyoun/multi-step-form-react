@@ -37,8 +37,6 @@ const StepOneGenerator = () => {
     // Getting all available plans
     makeGetRequest('/plans')
       .then(res => {
-        console.log('res: ', res);
-        console.log(JSON.parse(res.data[0].translations));
         setAvailablePlans(res.data);
       })
       .catch(err => {
@@ -133,7 +131,7 @@ const StepOneGenerator = () => {
                   bgColor='#595959'
                   txtStyle={{ color: '#FCEB55', letterSpacing: '.1rem' }}
                   periodText={`/${plan.periodicity}`}
-                  headerColor={i18n.language == 'en' ? JSON.parse(plan.translations).en : JSON.parse(plan.translations).ar }
+                  headerColor={i18n.language == 'en' ? JSON.parse(plan.translations).en : JSON.parse(plan.translations).ar}
                   value={plan.plan_id}
                   cardSelected={plan.plan_id === packageType ? true : false}
                   onFancyCardClicked={(value: any) => {

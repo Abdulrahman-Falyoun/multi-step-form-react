@@ -19,7 +19,6 @@ const rootSlice = createSlice({
         currentStepError: '',
         currentStepWarning: '',
         submitting: false,
-        plans: [],
         steps: [
             {
                 title: 'general',

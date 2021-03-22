@@ -8,7 +8,7 @@ import { getFileName, getFileSize } from '../../utils/file-helper';
 import { STEPS_NAMES } from '../../enums/steps-names';
 import { connect, useSelector } from 'react-redux';
 import { readFileInBinary } from '../../utils/file-helper';
-import { VATDataInterface } from '../../interfaces/steps-data';
+import { StepsDataInterface, VATDataInterface } from '../../interfaces/steps-data';
 import { useTranslation } from 'react-i18next';
 import { makePostRequest } from '../../axios-requester/http-requester';
 import { RootState } from '../../redux/reducers/root.reducer';
@@ -33,30 +33,81 @@ const StepFiveVAT = () => {
     const [nationalId, setNationalId] = useState(null);
     const [stepFiveData, setStepFiveData] = useState<VATDataInterface>({ ...initialData });
     const { t, i18n } = useTranslation('common');
-    const fillStepDataAction = async (data: any) => {
-        dispatch(submittingReducer(true));
-        console.log('form data: ', data);
-        setTimeout(() => {
-            makePostRequest('', data)
-                .then(res => {
-                    dispatch(fillDataReducer({data: stepFiveData, stepNumber: STEPS_NAMES.VAT }))
-                })
-                .catch(err => {
-                    console.log('submitting: ', err);
-                    dispatch(injectDataFromStepToStoreReducer(false))
-                })
-                .finally(() => {
-                    dispatch(submittingReducer(false));
-                });
-        }, 3000);
 
+
+    const fillStepDataAction = async () => {
+        dispatch(submittingReducer(true));
+        const stepsData = steps.map((st) => st.data);
+        const reducer = (acc: any, currValue: any) => {
+            for (const key in currValue) {
+                if (!acc[key]) {
+                    acc[key] = currValue[key];
+                }
+            }
+            return acc;
+        }
+        const stepsReducedObject = stepsData.reduce(reducer, { ...stepFiveData }) as StepsDataInterface;
+
+
+        const paramsMap = new Map();
+        paramsMap.set('full_name', stepsReducedObject.fullname);
+        paramsMap.set('phone_number', stepsReducedObject.phoneNumber);
+        paramsMap.set('email_address', stepsReducedObject.email);
+        paramsMap.set('store_name', stepsReducedObject.storeName);
+        paramsMap.set('legal_name', stepsReducedObject.legalName);
+        paramsMap.set('beneficiary_name', stepsReducedObject.beneficiaryName);
+        paramsMap.set('business_email', stepsReducedObject.businessEmail);
+        paramsMap.set('city', stepsReducedObject.city);
+        paramsMap.set('swift_code', stepsReducedObject.swiftCode);
+        paramsMap.set('bank_name', stepsReducedObject.bankName);
+        paramsMap.set('package', stepsReducedObject.packageType);
+
+
+
+
+
+        const paramsArray = {
+            // params: [
+            //     { 'full_name': stepsReducedObject.fullname },
+            //     { 'phone_number': stepsReducedObject.phoneNumber },
+            //     { 'store_name': stepsReducedObject.storeName },
+            //     { 'legal_name': stepsReducedObject.legalName },
+            //     { 'beneficiary_name': stepsReducedObject.beneficiaryName },
+            //     { 'business_email': stepsReducedObject.businessEmail },
+            //     { 'city': stepsReducedObject.city },
+            //     { 'swift_code': stepsReducedObject.swiftCode },
+            //     { 'package': stepsReducedObject.packageType }
+
+            // ],
+            params: paramsMap
+        };
+
+        // console.log('params: ', JSON.stringify(stepsReducedObject));
+
+        const bodyFormData = new FormData();
+        bodyFormData.append('params', Object.fromEntries(paramsMap));
+        bodyFormData.append('bank_letter', stepsReducedObject.bankLetter);
+        bodyFormData.append('national_id', stepsReducedObject.nationalId);
+        bodyFormData.append('trade_license', stepsReducedObject.tradeLicense);
+
+        console.log(bodyFormData);
+        makePostRequest('/newseller', bodyFormData, { headers: { "Content-Type": "multipart/form-data" } })
+            .then(res => {
+                console.log('res: ', res);
+                dispatch(injectDataFromStepToStoreReducer(false))
+                // dispatch(fillDataReducer({ data: stepFiveData, stepNumber: STEPS_NAMES.VAT }))
+            })
+            .catch(err => {
+                console.log(err.response.data);
+                dispatch(injectDataFromStepToStoreReducer(false))
+            })
+            .finally(() => {
+                dispatch(submittingReducer(false));
+            });
     }
     useEffect(() => {
-        if (applyCurrentStepDataToStore) {
-            const stepsData = steps.map(st => st.data);
-            stepsData[stepsData.length - 2] = { ...stepFiveData };
-            fillStepDataAction(stepsData);
-        }
+        if (applyCurrentStepDataToStore)
+            fillStepDataAction();
     }, [applyCurrentStepDataToStore])
     return (
         <div className="step-five-wrapper">

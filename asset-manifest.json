@@ -1,0 +1,34 @@
+{
+  "files": {
+    "main.css": "/Abdulrahman-Falyoun/multi-step-form-react/static/css/main.64c1e289.chunk.css",
+    "main.js": "/Abdulrahman-Falyoun/multi-step-form-react/static/js/main.cdb46242.chunk.js",
+    "main.js.map": "/Abdulrahman-Falyoun/multi-step-form-react/static/js/main.cdb46242.chunk.js.map",
+    "runtime-main.js": "/Abdulrahman-Falyoun/multi-step-form-react/static/js/runtime-main.50551359.js",
+    "runtime-main.js.map": "/Abdulrahman-Falyoun/multi-step-form-react/static/js/runtime-main.50551359.js.map",
+    "static/css/2.7ed0f70f.chunk.css": "/Abdulrahman-Falyoun/multi-step-form-react/static/css/2.7ed0f70f.chunk.css",
+    "static/js/2.a66fa01e.chunk.js": "/Abdulrahman-Falyoun/multi-step-form-react/static/js/2.a66fa01e.chunk.js",
+    "static/js/2.a66fa01e.chunk.js.map": "/Abdulrahman-Falyoun/multi-step-form-react/static/js/2.a66fa01e.chunk.js.map",
+    "static/js/3.244c6a13.chunk.js": "/Abdulrahman-Falyoun/multi-step-form-react/static/js/3.244c6a13.chunk.js",
+    "static/js/3.244c6a13.chunk.js.map": "/Abdulrahman-Falyoun/multi-step-form-react/static/js/3.244c6a13.chunk.js.map",
+    "index.html": "/Abdulrahman-Falyoun/multi-step-form-react/index.html",
+    "static/css/2.7ed0f70f.chunk.css.map": "/Abdulrahman-Falyoun/multi-step-form-react/static/css/2.7ed0f70f.chunk.css.map",
+    "static/css/main.64c1e289.chunk.css.map": "/Abdulrahman-Falyoun/multi-step-form-react/static/css/main.64c1e289.chunk.css.map",
+    "static/js/2.a66fa01e.chunk.js.LICENSE.txt": "/Abdulrahman-Falyoun/multi-step-form-react/static/js/2.a66fa01e.chunk.js.LICENSE.txt",
+    "static/media/bank.9173ebc4.svg": "/Abdulrahman-Falyoun/multi-step-form-react/static/media/bank.9173ebc4.svg",
+    "static/media/check-mark.ff2a5201.svg": "/Abdulrahman-Falyoun/multi-step-form-react/static/media/check-mark.ff2a5201.svg",
+    "static/media/document.8ac63cad.svg": "/Abdulrahman-Falyoun/multi-step-form-react/static/media/document.8ac63cad.svg",
+    "static/media/end-step.7b7154da.svg": "/Abdulrahman-Falyoun/multi-step-form-react/static/media/end-step.7b7154da.svg",
+    "static/media/happy-man.b30b6ef7.svg": "/Abdulrahman-Falyoun/multi-step-form-react/static/media/happy-man.b30b6ef7.svg",
+    "static/media/laptop.e7060ffd.svg": "/Abdulrahman-Falyoun/multi-step-form-react/static/media/laptop.e7060ffd.svg",
+    "static/media/store.b1909718.svg": "/Abdulrahman-Falyoun/multi-step-form-react/static/media/store.b1909718.svg",
+    "static/media/success-man.d20d4b06.svg": "/Abdulrahman-Falyoun/multi-step-form-react/static/media/success-man.d20d4b06.svg",
+    "static/media/tax.45277d7f.svg": "/Abdulrahman-Falyoun/multi-step-form-react/static/media/tax.45277d7f.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.50551359.js",
+    "static/css/2.7ed0f70f.chunk.css",
+    "static/js/2.a66fa01e.chunk.js",
+    "static/css/main.64c1e289.chunk.css",
+    "static/js/main.cdb46242.chunk.js"
+  ]
+}

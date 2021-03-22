@@ -66,7 +66,7 @@ const StepFiveVAT = () => {
 
 
 
-        const paramsArray = {
+        // const paramsArray = {
             // params: [
             //     { 'full_name': stepsReducedObject.fullname },
             //     { 'phone_number': stepsReducedObject.phoneNumber },
@@ -79,23 +79,21 @@ const StepFiveVAT = () => {
             //     { 'package': stepsReducedObject.packageType }
 
             // ],
-            params: paramsMap
-        };
+        //     params: paramsMap
+        // };
 
-        // console.log('params: ', JSON.stringify(stepsReducedObject));
 
         const bodyFormData = new FormData();
-        bodyFormData.append('params', Object.fromEntries(paramsMap));
-        bodyFormData.append('bank_letter', stepsReducedObject.bankLetter);
-        bodyFormData.append('national_id', stepsReducedObject.nationalId);
-        bodyFormData.append('trade_license', stepsReducedObject.tradeLicense);
+        bodyFormData.append('params', JSON.stringify(Object.fromEntries(paramsMap)));
+        // bodyFormData.append('bank_letter', stepsReducedObject.bankLetter, 'bank_letter');
+        // bodyFormData.append('national_id', stepsReducedObject.nationalId, 'national_id');
+        // bodyFormData.append('trade_license', stepsReducedObject.tradeLicense, 'trade_license');
 
-        console.log(bodyFormData);
         makePostRequest('/newseller', bodyFormData, { headers: { "Content-Type": "multipart/form-data" } })
             .then(res => {
                 console.log('res: ', res);
-                dispatch(injectDataFromStepToStoreReducer(false))
-                // dispatch(fillDataReducer({ data: stepFiveData, stepNumber: STEPS_NAMES.VAT }))
+                // dispatch(injectDataFromStepToStoreReducer(false))
+                dispatch(fillDataReducer({ data: stepFiveData, stepNumber: STEPS_NAMES.VAT }))
             })
             .catch(err => {
                 console.log(err.response.data);

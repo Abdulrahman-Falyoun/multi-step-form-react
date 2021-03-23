@@ -8,8 +8,8 @@ import { RootState } from '../redux/reducers/root.reducer';
 
 const { Step } = Steps;
 
-const ConnectedToStoreStepper = (props: any) => {
-    const { currentStep, steps, currentStepError, currentStepWarning, applyCurrentStepDataToStore, submitting } = useSelector((s: RootState) => s.commonReducer)
+const ConnectedToStoreStepper = () => {
+    const { currentStep, steps } = useSelector((s: RootState) => s.commonReducer)
     const { t, i18n } = useTranslation('common');
 
    

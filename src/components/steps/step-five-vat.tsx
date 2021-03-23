@@ -115,7 +115,7 @@ const StepFiveVAT = () => {
                     <Form {...layout} form={form} name="control-hooks">
                         <div className="flex-row-flex-start-main-cross-center">
                             <Form.Item
-                                className="same-width-flex-item column-flex-direction"
+                                className="half-width column-flex-direction"
                                 name="tradeLicense" label={t("upload trade license")}>
                                 <StepperUploadFileInput
                                     id="trade-license-input"
@@ -140,7 +140,7 @@ const StepFiveVAT = () => {
                                         borderColor='#EAEAEA' />}
                             </Form.Item>
                             <Form.Item
-                                className="same-width-flex-item column-flex-direction"
+                                className="half-width column-flex-direction"
                                 name="nationalId"
                                 label={t("upload national id(saudi lqama or passport)")}>
                                 <StepperUploadFileInput id="national-id-input" placeholder={t("browse files")}
@@ -172,12 +172,12 @@ const StepFiveVAT = () => {
                                 placeHolder={t("enter tax registration number")}
                                 size='large'
                                 bordered={false}
-                                className="double-full-flex-item column-flex-direction"
+                                className="half-width column-flex-direction"
                                 name="beneficiary"
                                 label={t("tax registration number")} />
 
                             <Form.Item
-                                className="full-flex-item column-flex-direction"
+                                className="half-width column-flex-direction"
                                 name="taxCertification"
                                 label={t("upload tax registration certificate")}>
                                 <StepperUploadFileInput id="tax-cert-input" placeholder={t("browse files")}

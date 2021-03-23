@@ -14,7 +14,8 @@ const EndStep = () => {
                 <p className="success-title-word">{t('success')}</p>
                 <p className="success-msg-body">{t('you have been successfully registerd as seller')}</p>
             </div>
-            <Button ghost={false} className="multi-step-form-button yellow-button" style={{ marginLeft: 8 }} onClick={() => { }}>
+            <Button ghost={false} className="multi-step-form-button yellow-button" style={{ marginLeft: 8 }} onClick={() => {
+            }}>
                 {t('done')}
             </Button>
         </div>

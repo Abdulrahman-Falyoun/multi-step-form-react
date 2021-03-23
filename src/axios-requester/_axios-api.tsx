@@ -6,7 +6,7 @@ import axios from 'axios';
 // axios.interceptors.response.use(axiosResponseSanitizerMiddleware)
 
 export default axios.create({
-  baseURL: `http://oda.sa/store/api/`,
+  baseURL: `https://oda.sa/store/api/`,
   headers: {
     // "Access-Control-Allow-Origin": "*",
     // "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"

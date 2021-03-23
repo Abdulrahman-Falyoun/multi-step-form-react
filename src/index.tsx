@@ -3,13 +3,13 @@ import ReactDOM from 'react-dom';
 import './styles/index.sass';
 import reportWebVitals from './reportWebVitals';
 import SellerForm from './components/seller-form';
-import {store} from './redux/store';
+import { store } from './redux/store';
 import { Provider } from 'react-redux';
 import { I18nextProvider } from "react-i18next";
 import i18next from "i18next";
-
 import common_en from "./translations/en.json";
 import common_ar from "./translations/ar.json";
+import { BrowserRouter } from 'react-router-dom';
 
 i18next.init({
   interpolation: { escapeValue: false },  // React already does escaping
@@ -27,11 +27,13 @@ i18next.init({
 
 ReactDOM.render(
   <React.StrictMode>
-    <I18nextProvider i18n={i18next}>
-      <Provider store={store}>
-        <SellerForm />
-      </Provider>
-    </I18nextProvider>
+    <BrowserRouter basename='/store/become-seller'>
+      <I18nextProvider i18n={i18next}>
+        <Provider store={store}>
+          <SellerForm />
+        </Provider>
+      </I18nextProvider>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );

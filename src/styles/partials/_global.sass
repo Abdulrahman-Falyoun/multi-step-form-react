@@ -6,29 +6,28 @@
   @include flex-direction(row)
   @include justify-align(center, center)
   @media screen and ( max-width: $screen-sm-min )
-            flex-direction: column
+    flex-direction: column
 
 .flex-row-space-between-main-cross-center
   @include flex
   @include flex-direction(row)
   @include justify-align(space-between, center)
   @media screen and ( max-width: $screen-sm-min )
-            flex-direction: column
-
+    flex-direction: column
 
 .flex-row-space-evenly-main-cross-center
   @include flex
   @include flex-direction(row)
   @include justify-align(space-evenly, center)
   @media screen and ( max-width: $screen-sm-min )
-            flex-direction: column
+    flex-direction: column
 
 .flex-row-flex-start-main-cross-center
   @include flex
   @include flex-direction(row)
   @include justify-align(flex-start, center)
   @media screen and ( max-width: $screen-sm-min )
-            flex-direction: column
+    flex-direction: column
 
 // Column
 .flex-column-center-main-cross
@@ -60,7 +59,7 @@
   flex: 1 1 auto
   @media screen and ( max-width: $screen-md-min )
     width: 100% !important
-  
+
 .double-full-flex-item
   flex: 2 1 auto
   @media screen and ( max-width: $screen-md-min )
@@ -70,5 +69,9 @@
   @media screen and ( max-width: $screen-md-min )
     width: 100% !important
 
+.half-width
+  width: 50%
+  @media screen and ( max-width: $screen-md-min )
+    width: 100% !important
 .column-flex-direction
   flex-direction: column

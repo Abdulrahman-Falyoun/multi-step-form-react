@@ -116,7 +116,11 @@ const StepFiveVAT = () => {
                         <div className="flex-row-flex-start-main-cross-center">
                             <Form.Item
                                 className="half-width column-flex-direction"
-                                name="tradeLicense" label={t("upload trade license")}>
+                                name="tradeLicense" label={t("upload trade license")}
+                                rules={[{
+                                    required: true,
+                                    message: 'Please upload your trade license'
+                                }]}>
                                 <StepperUploadFileInput
                                     id="trade-license-input"
                                     placeholder={t("browse files")}
@@ -142,7 +146,11 @@ const StepFiveVAT = () => {
                             <Form.Item
                                 className="half-width column-flex-direction"
                                 name="nationalId"
-                                label={t("upload national id(saudi lqama or passport)")}>
+                                label={t("upload national id(saudi lqama or passport)")}
+                                rules={[{
+                                    required: true,
+                                    message: 'Please upload your national ID'
+                                }]}>
                                 <StepperUploadFileInput id="national-id-input" placeholder={t("browse files")}
                                     onFileSelected={(e: any) => {
                                         setNationalId(e);
@@ -174,12 +182,21 @@ const StepFiveVAT = () => {
                                 bordered={false}
                                 className="half-width column-flex-direction"
                                 name="beneficiary"
-                                label={t("tax registration number")} />
+                                label={t("tax registration number")} 
+                                rules={[{
+                                    required: true,
+                                    message: 'Tax registration number is required'
+                                }]}
+                                />
 
                             <Form.Item
                                 className="half-width column-flex-direction"
                                 name="taxCertification"
-                                label={t("upload tax registration certificate")}>
+                                label={t("upload tax registration certificate")}
+                                rules={[{
+                                    required: true,
+                                    message: 'Tax registration certificate is required'
+                                }]}>
                                 <StepperUploadFileInput id="tax-cert-input" placeholder={t("browse files")}
                                     width="100%"
                                     placeHolderFontSize='.8rem'

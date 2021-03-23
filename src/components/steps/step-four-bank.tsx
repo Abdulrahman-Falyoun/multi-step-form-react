@@ -161,7 +161,13 @@ const StepFourBank = () => {
                             <Form.Item className="full-flex-item column-flex-direction" name="currency" label={t("currency")}>
                                 <StepperSelect options={availableCurrencies} placeholder={t('sar')} onValueSelected={(value: any) => { stepFourData.currency = value; }} />
                             </Form.Item>
-                            <Form.Item className="double-full-flex-item column-flex-direction" name="phoneNumber" label=" ">
+                            <Form.Item className="double-full-flex-item column-flex-direction" name="bankLetter" label=" "
+                            
+                            rules={[{
+                                required: true,
+                                message: 'Bank letter is required'
+                            }]}
+                            >
                                 <div className="stamped-document-wrapper">
                                     <p className="stamped-document-hint">{t('upload either certified or stamped document by the bank')}</p>
                                     <div className="flex-column-center-main-cross">

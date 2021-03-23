@@ -15,6 +15,7 @@ const EndStep = () => {
                 <p className="success-msg-body">{t('you have been successfully registerd as seller')}</p>
             </div>
             <Button ghost={false} className="multi-step-form-button yellow-button" style={{ marginLeft: 8 }} onClick={() => {
+                window.location.replace('https://oda.sa/store');
             }}>
                 {t('done')}
             </Button>

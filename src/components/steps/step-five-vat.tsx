@@ -91,7 +91,7 @@ const StepFiveVAT = () => {
 
         makePostRequest('/newseller', bodyFormData, { headers: { "Content-Type": "multipart/form-data" } })
             .then(res => {
-                console.log('res: ', res);
+                // console.log('res: ', res);
                 // dispatch(injectDataFromStepToStoreReducer(false))
                 const formHasErrors = () => form.getFieldsError().some((item) => item.errors.length > 0)
                 dispatch(fillDataReducer({ data: stepFiveData, stepNumber: STEPS_NAMES.VAT, formHasErrors: formHasErrors() }))

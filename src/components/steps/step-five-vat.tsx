@@ -28,9 +28,9 @@ const StepFiveVAT = () => {
     const dispatch = useAppDispatch();
     const [form] = Form.useForm();
 
-    const [taxCertificate, setTaxCertificate] = useState(null);
-    const [tradeLicense, setTradeLicense] = useState(null);
-    const [nationalId, setNationalId] = useState(null);
+    const [taxCertificate, setTaxCertificate] = useState(null); // (initialData as VATDataInterface)?.taxRegistrationCertificate
+    const [tradeLicense, setTradeLicense] = useState(null); // (initialData as VATDataInterface)?.tradeLicense
+    const [nationalId, setNationalId] = useState(null); // (initialData as VATDataInterface)?.nationalId
     const [stepFiveData, setStepFiveData] = useState<VATDataInterface>({ ...initialData });
     const { t, i18n } = useTranslation('common');
 
@@ -183,12 +183,12 @@ const StepFiveVAT = () => {
                                 bordered={false}
                                 className="half-width column-flex-direction"
                                 name="beneficiary"
-                                label={t("tax registration number")} 
+                                label={t("tax registration number")}
                                 rules={[{
                                     required: true,
                                     message: 'Tax registration number is required'
                                 }]}
-                                />
+                            />
 
                             <Form.Item
                                 className="half-width column-flex-direction"

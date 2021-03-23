@@ -69,6 +69,7 @@ const StepTwoGenerator = () => {
               <StepperInput
                 name="storeName" label={t("store name")}
                 onInputChanged={(e: any) => stepTwoData.storeName = e.target.value}
+                value={stepTwoData.storeName}
                 placeHolder={t("what's your store name?")}
                 size='large'
                 bordered={false}
@@ -85,6 +86,7 @@ const StepTwoGenerator = () => {
                 onInputChanged={(e: any) => stepTwoData.legalName = e.target.value}
                 placeHolder={t("company legal name")}
                 size='large'
+                value={stepTwoData.legalName}
                 bordered={false}
                 className="full-flex-item column-flex-direction"
                 rules={[
@@ -121,7 +123,9 @@ const StepTwoGenerator = () => {
                 <StepperSelect options={options} placeholder={t("for example electronics")}
                   onValueSelected={(value: any) => {
                     stepTwoData.productType = value;
-                  }} />
+                  }}
+                  defaultValue={stepTwoData.productType}
+                  />
               </Form.Item>
             </div>
           </Form>
@@ -138,6 +142,7 @@ const StepTwoGenerator = () => {
                 placeHolder={t("please enter your full address")}
                 size='large'
                 bordered={false}
+                value={stepTwoData.fullAddress}
                 className="full-flex-item column-flex-direction" name="address" />
             </div>
           </Form>

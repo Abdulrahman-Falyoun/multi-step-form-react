@@ -28,14 +28,8 @@ const StepFourBank = () => {
     const initialData: any = steps[currentStep]?.data;
     const dispatch = useAppDispatch();
     const [form] = Form.useForm();
-    const [radioGroupValue, setRadioGroupValue] = useState('Riyadh');
-    const [options, setOptions] = useState([
-        { value: 'whatever', label: 'whatever' },
-        { value: 'whatever1', label: 'whatever1' },
-        { value: 'whatever2', label: 'whatever2' }
-    ])
     const [stepFourData, setStepFourData] = useState<BankDataInterface>({ ...initialData })
-    const [stampedCertificate, setStampedCertificate] = useState(null);
+    const [stampedCertificate, setStampedCertificate] = useState(null); // (initialData as BankDataInterface)?.bankLetter
     const [availableCurrencies, setAvailableCurrencies] = useState([]);
     useEffect(() => {
         // Getting all available plans
@@ -74,6 +68,7 @@ const StepFourBank = () => {
                                 placeHolder={t("for example ghayath")}
                                 size='large'
                                 bordered={false}
+                                value={stepFourData.beneficiaryName}
                                 className="full-flex-item column-flex-direction"
                                 rules={[
                                     {
@@ -92,6 +87,7 @@ const StepFourBank = () => {
                                 placeHolder="Info@Example.com"
                                 size='large'
                                 bordered={false}
+                                value={stepFourData.businessEmail}
                                 className="double-full-flex-item column-flex-direction"
                                 rules={[
                                     {
@@ -119,6 +115,7 @@ const StepFourBank = () => {
                                 placeHolder={t("for example visa")}
                                 size='large'
                                 bordered={false}
+                                value={stepFourData.bankName}
                                 rules={[
                                     {
                                         required: true,
@@ -131,6 +128,7 @@ const StepFourBank = () => {
                                 placeHolder={t("for example riyadh")}
                                 size='large'
                                 bordered={false}
+                                value={stepFourData.branchName}
                                 className="double-full-flex-item column-flex-direction" name="branchName" label={t("branch name")}
                             />
                         </div>
@@ -145,6 +143,7 @@ const StepFourBank = () => {
                                 placeHolder="(0000) - 0000 - 0000"
                                 size='large'
                                 bordered={false}
+                                value={stepFourData.bankAccountNumber}
                                 className="double-full-flex-item column-flex-direction" name="accountNumber" label={t("bank account number")}
                             />
                             <StepperInput
@@ -154,6 +153,7 @@ const StepFourBank = () => {
                                 placeHolder="00"
                                 size='large'
                                 bordered={false}
+                                value={stepFourData.swiftCode}
                                 className="full-flex-item column-flex-direction" name="swiftCode" label={t("swift code")}
                                 rules={[
                                     {
@@ -172,7 +172,11 @@ const StepFourBank = () => {
                     <Form {...layout} form={form} name="control-hooks">
                         <div className="flex-row-flex-start-main-cross-center">
                             <Form.Item className="full-flex-item column-flex-direction" name="currency" label={t("currency")}>
-                                <StepperSelect options={availableCurrencies} placeholder={t('sar')} onValueSelected={(value: any) => { stepFourData.currency = value; }} />
+                                <StepperSelect 
+                                defaultValue={stepFourData.currency} 
+                                options={availableCurrencies} 
+                                placeholder={t('sar')} 
+                                onValueSelected={(value: any) => { stepFourData.currency = value; }} />
                             </Form.Item>
                             <Form.Item className="double-full-flex-item column-flex-direction" name="bankLetter" label=" "
                             >
@@ -183,6 +187,7 @@ const StepFourBank = () => {
                                             id="national-id-input"
                                             placeholder={t("browse files")}
                                             width="100%"
+                                            // selectedFile={stepFourData.bankLetter}
                                             placeHolderFontSize='.8rem'
                                             onFileSelected={(e: any) => {
                                                 setStampedCertificate(e);

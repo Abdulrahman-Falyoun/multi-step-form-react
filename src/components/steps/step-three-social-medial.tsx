@@ -40,6 +40,7 @@ const StepThreeSocialMedia = () => {
         <Form {...layout} form={form} name="control-hooks">
           <div className="flex-row-flex-start-main-cross-center">
             <StepperInput
+              value={stepThreeData.instagramAccount}
               name="instagram"
               label={t("social media account", { media: isEnglish ? 'Instagram' : 'الانستغرام' })}
               onInputChanged={(e: any) => { stepThreeData.instagramAccount = e.target.value; }}
@@ -50,6 +51,8 @@ const StepThreeSocialMedia = () => {
           </div>
           <div className="flex-row-flex-start-main-cross-center">
             <StepperInput
+                          value={stepThreeData.facebookAccount}
+
               name="facebook"
               label={t("social media account", { media: isEnglish ? 'Facebook' : 'الفيسبوك' })}
               onInputChanged={(e: any) => { stepThreeData.facebookAccount = e.target.value; }}
@@ -62,6 +65,7 @@ const StepThreeSocialMedia = () => {
           <div className="flex-row-flex-start-main-cross-center">
             <StepperInput
               name="twitter"
+              value={stepThreeData.twitterAccount}
               label={t("social media account", { media: isEnglish ? 'Twitter' : 'التويتر' })}
               onInputChanged={(e: any) => { stepThreeData.twitterAccount = e.target.value; }}
               placeHolder="https://www.twitter.com/"
@@ -73,6 +77,7 @@ const StepThreeSocialMedia = () => {
           <div className="flex-row-flex-start-main-cross-center">
             <StepperInput
               name="linkedin"
+              value={stepThreeData.linkedinAccount}
               label={t("social media account", { media: isEnglish ? 'Linkedin' : 'اللينكدان' })}
               onInputChanged={(e: any) => { stepThreeData.linkedinAccount = e.target.value; }}
               placeHolder="https://www.linkedin.com/"
@@ -83,6 +88,7 @@ const StepThreeSocialMedia = () => {
           </div>
           <div className="flex-row-flex-start-main-cross-center">
             <StepperInput
+                          value={stepThreeData.tumblrAccount}
               name="tumblr"
               label={t("social media account", { media: isEnglish ? 'Tumblr' : 'التامبلر' })}
               onInputChanged={(e: any) => { stepThreeData.tumblrAccount = e.target.value; }}

@@ -48,7 +48,7 @@ const StepOneGenerator = () => {
         stepOneData.city = 'Riyadh';
       }
       if (!('packageType' in stepOneData) || (stepOneData.packageType == '')) {
-        stepOneData.packageType = 'free';
+        stepOneData.packageType = '1';
       }
 
       const formHasErrors = () => form.getFieldsError().some((item) => item.errors.length > 0)

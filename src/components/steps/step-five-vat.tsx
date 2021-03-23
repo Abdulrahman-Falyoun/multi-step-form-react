@@ -93,7 +93,8 @@ const StepFiveVAT = () => {
             .then(res => {
                 console.log('res: ', res);
                 // dispatch(injectDataFromStepToStoreReducer(false))
-                dispatch(fillDataReducer({ data: stepFiveData, stepNumber: STEPS_NAMES.VAT }))
+                const formHasErrors = () => form.getFieldsError().some((item) => item.errors.length > 0)
+                dispatch(fillDataReducer({ data: stepFiveData, stepNumber: STEPS_NAMES.VAT, formHasErrors: formHasErrors() }))
             })
             .catch(err => {
                 console.log(err.response.data);

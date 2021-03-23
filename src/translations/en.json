@@ -98,5 +98,6 @@
     "submitting": "Submitting",
 
 
-    "mandatory fields should be filled out!": "Mandatory fields should be filled out!"
+    "mandatory fields should be filled out!": "Mandatory fields should be filled out!",
+    "fields contains wrong data": "Fields contains wrong data"
 }

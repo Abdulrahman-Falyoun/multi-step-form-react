@@ -64,7 +64,15 @@ const rootSlice = createSlice({
             state.applyCurrentStepDataToStore = action.payload;
         },
         fillDataReducer(state, action) {
-            const { stepNumber, data } = action.payload;
+            const { stepNumber, data, formHasErrors } = action.payload;
+            if(formHasErrors){
+                // Mandatory fields in current step not filled out
+                // We should inject an error to show
+                state.currentStepError = 'fields contains wrong data';
+                state.applyCurrentStepDataToStore = false;
+                return;
+            };
+
             const currentStepData = state.steps[stepNumber].data;
             // Getting new data in current step
             const newData = {

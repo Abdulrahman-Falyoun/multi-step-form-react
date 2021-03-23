@@ -104,5 +104,6 @@
     "submitting": "جار الإرسال",
 
 
-    "mandatory fields should be filled out!": "يجب ملأ الحقول الإلزامية"
+    "mandatory fields should be filled out!": "يجب ملأ الحقول الإلزامية",
+    "fields contains wrong data": "بعض الحقول تحوي بيانات غير صحيحة"
 }

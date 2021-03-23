@@ -20,7 +20,7 @@ export const shouldProceedForward = (stepName: STEPS_NAMES, stepData: StepsDataI
 
         case STEPS_NAMES.BANK:
             const bankData = { ... (stepData as BankDataInterface) };
-            if (bankData.bankName && bankData.businessEmail && bankData.beneficiaryName && bankData.bankLetter) {
+            if (bankData.bankName && bankData.businessEmail && bankData.beneficiaryName) {
                 return true;
             }
             return false;

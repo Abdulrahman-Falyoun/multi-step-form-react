@@ -29,7 +29,8 @@ const StepThreeSocialMedia = () => {
   const isEnglish = i18n.language === 'en' ? true : false;
   useEffect(() => {
     if (applyCurrentStepDataToStore) {
-      dispatch(fillDataReducer({ data: stepThreeData, stepNumber: STEPS_NAMES.SOCIAL_MEDIA }))
+      const formHasErrors = () => form.getFieldsError().some((item) => item.errors.length > 0)
+      dispatch(fillDataReducer({ data: stepThreeData, stepNumber: STEPS_NAMES.SOCIAL_MEDIA, formHasErrors: formHasErrors() }))
     }
   }, [applyCurrentStepDataToStore]);
   return (

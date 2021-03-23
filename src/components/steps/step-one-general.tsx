@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Form, Radio, Skeleton } from 'antd';
 import StepperInput from '../input-fields/stepper-input';
 import FancySmallCard from '../card/fancy-small-card';
-import {  useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { GeneralDataInterface } from '../../interfaces/steps-data';
 import { STEPS_NAMES } from '../../enums/steps-names';
 import { useTranslation } from 'react-i18next';
@@ -24,7 +24,6 @@ const StepOneGenerator = () => {
   const { steps, currentStep, applyCurrentStepDataToStore } = useSelector((s: RootState) => s.commonReducer);
   const initialData: any = steps[currentStep]?.data;
   const dispatch = useAppDispatch();
-
   const [form] = Form.useForm();
   const [cityValue, setCityValue] = useState(initialData.city || 'Riyadh')
   const [packageType, setPackageType] = useState(initialData.packageType || '1')
@@ -51,7 +50,9 @@ const StepOneGenerator = () => {
       if (!('packageType' in stepOneData) || (stepOneData.packageType == '')) {
         stepOneData.packageType = 'free';
       }
-      dispatch(fillDataReducer({ data: stepOneData, stepNumber: STEPS_NAMES.GENERAL }))
+
+      const formHasErrors = () => form.getFieldsError().some((item) => item.errors.length > 0)
+      dispatch(fillDataReducer({ data: stepOneData, stepNumber: STEPS_NAMES.GENERAL, formHasErrors: formHasErrors() }))
 
     }
   }, [applyCurrentStepDataToStore])

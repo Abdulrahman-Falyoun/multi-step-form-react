@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
-import { Form, Input, Button, Select, Radio } from 'antd';
+import { Form } from 'antd';
 import StepperInput from '../input-fields/stepper-input';
 import StepperSelect from '../input-fields/stepper-select';
 import StepperUploadFileInput from '../input-fields/stepper-upload-file';
@@ -55,7 +55,8 @@ const StepFourBank = () => {
 
     useEffect(() => {
         if (applyCurrentStepDataToStore) {
-            dispatch(fillDataReducer({ data: stepFourData, stepNumber: STEPS_NAMES.BANK }))
+            const formHasErrors = () => form.getFieldsError().some((item) => item.errors.length > 0)
+            dispatch(fillDataReducer({ data: stepFourData, stepNumber: STEPS_NAMES.BANK, formHasErrors: formHasErrors() }))
         }
     }, [applyCurrentStepDataToStore])
     const { t, i18n } = useTranslation('common');
@@ -78,6 +79,10 @@ const StepFourBank = () => {
                                     {
                                         required: true,
                                         message: t('please input your beneficiary name')
+                                    },
+                                    {
+                                        pattern: /[a-zA-Z]/,
+                                        message: 'Please only chars [a-zA-Z] are allowed',
                                     }
                                 ]}
                             />
@@ -143,11 +148,19 @@ const StepFourBank = () => {
                                 className="double-full-flex-item column-flex-direction" name="accountNumber" label={t("bank account number")}
                             />
                             <StepperInput
-                                onInputChanged={(e: any) => { stepFourData.swiftCode = e.target.value; }}
-                                placeHolder="000-000"
+                                onInputChanged={(e: any) => {
+                                    stepFourData.swiftCode = e.target.value;
+                                }}
+                                placeHolder="00"
                                 size='large'
                                 bordered={false}
                                 className="full-flex-item column-flex-direction" name="swiftCode" label={t("swift code")}
+                                rules={[
+                                    {
+                                        pattern: /^[0-9]{2}$/,
+                                        message: 'Please only two digits(0...9) are allowed',
+                                    }
+                                ]}
                             />
                         </div>
                     </Form>
@@ -162,11 +175,6 @@ const StepFourBank = () => {
                                 <StepperSelect options={availableCurrencies} placeholder={t('sar')} onValueSelected={(value: any) => { stepFourData.currency = value; }} />
                             </Form.Item>
                             <Form.Item className="double-full-flex-item column-flex-direction" name="bankLetter" label=" "
-                            
-                            rules={[{
-                                required: true,
-                                message: 'Bank letter is required'
-                            }]}
                             >
                                 <div className="stamped-document-wrapper">
                                     <p className="stamped-document-hint">{t('upload either certified or stamped document by the bank')}</p>

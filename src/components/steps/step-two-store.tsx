@@ -53,7 +53,8 @@ const StepTwoGenerator = () => {
 
   useEffect(() => {
     if (applyCurrentStepDataToStore) {
-      dispatch(fillDataReducer({ data: stepTwoData, stepNumber: STEPS_NAMES.STORE }))
+      const formHasErrors = () => form.getFieldsError().some((item) => item.errors.length > 0)
+      dispatch(fillDataReducer({ data: stepTwoData, stepNumber: STEPS_NAMES.STORE, formHasErrors: formHasErrors() }))
     }
   }, [applyCurrentStepDataToStore]);
 

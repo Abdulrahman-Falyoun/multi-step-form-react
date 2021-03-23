@@ -27,11 +27,11 @@ export interface BankDataInterface {
     beneficiaryName: string;
     businessEmail: string;
     bankName: string;
-    branchName: string;
-    bankAccountNumber: number;
-    swiftCode: number;
-    currency: string;
-    bankLetter: any;
+    branchName?: string;
+    bankAccountNumber?: number;
+    swiftCode?: number;
+    currency?: string;
+    bankLetter?: any;
 }
 
 export interface VATDataInterface {

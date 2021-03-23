@@ -31,14 +31,15 @@ export default ({
                 borderWidth: borderWidth,
                 borderColor: borderColor
             }}>
-            <p style={{ 
-                color: txtStyle?.color, 
-                fontSize: '.5rem', 
-                position: 'absolute', 
-                top: 0, 
-                right: 0, 
-                paddingTop: '.2rem', 
-                paddingRight: '.5rem' }}>{headerColor}</p>
+            <p style={{
+                color: txtStyle?.color,
+                fontSize: '.5rem',
+                position: 'absolute',
+                top: 0,
+                right: 0,
+                paddingTop: '.2rem',
+                paddingRight: '.5rem'
+            }}>{headerColor}</p>
             <p style={txtStyle}>{title}{period}</p>
         </div>
     )

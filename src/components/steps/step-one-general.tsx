@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
-import { Form, Input, Button, Select, Radio } from 'antd';
+import { Form, Input, Button, Select, Radio, Skeleton } from 'antd';
 import StepperInput from '../input-fields/stepper-input';
 import FancySmallCard from '../card/fancy-small-card';
 import { connect, useSelector } from 'react-redux';
@@ -142,19 +142,6 @@ const StepOneGenerator = () => {
             })
           }
           {/* <FancySmallCard
-                  title='Free'
-                  bgColor='#595959'
-                  txtStyle={{ color: '#FCEB55', letterSpacing: '.1rem' }}
-                  periodText='/year'
-                  headerColor='Sliver'
-                  value='free'
-                  cardSelected={packageType == 'free' ? true : false}
-                  onFancyCardClicked={(value: any) => {
-                    stepOneData.packageType = value;
-                    setPackageType(value);
-                  }}
-                /> */}
-          {/* <FancySmallCard
             title='999.00 SAR'
             value='999.00 SAR'
             bgColor='#FCEB55'
@@ -167,6 +154,13 @@ const StepOneGenerator = () => {
               setPackageType(value);
             }} /> */}
         </div>
+        {
+          !availablePlans && <div className="fancy-cards-wrapper">
+            <Skeleton.Button className="skeleton-button-wrapper" active size='large' />
+            <Skeleton.Button className="skeleton-button-wrapper" active size='large' />
+            <Skeleton.Button className="skeleton-button-wrapper" active size='large' />
+          </div>
+        }
       </div>
 
     </div>

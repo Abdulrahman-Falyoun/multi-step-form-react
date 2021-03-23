@@ -40,23 +40,22 @@ const StepFourBank = () => {
     useEffect(() => {
         // Getting all available plans
         makeGetRequest('/currencies2')
-          .then(res => {
-            console.log('res: ', res);
-            const currencies = res.data.map((d: any) => ({
-                value: d.currency_code,
-                label: d.currency_code
-            }));
-            setAvailableCurrencies(currencies);
-          })
-          .catch(err => {
-            console.log('err: ', err);
-          });
-      }, []);
+            .then(res => {
+                const currencies = res.data.map((d: any) => ({
+                    value: d.currency_code,
+                    label: d.currency_code
+                }));
+                setAvailableCurrencies(currencies);
+            })
+            .catch(err => {
+                console.log('err: ', err);
+            });
+    }, []);
 
 
     useEffect(() => {
         if (applyCurrentStepDataToStore) {
-            dispatch(fillDataReducer({data: stepFourData, stepNumber: STEPS_NAMES.BANK }))
+            dispatch(fillDataReducer({ data: stepFourData, stepNumber: STEPS_NAMES.BANK }))
         }
     }, [applyCurrentStepDataToStore])
     const { t, i18n } = useTranslation('common');
@@ -166,11 +165,11 @@ const StepFourBank = () => {
                                 <div className="stamped-document-wrapper">
                                     <p className="stamped-document-hint">{t('upload either certified or stamped document by the bank')}</p>
                                     <div className="flex-column-center-main-cross">
-                                        <StepperUploadFileInput 
-                                        id="national-id-input" 
-                                        placeholder={t("browse files" )}
-                                        width="100%" 
-                                        placeHolderFontSize='.8rem'
+                                        <StepperUploadFileInput
+                                            id="national-id-input"
+                                            placeholder={t("browse files")}
+                                            width="100%"
+                                            placeHolderFontSize='.8rem'
                                             onFileSelected={(e: any) => {
                                                 setStampedCertificate(e);
                                                 readFileInBinary(e?.target?.files[0])
@@ -182,14 +181,14 @@ const StepFourBank = () => {
                                                     })
                                             }} />
                                         {stampedCertificate && <br />}
-                                        {stampedCertificate && 
-                                        <FancyCard 
-                                        title={getFileName(stampedCertificate) + '  ' + getFileSize(stampedCertificate)} 
-                                        width='100%' bgColor='#F9F9F9' 
-                                        txtStyle={{ color: 'black', fontSize: '.8rem', letterSpacing: '.1rem' }} 
-                                        borderStyle='dashed' 
-                                        borderWidth='2px' 
-                                        borderColor='#EAEAEA' />}
+                                        {stampedCertificate &&
+                                            <FancyCard
+                                                title={getFileName(stampedCertificate) + '  ' + getFileSize(stampedCertificate)}
+                                                width='100%' bgColor='#F9F9F9'
+                                                txtStyle={{ color: 'black', fontSize: '.8rem', letterSpacing: '.1rem' }}
+                                                borderStyle='dashed'
+                                                borderWidth='2px'
+                                                borderColor='#EAEAEA' />}
                                     </div>
                                 </div>
                             </Form.Item>

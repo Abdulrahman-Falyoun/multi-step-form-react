@@ -13,7 +13,7 @@ export const shouldProceedForward = (stepName: STEPS_NAMES, stepData: StepsDataI
             return false;
         case STEPS_NAMES.STORE:
             const storeData = { ...(stepData as StoreDataInterface) };
-            if (storeData.storeName && storeData.legalName) {
+            if (storeData.storeName && storeData.legalName && storeData.phoneNumber) {
                 return true;
             }
             return false;

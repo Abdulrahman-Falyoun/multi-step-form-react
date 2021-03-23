@@ -67,18 +67,18 @@ const StepFiveVAT = () => {
 
 
         // const paramsArray = {
-            // params: [
-            //     { 'full_name': stepsReducedObject.fullname },
-            //     { 'phone_number': stepsReducedObject.phoneNumber },
-            //     { 'store_name': stepsReducedObject.storeName },
-            //     { 'legal_name': stepsReducedObject.legalName },
-            //     { 'beneficiary_name': stepsReducedObject.beneficiaryName },
-            //     { 'business_email': stepsReducedObject.businessEmail },
-            //     { 'city': stepsReducedObject.city },
-            //     { 'swift_code': stepsReducedObject.swiftCode },
-            //     { 'package': stepsReducedObject.packageType }
+        // params: [
+        //     { 'full_name': stepsReducedObject.fullname },
+        //     { 'phone_number': stepsReducedObject.phoneNumber },
+        //     { 'store_name': stepsReducedObject.storeName },
+        //     { 'legal_name': stepsReducedObject.legalName },
+        //     { 'beneficiary_name': stepsReducedObject.beneficiaryName },
+        //     { 'business_email': stepsReducedObject.businessEmail },
+        //     { 'city': stepsReducedObject.city },
+        //     { 'swift_code': stepsReducedObject.swiftCode },
+        //     { 'package': stepsReducedObject.packageType }
 
-            // ],
+        // ],
         //     params: paramsMap
         // };
 

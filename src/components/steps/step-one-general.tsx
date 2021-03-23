@@ -51,7 +51,6 @@ const StepOneGenerator = () => {
       if (!('packageType' in stepOneData) || (stepOneData.packageType == '')) {
         stepOneData.packageType = 'free';
       }
-      console.log('stepOneData: ', stepOneData);
       dispatch(fillDataReducer({ data: stepOneData, stepNumber: STEPS_NAMES.GENERAL }))
 
     }

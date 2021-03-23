@@ -9,8 +9,9 @@ import { STEPS_NAMES } from '../../enums/steps-names';
 import { useTranslation } from 'react-i18next';
 import { RootState } from '../../redux/reducers/root.reducer';
 import { useAppDispatch } from '../../redux/store';
-import { fillDataReducer } from '../../redux/slices/root.slice';
+import { fillDataReducer, injectDataFromStepToStoreReducer } from '../../redux/slices/root.slice';
 import { makeGetRequest } from '../../axios-requester/http-requester';
+import { StoreDataInterface } from '../../interfaces/steps-data';
 
 const layout = {
   labelCol: { span: 0 },
@@ -48,21 +49,11 @@ const StepTwoGenerator = () => {
       });
   }, []);
   const { t, i18n } = useTranslation('common');
-  const [stepTwoData, setSteptwoData] = useState({
-    storeName: '',
-    legalName: '',
-    phoneNumber: '',
-    productType: '',
-    address: '',
-    facebookAccountLink: '',
-    twitterAccountLink: ''
-  })
-
+  const [stepTwoData, setSteptwoData] = useState<StoreDataInterface>({...initialData});
 
   useEffect(() => {
     if (applyCurrentStepDataToStore) {
       dispatch(fillDataReducer({ data: stepTwoData, stepNumber: STEPS_NAMES.STORE }))
-
     }
   }, [applyCurrentStepDataToStore]);
 
@@ -142,7 +133,7 @@ const StepTwoGenerator = () => {
             <div className="flex-row-flex-start-main-cross-center">
               <StepperInput
                 label={t("full address")}
-                onInputChanged={(e: any) => { stepTwoData.address = e.target.value; }}
+                onInputChanged={(e: any) => { stepTwoData.fullAddress = e.target.value; }}
                 placeHolder={t("please enter your full address")}
                 size='large'
                 bordered={false}

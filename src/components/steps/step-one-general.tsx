@@ -1,9 +1,9 @@
 
 import React, { useEffect, useState } from 'react';
-import { Form, Input, Button, Select, Radio, Skeleton } from 'antd';
+import { Form, Radio, Skeleton } from 'antd';
 import StepperInput from '../input-fields/stepper-input';
 import FancySmallCard from '../card/fancy-small-card';
-import { connect, useSelector } from 'react-redux';
+import {  useSelector } from 'react-redux';
 import { GeneralDataInterface } from '../../interfaces/steps-data';
 import { STEPS_NAMES } from '../../enums/steps-names';
 import { useTranslation } from 'react-i18next';
@@ -141,18 +141,6 @@ const StepOneGenerator = () => {
               );
             })
           }
-          {/* <FancySmallCard
-            title='999.00 SAR'
-            value='999.00 SAR'
-            bgColor='#FCEB55'
-            cardSelected={packageType == '999.00 SAR' ? true : false}
-            txtStyle={{ color: '#595959', letterSpacing: '.1rem' }}
-            periodText='/year'
-            headerColor='GOLD'
-            onFancyCardClicked={(value: any) => {
-              stepOneData.packageType = value;
-              setPackageType(value);
-            }} /> */}
         </div>
         {
           !availablePlans && <div className="fancy-cards-wrapper">

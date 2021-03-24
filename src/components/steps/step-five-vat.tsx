@@ -12,7 +12,7 @@ import { StepsDataInterface, VATDataInterface } from '../../interfaces/steps-dat
 import { useTranslation } from 'react-i18next';
 import { makePostRequest } from '../../axios-requester/http-requester';
 import { useAppAsyncDispatch, useAppDispatch } from '../../redux/store';
-import { fillDataReducer, injectDataFromStepToStoreReducer, submittingReducer, rootSelector, submitForm } from '../../redux/slices/root.slice';
+import { fillDataReducer, rootSelector, submitForm } from '../../redux/slices/root.slice';
 
 
 const layout = {
@@ -42,7 +42,6 @@ const StepFiveVAT = () => {
             dispatch(fillDataReducer({ data: stepFiveData, stepNumber: STEPS_NAMES.VAT, formHasErrors: hasErrors }))
             return;
         }
-        dispatch(submittingReducer(true));
         const stepsData = steps.map((st) => st.data);
         const reducer = (acc: any, currValue: any) => {
             for (const key in currValue) {

@@ -19,7 +19,7 @@ const layout = {
 
 
 const StepOneGenerator = () => {
-  const { steps, currentStep, applyCurrentStepDataToStore} = useSelector(rootSelector);
+  const { steps, currentStep, shouldStepperMove} = useSelector(rootSelector);
   const plans: any = useSelector(rootSelector).plans;
   const initialData: any = steps[currentStep]?.data;
   const dispatch = useAppAsyncDispatch();
@@ -38,7 +38,7 @@ const StepOneGenerator = () => {
 
 
   useEffect(() => {
-    if (applyCurrentStepDataToStore) {
+    if (shouldStepperMove) {
       if (!('city' in stepOneData) || (stepOneData.city == '')) {
         stepOneData.city = 'Riyadh';
       }
@@ -50,7 +50,7 @@ const StepOneGenerator = () => {
       dispatch(fillDataReducer({ data: stepOneData, stepNumber: STEPS_NAMES.GENERAL, formHasErrors: formHasErrors() }))
 
     }
-  }, [applyCurrentStepDataToStore])
+  }, [shouldStepperMove])
 
 
   const onEmailFieldValueChanged = (e: any) => {

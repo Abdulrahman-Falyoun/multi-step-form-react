@@ -8,17 +8,16 @@ import EndStep from '../../components/steps/end-step';
 import * as ICONS from '../../components/svg-icons';
 
 import { shouldProceedForward } from '../../utils/steps-data-checker';
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../root.reducer';
 import { AppDispatch, AppThunk } from '../store';
 import { makeGetRequest, makePostRequest } from '../../axios-requester/http-requester';
 import { StepsDataInterface, VATDataInterface } from '../../interfaces/steps-data';
-import form from 'antd/lib/form';
 import { STEPS_NAMES } from '../../enums/steps-names';
 
 const initialState = {
     currentStep: 0,
-    applyCurrentStepDataToStore: false,
+    shouldStepperMove: false,
     currentStepError: '',
     currentStepWarning: '',
     submitting: false,
@@ -69,8 +68,8 @@ const rootSlice = createSlice({
     name: 'rootSlice',
     initialState,
     reducers: {
-        injectDataFromStepToStoreReducer(state, action) {
-            state.applyCurrentStepDataToStore = action.payload;
+        setShouldStepperMove(state, { payload }: PayloadAction<boolean>) {
+            state.shouldStepperMove = payload;
         },
         fillDataReducer(state, action) {
             const { stepNumber, data, formHasErrors } = action.payload;
@@ -78,7 +77,7 @@ const rootSlice = createSlice({
                 // Mandatory fields in current step not filled out
                 // We should inject an error to show
                 state.currentStepError = 'fields contains wrong data';
-                state.applyCurrentStepDataToStore = false;
+                state.shouldStepperMove = false;
                 return;
             };
 
@@ -92,7 +91,7 @@ const rootSlice = createSlice({
             // // Checking if mandatory fields are filled out
             if (shouldProceedForward(stepNumber, newData)) {
                 state.steps[stepNumber].data = newData;
-                state.applyCurrentStepDataToStore = false;
+                state.shouldStepperMove = false;
                 state.currentStepError = '';
                 state.currentStepWarning = '';
                 state.currentStep = state.currentStep + 1;
@@ -102,7 +101,7 @@ const rootSlice = createSlice({
                 // Mandatory fields in current step not filled out
                 // We should inject an error to show
                 state.currentStepError = 'mandatory fields should be filled out!';
-                state.applyCurrentStepDataToStore = false;
+                state.shouldStepperMove = false;
             }
         },
         moveStepReducer(state, action) {
@@ -110,8 +109,8 @@ const rootSlice = createSlice({
             state.currentStepWarning = '';
             state.currentStep = state.currentStep + action.payload
         },
-        submittingReducer(state, action) {
-            state.submitting = action.payload;
+        setSubmitting(state, { payload }: PayloadAction<boolean>) {
+            state.submitting = payload;
         },
         changeSystemLanguageReducer(state, action) {
             state.systemLanguage = action.payload;
@@ -128,15 +127,10 @@ const rootSlice = createSlice({
 
 export default rootSlice.reducer;
 export const rootSelector = (state: RootState) => state.commonReducer;
-export const {
-    fillDataReducer,
-    injectDataFromStepToStoreReducer,
-    moveStepReducer,
-    submittingReducer,
-    changeSystemLanguageReducer } = rootSlice.actions;
+export const { fillDataReducer, setShouldStepperMove, moveStepReducer, changeSystemLanguageReducer } = rootSlice.actions;
 
 
-const { getPlansSuccess, getProductsCategories } = rootSlice.actions;
+const { getPlansSuccess, getProductsCategories, setSubmitting } = rootSlice.actions;
 
 export const fetchPackages = (): AppThunk => {
     return async (dispatch) => {
@@ -164,7 +158,7 @@ export const fetchProductCategories = (): AppThunk => {
 
 export const submitForm = (stepsData: StepsDataInterface): AppThunk => {
     return async (dispatch) => {
-        dispatch(submittingReducer(true));
+        dispatch(setSubmitting(true));
         const paramsMap = new Map();
         paramsMap.set('full_name', stepsData.fullname);
         paramsMap.set('phone_number', stepsData.phoneNumber);
@@ -192,10 +186,10 @@ export const submitForm = (stepsData: StepsDataInterface): AppThunk => {
             })
             .catch(err => {
                 console.log(err.response.data);
-                dispatch(injectDataFromStepToStoreReducer(false));
+                dispatch(setShouldStepperMove(false));
             })
             .finally(() => {
-                dispatch(submittingReducer(false));
+                dispatch(setSubmitting(false));
             });
 
 

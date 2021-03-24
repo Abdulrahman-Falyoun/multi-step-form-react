@@ -16,7 +16,7 @@ const layout = {
 
 const StepThreeSocialMedia = () => {
 
-  const { steps, currentStep, applyCurrentStepDataToStore } = useSelector(rootSelector);
+  const { steps, currentStep, shouldStepperMove } = useSelector(rootSelector);
   const initialData: any = steps[currentStep]?.data;
   const dispatch = useAppDispatch();
   const [form] = Form.useForm();
@@ -26,11 +26,11 @@ const StepThreeSocialMedia = () => {
 
   const isEnglish = i18n.language === 'en' ? true : false;
   useEffect(() => {
-    if (applyCurrentStepDataToStore) {
+    if (shouldStepperMove) {
       const formHasErrors = () => form.getFieldsError().some((item) => item.errors.length > 0)
       dispatch(fillDataReducer({ data: stepThreeData, stepNumber: STEPS_NAMES.SOCIAL_MEDIA, formHasErrors: formHasErrors() }))
     }
-  }, [applyCurrentStepDataToStore]);
+  }, [shouldStepperMove]);
   return (
     <div className="step-three-wrapper">
       <p>{t('social media')}</p>

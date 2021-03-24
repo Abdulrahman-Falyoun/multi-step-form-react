@@ -9,7 +9,18 @@ export const store = configureStore({
     reducer: rootReducer,
     middleware: [thunkMiddleware] as const
 })
-export type AppThunk = ThunkAction<void, RootState, unknown, Action>
+// export type AppThunk = ThunkAction<void, RootState, unknown, Action>
+
+
+
+export type AppThunk<ReturnType = void> = ThunkAction<
+  ReturnType,
+  RootState,
+  unknown,
+  Action<string>
+>;
+
+
 export type AppDispatch = typeof store.dispatch;
 export const useAppDispatch = () => useDispatch<AppDispatch>();
 export const useAppAsyncDispatch = () => useDispatch<ThunkDispatch<any, any, any>>();

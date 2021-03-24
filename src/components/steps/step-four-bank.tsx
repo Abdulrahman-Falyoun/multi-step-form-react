@@ -23,7 +23,7 @@ const layout = {
 
 const StepFourBank = () => {
 
-    const { steps, currentStep, applyCurrentStepDataToStore } = useSelector(rootSelector);
+    const { steps, currentStep, shouldStepperMove } = useSelector(rootSelector);
     const initialData: any = steps[currentStep]?.data;
     const dispatch = useAppDispatch();
     const [form] = Form.useForm();
@@ -47,11 +47,11 @@ const StepFourBank = () => {
 
 
     useEffect(() => {
-        if (applyCurrentStepDataToStore) {
+        if (shouldStepperMove) {
             const formHasErrors = () => form.getFieldsError().some((item) => item.errors.length > 0)
             dispatch(fillDataReducer({ data: stepFourData, stepNumber: STEPS_NAMES.BANK, formHasErrors: formHasErrors() }))
         }
-    }, [applyCurrentStepDataToStore])
+    }, [shouldStepperMove])
     const { t, i18n } = useTranslation('common');
 
     return (

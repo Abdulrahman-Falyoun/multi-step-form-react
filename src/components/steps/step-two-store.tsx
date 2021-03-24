@@ -17,7 +17,7 @@ const layout = {
 };
 
 const StepTwoGenerator = () => {
-  const { steps, currentStep, applyCurrentStepDataToStore, systemLanguage, productsCategories } = useSelector(rootSelector);
+  const { steps, currentStep, shouldStepperMove, systemLanguage, productsCategories } = useSelector(rootSelector);
   const initialData: any = steps[currentStep]?.data;
   const dispatch = useAppAsyncDispatch();
   const [form] = Form.useForm();
@@ -40,11 +40,11 @@ const StepTwoGenerator = () => {
   }, []);
 
   useEffect(() => {
-    if (applyCurrentStepDataToStore) {
+    if (shouldStepperMove) {
       const formHasErrors = () => form.getFieldsError().some((item) => item.errors.length > 0)
       dispatch(fillDataReducer({ data: stepTwoData, stepNumber: STEPS_NAMES.STORE, formHasErrors: formHasErrors() }))
     }
-  }, [applyCurrentStepDataToStore]);
+  }, [shouldStepperMove]);
 
 
   return (

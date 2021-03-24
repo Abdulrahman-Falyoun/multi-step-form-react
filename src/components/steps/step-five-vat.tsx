@@ -22,7 +22,7 @@ const layout = {
 
 const StepFiveVAT = () => {
 
-    const { steps, currentStep, applyCurrentStepDataToStore } = useSelector(rootSelector);
+    const { steps, currentStep, shouldStepperMove } = useSelector(rootSelector);
     const initialData: any = steps[currentStep]?.data;
     const dispatch = useAppDispatch();
     const asyncDispatch = useAppAsyncDispatch();
@@ -55,9 +55,9 @@ const StepFiveVAT = () => {
         asyncDispatch(submitForm(stepsReducedObject));
     }
     useEffect(() => {
-        if (applyCurrentStepDataToStore)
+        if (shouldStepperMove)
             fillStepDataAction();
-    }, [applyCurrentStepDataToStore])
+    }, [shouldStepperMove])
     return (
         <div className="step-five-wrapper">
             <p>{t('vat')}</p>

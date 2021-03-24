@@ -13,7 +13,7 @@ import { useTranslation } from 'react-i18next';
 import { DownOutlined } from '@ant-design/icons';
 import { RootState } from '../redux/root.reducer';
 import { useAppDispatch } from '../redux/store';
-import { injectDataFromStepToStoreReducer, moveStepReducer, changeSystemLanguageReducer } from '../redux/slices/root.slice';
+import { setShouldStepperMove, moveStepReducer, changeSystemLanguageReducer } from '../redux/slices/root.slice';
 const SellerForm = () => {
     const { t, i18n } = useTranslation('common');
     const { currentStep, steps, currentStepError, currentStepWarning, submitting } = useSelector((s: RootState) => s.commonReducer);
@@ -21,7 +21,7 @@ const SellerForm = () => {
     const CardContent = steps[currentStep]?.component;
     const totalSteps = steps.length;
     const next = () => {
-        dispatch(injectDataFromStepToStoreReducer(true));
+        dispatch(setShouldStepperMove(true));
     };
     const prev = () => {
         dispatch(moveStepReducer(-1));
@@ -63,9 +63,7 @@ const SellerForm = () => {
                     currentStepWarning={currentStepWarning}
                     submitting={submitting}
                 />
-
             </div>
-
         </React.Fragment>
 
 

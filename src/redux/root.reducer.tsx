@@ -2,7 +2,7 @@
 
 
 import { combineReducers } from 'redux';
-import commonReducer from '../slices/root.slice';
+import commonReducer from './slices/root.slice';
 
 
 export const rootReducer = combineReducers({

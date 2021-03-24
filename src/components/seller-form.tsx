@@ -11,7 +11,7 @@ import { useSelector } from "react-redux";
 import { Dropdown, Menu, PageHeader } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { DownOutlined } from '@ant-design/icons';
-import { RootState } from '../redux/reducers/root.reducer';
+import { RootState } from '../redux/root.reducer';
 import { useAppDispatch } from '../redux/store';
 import { injectDataFromStepToStoreReducer, moveStepReducer, changeSystemLanguageReducer } from '../redux/slices/root.slice';
 const SellerForm = () => {

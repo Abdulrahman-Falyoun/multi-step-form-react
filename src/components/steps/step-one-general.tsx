@@ -7,9 +7,9 @@ import { useSelector } from 'react-redux';
 import { GeneralDataInterface } from '../../interfaces/steps-data';
 import { STEPS_NAMES } from '../../enums/steps-names';
 import { useTranslation } from 'react-i18next';
-import { RootState } from '../../redux/reducers/root.reducer';
+import { RootState } from '../../redux/root.reducer';
 import { useAppDispatch } from '../../redux/store';
-import { fillDataReducer } from '../../redux/slices/root.slice';
+import { fillDataReducer, rootSelector } from '../../redux/slices/root.slice';
 import { makeGetRequest } from '../../axios-requester/http-requester';
 
 
@@ -21,7 +21,7 @@ const layout = {
 
 
 const StepOneGenerator = () => {
-  const { steps, currentStep, applyCurrentStepDataToStore } = useSelector((s: RootState) => s.commonReducer);
+  const { steps, currentStep, applyCurrentStepDataToStore } = useSelector(rootSelector);
   const initialData: any = steps[currentStep]?.data;
   const dispatch = useAppDispatch();
   const [form] = Form.useForm();

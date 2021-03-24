@@ -11,7 +11,7 @@ import { connect, useSelector } from 'react-redux';
 import { BankDataInterface } from '../../interfaces/steps-data';
 import { readFileInBinary } from '../../utils/file-helper';
 import { useTranslation } from 'react-i18next';
-import { RootState } from '../../redux/reducers/root.reducer';
+import { RootState } from '../../redux/root.reducer';
 import { useAppDispatch } from '../../redux/store';
 
 import { fillDataReducer } from '../../redux/slices/root.slice';

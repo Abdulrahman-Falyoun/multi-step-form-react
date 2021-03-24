@@ -9,6 +9,7 @@ import * as ICONS from '../../components/svg-icons';
 
 import { shouldProceedForward } from '../../utils/steps-data-checker';
 import { createSlice } from '@reduxjs/toolkit';
+import { RootState } from '../root.reducer';
 
 
 const rootSlice = createSlice({
@@ -111,6 +112,6 @@ const rootSlice = createSlice({
     }
 });
 
-
+export const rootSelector = (state: RootState) => state.commonReducer; 
 export const { fillDataReducer, injectDataFromStepToStoreReducer, moveStepReducer, submittingReducer, changeSystemLanguageReducer } = rootSlice.actions;
 export default rootSlice.reducer;

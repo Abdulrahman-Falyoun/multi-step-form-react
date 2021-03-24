@@ -1,6 +1,6 @@
 
 
-import { rootReducer } from "./reducers/root.reducer";
+import { rootReducer } from "./root.reducer";
 import thunkMiddleware from 'redux-thunk'
 import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";

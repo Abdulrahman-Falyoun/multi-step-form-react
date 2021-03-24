@@ -7,7 +7,7 @@ import { connect, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { STEPS_NAMES } from '../../enums/steps-names';
 import { useTranslation } from 'react-i18next';
-import { RootState } from '../../redux/reducers/root.reducer';
+import { RootState } from '../../redux/root.reducer';
 import { useAppDispatch } from '../../redux/store';
 import { fillDataReducer, injectDataFromStepToStoreReducer } from '../../redux/slices/root.slice';
 import { makeGetRequest } from '../../axios-requester/http-requester';

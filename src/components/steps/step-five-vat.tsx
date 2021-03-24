@@ -11,7 +11,7 @@ import { readFileInBinary } from '../../utils/file-helper';
 import { StepsDataInterface, VATDataInterface } from '../../interfaces/steps-data';
 import { useTranslation } from 'react-i18next';
 import { makePostRequest } from '../../axios-requester/http-requester';
-import { RootState } from '../../redux/reducers/root.reducer';
+import { RootState } from '../../redux/root.reducer';
 import { useAppDispatch } from '../../redux/store';
 import { fillDataReducer, injectDataFromStepToStoreReducer, submittingReducer } from '../../redux/slices/root.slice';
 

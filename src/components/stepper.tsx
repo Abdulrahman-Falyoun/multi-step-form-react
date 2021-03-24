@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { Steps } from 'antd';
 import { connect, useSelector } from "react-redux";
 import { useTranslation } from 'react-i18next';
-import { RootState } from '../redux/reducers/root.reducer';
+import { RootState } from '../redux/root.reducer';
 
 const { Step } = Steps;
 

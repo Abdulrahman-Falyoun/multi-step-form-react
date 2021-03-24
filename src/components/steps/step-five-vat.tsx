@@ -11,9 +11,8 @@ import { readFileInBinary } from '../../utils/file-helper';
 import { StepsDataInterface, VATDataInterface } from '../../interfaces/steps-data';
 import { useTranslation } from 'react-i18next';
 import { makePostRequest } from '../../axios-requester/http-requester';
-import { RootState } from '../../redux/root.reducer';
 import { useAppDispatch } from '../../redux/store';
-import { fillDataReducer, injectDataFromStepToStoreReducer, submittingReducer } from '../../redux/slices/root.slice';
+import { fillDataReducer, injectDataFromStepToStoreReducer, submittingReducer, rootSelector } from '../../redux/slices/root.slice';
 
 
 const layout = {
@@ -23,7 +22,7 @@ const layout = {
 
 const StepFiveVAT = () => {
 
-    const { steps, currentStep, applyCurrentStepDataToStore } = useSelector((s: RootState) => s.commonReducer);
+    const { steps, currentStep, applyCurrentStepDataToStore } = useSelector(rootSelector);
     const initialData: any = steps[currentStep]?.data;
     const dispatch = useAppDispatch();
     const [form] = Form.useForm();

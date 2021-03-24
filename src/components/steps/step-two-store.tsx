@@ -7,9 +7,8 @@ import { connect, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { STEPS_NAMES } from '../../enums/steps-names';
 import { useTranslation } from 'react-i18next';
-import { RootState } from '../../redux/root.reducer';
 import { useAppDispatch } from '../../redux/store';
-import { fillDataReducer, injectDataFromStepToStoreReducer } from '../../redux/slices/root.slice';
+import { fillDataReducer, rootSelector } from '../../redux/slices/root.slice';
 import { makeGetRequest } from '../../axios-requester/http-requester';
 import { StoreDataInterface } from '../../interfaces/steps-data';
 
@@ -19,7 +18,7 @@ const layout = {
 };
 
 const StepTwoGenerator = () => {
-  const { steps, currentStep, applyCurrentStepDataToStore, systemLanguage } = useSelector((s: RootState) => s.commonReducer);
+  const { steps, currentStep, applyCurrentStepDataToStore, systemLanguage } = useSelector(rootSelector);
   const initialData: any = steps[currentStep]?.data;
   const dispatch = useAppDispatch();
 
@@ -49,7 +48,7 @@ const StepTwoGenerator = () => {
       });
   }, []);
   const { t, i18n } = useTranslation('common');
-  const [stepTwoData, setSteptwoData] = useState<StoreDataInterface>({...initialData});
+  const [stepTwoData, setSteptwoData] = useState<StoreDataInterface>({ ...initialData });
 
   useEffect(() => {
     if (applyCurrentStepDataToStore) {
@@ -125,7 +124,7 @@ const StepTwoGenerator = () => {
                     stepTwoData.productType = value;
                   }}
                   defaultValue={stepTwoData.productType}
-                  />
+                />
               </Form.Item>
             </div>
           </Form>

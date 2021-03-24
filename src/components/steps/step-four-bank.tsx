@@ -7,14 +7,13 @@ import StepperUploadFileInput from '../input-fields/stepper-upload-file';
 import FancyCard from '../card/fancy-small-card';
 import { getFileName, getFileSize } from '../../utils/file-helper';
 import { STEPS_NAMES } from '../../enums/steps-names';
-import { connect, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { BankDataInterface } from '../../interfaces/steps-data';
 import { readFileInBinary } from '../../utils/file-helper';
 import { useTranslation } from 'react-i18next';
-import { RootState } from '../../redux/root.reducer';
 import { useAppDispatch } from '../../redux/store';
 
-import { fillDataReducer } from '../../redux/slices/root.slice';
+import { fillDataReducer, rootSelector } from '../../redux/slices/root.slice';
 import { makeGetRequest } from '../../axios-requester/http-requester';
 
 const layout = {
@@ -24,7 +23,7 @@ const layout = {
 
 const StepFourBank = () => {
 
-    const { steps, currentStep, applyCurrentStepDataToStore } = useSelector((s: RootState) => s.commonReducer);
+    const { steps, currentStep, applyCurrentStepDataToStore } = useSelector(rootSelector);
     const initialData: any = steps[currentStep]?.data;
     const dispatch = useAppDispatch();
     const [form] = Form.useForm();
@@ -172,11 +171,11 @@ const StepFourBank = () => {
                     <Form {...layout} form={form} name="control-hooks">
                         <div className="flex-row-flex-start-main-cross-center">
                             <Form.Item className="full-flex-item column-flex-direction" name="currency" label={t("currency")}>
-                                <StepperSelect 
-                                defaultValue={stepFourData.currency} 
-                                options={availableCurrencies} 
-                                placeholder={t('sar')} 
-                                onValueSelected={(value: any) => { stepFourData.currency = value; }} />
+                                <StepperSelect
+                                    defaultValue={stepFourData.currency}
+                                    options={availableCurrencies}
+                                    placeholder={t('sar')}
+                                    onValueSelected={(value: any) => { stepFourData.currency = value; }} />
                             </Form.Item>
                             <Form.Item className="double-full-flex-item column-flex-direction" name="bankLetter" label=" "
                             >

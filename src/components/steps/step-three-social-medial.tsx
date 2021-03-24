@@ -2,13 +2,11 @@
 import React, { useEffect, useState } from 'react';
 import { Form } from 'antd';
 import StepperInput from '../input-fields/stepper-input';
-import { connect, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { STEPS_NAMES } from '../../enums/steps-names';
 import { useTranslation } from 'react-i18next';
-import { RootState } from '../../redux/root.reducer';
 import { useAppDispatch } from '../../redux/store';
-
-import { fillDataReducer } from '../../redux/slices/root.slice';
+import { fillDataReducer, rootSelector } from '../../redux/slices/root.slice';
 import { SocialMediaDataInterface } from '../../interfaces/steps-data';
 
 const layout = {
@@ -18,7 +16,7 @@ const layout = {
 
 const StepThreeSocialMedia = () => {
 
-  const { steps, currentStep, applyCurrentStepDataToStore } = useSelector((s: RootState) => s.commonReducer);
+  const { steps, currentStep, applyCurrentStepDataToStore } = useSelector(rootSelector);
   const initialData: any = steps[currentStep]?.data;
   const dispatch = useAppDispatch();
   const [form] = Form.useForm();

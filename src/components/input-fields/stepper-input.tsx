@@ -23,12 +23,6 @@ const StepperInput = ({
                 type={type}
                 value={value}
                 onChange={(e) => {
-                    // if (acceptOnlyNumbers) {
-                    //     const passedTest = /^[0-9\b]+$/.test(e.target.value)
-                    //     if (e.target.value === '' || !passedTest) {
-                    //         return;
-                    //     }
-                    // }
                     onInputChanged(e);
                 }}
                 itemID={id}

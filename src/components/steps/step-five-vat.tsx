@@ -11,8 +11,8 @@ import { readFileInBinary } from '../../utils/file-helper';
 import { StepsDataInterface, VATDataInterface } from '../../interfaces/steps-data';
 import { useTranslation } from 'react-i18next';
 import { makePostRequest } from '../../axios-requester/http-requester';
-import { useAppDispatch } from '../../redux/store';
-import { fillDataReducer, injectDataFromStepToStoreReducer, submittingReducer, rootSelector } from '../../redux/slices/root.slice';
+import { useAppAsyncDispatch, useAppDispatch } from '../../redux/store';
+import { fillDataReducer, injectDataFromStepToStoreReducer, submittingReducer, rootSelector, submitForm } from '../../redux/slices/root.slice';
 
 
 const layout = {
@@ -25,6 +25,7 @@ const StepFiveVAT = () => {
     const { steps, currentStep, applyCurrentStepDataToStore } = useSelector(rootSelector);
     const initialData: any = steps[currentStep]?.data;
     const dispatch = useAppDispatch();
+    const asyncDispatch = useAppAsyncDispatch();
     const [form] = Form.useForm();
 
     const [taxCertificate, setTaxCertificate] = useState(null); // (initialData as VATDataInterface)?.taxRegistrationCertificate
@@ -35,6 +36,12 @@ const StepFiveVAT = () => {
 
 
     const fillStepDataAction = async () => {
+        const formHasErrors = () => form.getFieldsError().some((item) => item.errors.length > 0)
+        const hasErrors = formHasErrors();
+        if(hasErrors) {
+            dispatch(fillDataReducer({ data: stepFiveData, stepNumber: STEPS_NAMES.VAT, formHasErrors: hasErrors }))
+            return;
+        }
         dispatch(submittingReducer(true));
         const stepsData = steps.map((st) => st.data);
         const reducer = (acc: any, currValue: any) => {
@@ -46,62 +53,7 @@ const StepFiveVAT = () => {
             return acc;
         }
         const stepsReducedObject = stepsData.reduce(reducer, { ...stepFiveData }) as StepsDataInterface;
-
-
-        const paramsMap = new Map();
-        paramsMap.set('full_name', stepsReducedObject.fullname);
-        paramsMap.set('phone_number', stepsReducedObject.phoneNumber);
-        paramsMap.set('email_address', stepsReducedObject.email);
-        paramsMap.set('store_name', stepsReducedObject.storeName);
-        paramsMap.set('legal_name', stepsReducedObject.legalName);
-        paramsMap.set('beneficiary_name', stepsReducedObject.beneficiaryName);
-        paramsMap.set('business_email', stepsReducedObject.businessEmail);
-        paramsMap.set('city', stepsReducedObject.city);
-        paramsMap.set('swift_code', stepsReducedObject.swiftCode);
-        paramsMap.set('bank_name', stepsReducedObject.bankName);
-        paramsMap.set('package', stepsReducedObject.packageType);
-
-
-
-
-
-        // const paramsArray = {
-        // params: [
-        //     { 'full_name': stepsReducedObject.fullname },
-        //     { 'phone_number': stepsReducedObject.phoneNumber },
-        //     { 'store_name': stepsReducedObject.storeName },
-        //     { 'legal_name': stepsReducedObject.legalName },
-        //     { 'beneficiary_name': stepsReducedObject.beneficiaryName },
-        //     { 'business_email': stepsReducedObject.businessEmail },
-        //     { 'city': stepsReducedObject.city },
-        //     { 'swift_code': stepsReducedObject.swiftCode },
-        //     { 'package': stepsReducedObject.packageType }
-
-        // ],
-        //     params: paramsMap
-        // };
-
-
-        const bodyFormData = new FormData();
-        bodyFormData.append('params', JSON.stringify(Object.fromEntries(paramsMap)));
-        // bodyFormData.append('bank_letter', stepsReducedObject.bankLetter, 'bank_letter');
-        // bodyFormData.append('national_id', stepsReducedObject.nationalId, 'national_id');
-        // bodyFormData.append('trade_license', stepsReducedObject.tradeLicense, 'trade_license');
-
-        makePostRequest('/newseller', bodyFormData, { headers: { "Content-Type": "multipart/form-data" } })
-            .then(res => {
-                // console.log('res: ', res);
-                // dispatch(injectDataFromStepToStoreReducer(false))
-                const formHasErrors = () => form.getFieldsError().some((item) => item.errors.length > 0)
-                dispatch(fillDataReducer({ data: stepFiveData, stepNumber: STEPS_NAMES.VAT, formHasErrors: formHasErrors() }))
-            })
-            .catch(err => {
-                console.log(err.response.data);
-                dispatch(injectDataFromStepToStoreReducer(false))
-            })
-            .finally(() => {
-                dispatch(submittingReducer(false));
-            });
+        asyncDispatch(submitForm(stepsReducedObject));
     }
     useEffect(() => {
         if (applyCurrentStepDataToStore)

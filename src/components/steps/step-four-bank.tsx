@@ -144,6 +144,12 @@ const StepFourBank = () => {
                                 bordered={false}
                                 value={stepFourData.bankAccountNumber}
                                 className="double-full-flex-item column-flex-direction" name="accountNumber" label={t("bank account number")}
+                                rules={[
+                                    {
+                                        pattern: /[0-9]/,
+                                        message: 'Only numbers are allowed'
+                                    }
+                                ]}
                             />
                             <StepperInput
                                 onInputChanged={(e: any) => {

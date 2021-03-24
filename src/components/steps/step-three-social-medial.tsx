@@ -74,23 +74,11 @@ const StepThreeSocialMedia = () => {
           </div>
           <div className="flex-row-flex-start-main-cross-center">
             <StepperInput
-              name="linkedin"
-              value={stepThreeData.linkedinAccount}
-              label={t("social media account", { media: isEnglish ? 'Linkedin' : 'اللينكدان' })}
-              onInputChanged={(e: any) => { stepThreeData.linkedinAccount = e.target.value; }}
-              placeHolder="https://www.linkedin.com/"
-              size='large'
-              bordered={false}
-              className="full-flex-item column-flex-direction"
-            />
-          </div>
-          <div className="flex-row-flex-start-main-cross-center">
-            <StepperInput
-                          value={stepThreeData.tumblrAccount}
-              name="tumblr"
-              label={t("social media account", { media: isEnglish ? 'Tumblr' : 'التامبلر' })}
-              onInputChanged={(e: any) => { stepThreeData.tumblrAccount = e.target.value; }}
-              placeHolder="https://www.tumblr.com/"
+              name="snapshat"
+              value={stepThreeData.snapchatAccount}
+              label={t("social media account", { media: isEnglish ? 'Snapchat' : 'السناب شات' })}
+              onInputChanged={(e: any) => { stepThreeData.snapchatAccount = e.target.value; }}
+              placeHolder="https://www.snapchat.com/"
               size='large'
               bordered={false}
               className="full-flex-item column-flex-direction"

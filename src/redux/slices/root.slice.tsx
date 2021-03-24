@@ -10,6 +10,8 @@ import * as ICONS from '../../components/svg-icons';
 import { shouldProceedForward } from '../../utils/steps-data-checker';
 import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../root.reducer';
+import { AppDispatch, AppThunk } from '../store';
+import { makeGetRequest } from '../../axios-requester/http-requester';
 
 
 const rootSlice = createSlice({
@@ -20,6 +22,8 @@ const rootSlice = createSlice({
         currentStepError: '',
         currentStepWarning: '',
         submitting: false,
+        plans: [],
+        productsCategories: [],
         steps: [
             {
                 title: 'general',
@@ -66,7 +70,7 @@ const rootSlice = createSlice({
         },
         fillDataReducer(state, action) {
             const { stepNumber, data, formHasErrors } = action.payload;
-            if(formHasErrors){
+            if (formHasErrors) {
                 // Mandatory fields in current step not filled out
                 // We should inject an error to show
                 state.currentStepError = 'fields contains wrong data';
@@ -107,11 +111,49 @@ const rootSlice = createSlice({
         },
         changeSystemLanguageReducer(state, action) {
             state.systemLanguage = action.payload;
+        },
+        getPlansSuccess(state, action) {
+            state.plans = action.payload;
+        },
+        getProductsCategories(state, action) {
+            state.productsCategories = action.payload;
         }
 
     }
 });
 
-export const rootSelector = (state: RootState) => state.commonReducer; 
-export const { fillDataReducer, injectDataFromStepToStoreReducer, moveStepReducer, submittingReducer, changeSystemLanguageReducer } = rootSlice.actions;
+
+export const rootSelector = (state: RootState) => state.commonReducer;
+export const {
+    fillDataReducer,
+    injectDataFromStepToStoreReducer,
+    moveStepReducer,
+    submittingReducer,
+    changeSystemLanguageReducer,
+    getPlansSuccess,
+    getProductsCategories } = rootSlice.actions;
 export default rootSlice.reducer;
+
+export const fetchPackages = (): AppThunk => {
+    return async (dispatch) => {
+        try {
+            const plansResponse = await makeGetRequest('/plans');
+            dispatch(getPlansSuccess(plansResponse.data))
+        } catch (err) {
+            console.error(err);
+        }
+    }
+}
+
+
+export const fetchProductCategories = (): AppThunk => {
+    return async (dispatch) => {
+        try {
+            const categoriesResponse = await makeGetRequest('/categories2');
+            // const data = categoriesResponse.data.map((d: any) => ({ value: d.category_id, label: systemLanguage === 'en' ? JSON.parse(d?.translations)?.en : JSON.parse(d?.translations)?.ar }));
+            dispatch(getProductsCategories(categoriesResponse.data));
+        } catch (err) {
+            console.error(err);
+        }
+    }
+}

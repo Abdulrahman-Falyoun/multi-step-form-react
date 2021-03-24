@@ -7,9 +7,8 @@ import { useSelector } from 'react-redux';
 import { GeneralDataInterface } from '../../interfaces/steps-data';
 import { STEPS_NAMES } from '../../enums/steps-names';
 import { useTranslation } from 'react-i18next';
-import { useAppDispatch } from '../../redux/store';
-import { fillDataReducer, rootSelector } from '../../redux/slices/root.slice';
-import { makeGetRequest } from '../../axios-requester/http-requester';
+import { useAppAsyncDispatch, useAppDispatch } from '../../redux/store';
+import { fillDataReducer, rootSelector, fetchPackages } from '../../redux/slices/root.slice';
 
 
 const layout = {
@@ -20,27 +19,24 @@ const layout = {
 
 
 const StepOneGenerator = () => {
-  const { steps, currentStep, applyCurrentStepDataToStore } = useSelector(rootSelector);
+  const { steps, currentStep, applyCurrentStepDataToStore} = useSelector(rootSelector);
+  const plans: any = useSelector(rootSelector).plans;
   const initialData: any = steps[currentStep]?.data;
-  const dispatch = useAppDispatch();
+  const dispatch = useAppAsyncDispatch();
   const [form] = Form.useForm();
   const [cityValue, setCityValue] = useState(initialData.city || 'Riyadh')
   const [packageType, setPackageType] = useState(initialData.packageType || '1')
   const [stepOneData, setStepOneData] = useState<GeneralDataInterface>({ ...initialData });
-  const [availablePlans, setAvailablePlans] = useState<[{ plan_id: string, price: string, translations: string, periodicity: string }]>();
+
   const { t, i18n } = useTranslation('common');
 
 
   useEffect(() => {
     // Getting all available plans
-    makeGetRequest('/plans')
-      .then(res => {
-        setAvailablePlans(res.data);
-      })
-      .catch(err => {
-        console.log('err: ', err);
-      });
+    dispatch(fetchPackages());
   }, []);
+
+
   useEffect(() => {
     if (applyCurrentStepDataToStore) {
       if (!('city' in stepOneData) || (stepOneData.city == '')) {
@@ -122,8 +118,8 @@ const StepOneGenerator = () => {
         </div>
         <div className='fancy-cards-wrapper'>
           {
-            availablePlans && availablePlans.length > 0 &&
-            availablePlans.map(plan => {
+            plans && plans.length > 0 &&
+            plans.map((plan: any) => {
               return (
                 <FancySmallCard
                   title={(+plan.price === 0 ? 'free' : plan.price)}
@@ -143,7 +139,7 @@ const StepOneGenerator = () => {
           }
         </div>
         {
-          !availablePlans && <div className="fancy-cards-wrapper">
+          plans.length === 0 && <div className="fancy-cards-wrapper">
             <Skeleton.Button className="skeleton-button-wrapper" active size='large' />
             <Skeleton.Button className="skeleton-button-wrapper" active size='large' />
             <Skeleton.Button className="skeleton-button-wrapper" active size='large' />

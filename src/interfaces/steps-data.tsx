@@ -19,8 +19,7 @@ export interface SocialMediaDataInterface {
     instagramAccount: string;
     facebookAccount: string;
     twitterAccount: string;
-    linkedinAccount: string;
-    tumblrAccount: string;
+    snapchatAccount: string;
 }
 
 export interface BankDataInterface {

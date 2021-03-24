@@ -7,9 +7,8 @@ import { connect, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { STEPS_NAMES } from '../../enums/steps-names';
 import { useTranslation } from 'react-i18next';
-import { useAppDispatch } from '../../redux/store';
-import { fillDataReducer, rootSelector } from '../../redux/slices/root.slice';
-import { makeGetRequest } from '../../axios-requester/http-requester';
+import { useAppAsyncDispatch } from '../../redux/store';
+import { fillDataReducer, rootSelector, fetchProductCategories } from '../../redux/slices/root.slice';
 import { StoreDataInterface } from '../../interfaces/steps-data';
 
 const layout = {
@@ -18,37 +17,27 @@ const layout = {
 };
 
 const StepTwoGenerator = () => {
-  const { steps, currentStep, applyCurrentStepDataToStore, systemLanguage } = useSelector(rootSelector);
+  const { steps, currentStep, applyCurrentStepDataToStore, systemLanguage, productsCategories } = useSelector(rootSelector);
   const initialData: any = steps[currentStep]?.data;
-  const dispatch = useAppDispatch();
-
+  const dispatch = useAppAsyncDispatch();
   const [form] = Form.useForm();
-  const [radioGroupValue, setRadioGroupValue] = useState('Riyadh');
-  const [categories, setCategories] = useState<any>([]);
-  const [options, setOptions] = useState<any>([]);
+  const [options, setOptions] = useState<Array<{value: any, label: any}>>();
+  const { t, i18n } = useTranslation('common');
+  const [stepTwoData, setSteptwoData] = useState<StoreDataInterface>({ ...initialData });
+
+
 
   useEffect(() => {
-    if (categories) {
-      const data = categories.map((d: any) => {
+    if (productsCategories) {
+      const data = productsCategories.map((d: any) => {
         return ({ value: d.category_id, label: systemLanguage === 'en' ? JSON.parse(d.translations).en : JSON.parse(d.translations).ar })
       });
       setOptions(data);
     }
-  }, [systemLanguage])
+  }, [systemLanguage, productsCategories])
   useEffect(() => {
-    // Getting all available plans
-    makeGetRequest('/categories2')
-      .then(res => {
-        setCategories(res.data);
-        const data = res.data.map((d: any) => ({ value: d.category_id, label: systemLanguage === 'en' ? JSON.parse(d.translations).en : JSON.parse(d.translations).ar }));
-        setOptions(data);
-      })
-      .catch(err => {
-        console.log('err: ', err);
-      });
+    dispatch(fetchProductCategories());
   }, []);
-  const { t, i18n } = useTranslation('common');
-  const [stepTwoData, setSteptwoData] = useState<StoreDataInterface>({ ...initialData });
 
   useEffect(() => {
     if (applyCurrentStepDataToStore) {

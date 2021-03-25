@@ -168,15 +168,29 @@ export const submitForm = (stepsData: StepsDataInterface): AppThunk => {
         paramsMap.set('beneficiary_name', stepsData.beneficiaryName);
         paramsMap.set('business_email', stepsData.businessEmail);
         paramsMap.set('city', stepsData.city);
-        paramsMap.set('swift_code', stepsData.swiftCode);
+        paramsMap.set('linked_in_account', stepsData.snapchatAccount);
         paramsMap.set('bank_name', stepsData.bankName);
         paramsMap.set('package', stepsData.packageType);
-        // bodyFormData.append('bank_letter', stepsReducedObject.bankLetter, 'bank_letter');
-        // bodyFormData.append('national_id', stepsReducedObject.nationalId, 'national_id');
-        // bodyFormData.append('trade_license', stepsReducedObject.tradeLicense, 'trade_license');
+        paramsMap.set('swift_code', stepsData.swiftCode);
+        paramsMap.set('branch_name', stepsData.branchName);
+        paramsMap.set('currency', stepsData.currency);
+        paramsMap.set('facebook_account', stepsData.facebookAccount);
+        paramsMap.set('twitter_account', stepsData.twitterAccount);
+        paramsMap.set('bank_account_number', stepsData.bankAccountNumber);
+        paramsMap.set('tax_registration_number', stepsData.taxRegistrationNumber);
+        paramsMap.set('instagram_account', stepsData.instagramAccount);
+        paramsMap.set('fulladdress', stepsData.fullAddress);
+        paramsMap.set('accept_argument', stepsData.acceptArgument);
+        paramsMap.set('snapchat_account', stepsData.snapchatAccount);
+
+
 
         // Forming body part request
         const bodyFormData = new FormData();
+        bodyFormData.append('bank_letter', new Blob([stepsData.bankLetter]), 'bank_letter');
+        bodyFormData.append('national_id', new Blob([stepsData.nationalId]), 'national_id');
+        bodyFormData.append('trade_license', new Blob([stepsData.tradeLicense]), 'trade_license');
+
         bodyFormData.append('params', JSON.stringify(Object.fromEntries(paramsMap)));
 
 
@@ -186,7 +200,8 @@ export const submitForm = (stepsData: StepsDataInterface): AppThunk => {
             })
             .catch(err => {
                 console.log(err.response.data);
-                dispatch(setShouldStepperMove(false));
+                dispatch(fillDataReducer({ data: (stepsData as VATDataInterface), stepNumber: STEPS_NAMES.VAT, formHasErrors: false }))
+                // dispatch(setShouldStepperMove(false));
             })
             .finally(() => {
                 dispatch(setSubmitting(false));

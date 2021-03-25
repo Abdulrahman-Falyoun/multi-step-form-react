@@ -6,10 +6,10 @@ export const getFileSize = (fileInputEvent: any) => {
     return totalBytes < 1000000 ? Math.floor(totalBytes / 1000) + 'KB' : Math.floor(totalBytes / 1000000) + 'MB';
 }
 
-export const readFileInBinary = (file: any): Promise<any> => {
+export const readFileAsArrayBuffer = (file: any): Promise<any> => {
     return new Promise((resolve, reject) => {
         const fileReader = new FileReader();
-        fileReader.readAsBinaryString(file);
+        fileReader.readAsArrayBuffer(file);
         fileReader.onload = () => {
             resolve(fileReader.result)
         }

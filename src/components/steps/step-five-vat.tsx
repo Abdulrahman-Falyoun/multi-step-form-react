@@ -7,7 +7,7 @@ import FancyCard from '../card/fancy-small-card';
 import { getFileName, getFileSize } from '../../utils/file-helper';
 import { STEPS_NAMES } from '../../enums/steps-names';
 import { connect, useSelector } from 'react-redux';
-import { readFileInBinary } from '../../utils/file-helper';
+import { readFileAsArrayBuffer } from '../../utils/file-helper';
 import { StepsDataInterface, VATDataInterface } from '../../interfaces/steps-data';
 import { useTranslation } from 'react-i18next';
 import { makePostRequest } from '../../axios-requester/http-requester';
@@ -77,7 +77,7 @@ const StepFiveVAT = () => {
                                     placeholder={t("browse files")}
                                     onFileSelected={(e: any) => {
                                         setTradeLicense(e);
-                                        readFileInBinary(e?.target?.files[0])
+                                        readFileAsArrayBuffer(e?.target?.files[0])
                                             .then(resultInBinary => {
                                                 stepFiveData.tradeLicense = resultInBinary
                                             })
@@ -105,7 +105,7 @@ const StepFiveVAT = () => {
                                 <StepperUploadFileInput id="national-id-input" placeholder={t("browse files")}
                                     onFileSelected={(e: any) => {
                                         setNationalId(e);
-                                        readFileInBinary(e?.target?.files[0])
+                                        readFileAsArrayBuffer(e?.target?.files[0])
                                             .then(resultInBinary => {
                                                 stepFiveData.nationalId = resultInBinary
                                             })
@@ -153,7 +153,7 @@ const StepFiveVAT = () => {
                                     placeHolderFontSize='.8rem'
                                     onFileSelected={(e: any) => {
                                         setTaxCertificate(e);
-                                        readFileInBinary(e?.target?.files[0])
+                                        readFileAsArrayBuffer(e?.target?.files[0])
                                             .then(resultInBinary => {
                                                 stepFiveData.taxRegistrationCertificate = resultInBinary
                                             })

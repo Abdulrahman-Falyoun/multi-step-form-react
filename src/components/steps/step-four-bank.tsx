@@ -9,7 +9,7 @@ import { getFileName, getFileSize } from '../../utils/file-helper';
 import { STEPS_NAMES } from '../../enums/steps-names';
 import { useSelector } from 'react-redux';
 import { BankDataInterface } from '../../interfaces/steps-data';
-import { readFileInBinary } from '../../utils/file-helper';
+import { readFileAsArrayBuffer } from '../../utils/file-helper';
 import { useTranslation } from 'react-i18next';
 import { useAppDispatch } from '../../redux/store';
 
@@ -196,7 +196,7 @@ const StepFourBank = () => {
                                             placeHolderFontSize='.8rem'
                                             onFileSelected={(e: any) => {
                                                 setStampedCertificate(e);
-                                                readFileInBinary(e?.target?.files[0])
+                                                readFileAsArrayBuffer(e?.target?.files[0])
                                                     .then(resultInBinary => {
                                                         stepFourData.bankLetter = resultInBinary
                                                     })

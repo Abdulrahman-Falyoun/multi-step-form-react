@@ -10,7 +10,7 @@ import { useTranslation } from 'react-i18next';
 import { useAppAsyncDispatch } from '../../redux/store';
 import { fillDataReducer, rootSelector, fetchProductCategories } from '../../redux/slices/root.slice';
 import { StoreDataInterface } from '../../interfaces/steps-data';
-
+import MapContainer from '../map-container';
 const layout = {
   labelCol: { span: 0 },
   wrapperCol: { span: 21 },
@@ -21,7 +21,7 @@ const StepTwoGenerator = () => {
   const initialData: any = steps[currentStep]?.data;
   const dispatch = useAppAsyncDispatch();
   const [form] = Form.useForm();
-  const [options, setOptions] = useState<Array<{value: any, label: any}>>();
+  const [options, setOptions] = useState<Array<{ value: any, label: any }>>();
   const { t, i18n } = useTranslation('common');
   const [stepTwoData, setSteptwoData] = useState<StoreDataInterface>({ ...initialData });
 
@@ -135,8 +135,22 @@ const StepTwoGenerator = () => {
             </div>
           </Form>
         </div>
-      </div>
 
+
+      </div>
+      <div className="full-flex-item">
+        <MapContainer style={{
+          position: 'relative',
+          width: '100%',
+          height: '10rem'
+        }}
+          initialCenter={
+            {
+              lat: -1.2884,
+              lng: 36.8233
+            }
+          } />
+      </div>
     </div>
 
   );

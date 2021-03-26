@@ -11,7 +11,6 @@ import { useAppAsyncDispatch } from '../../redux/store';
 import { fillDataReducer, rootSelector, fetchProductCategories } from '../../redux/slices/root.slice';
 import { StoreDataInterface } from '../../interfaces/steps-data';
 import MapContainer from '../map-container';
-import LocationSearchInput from '../location-search-input';
 const layout = {
   labelCol: { span: 0 },
   wrapperCol: { span: 21 },
@@ -133,24 +132,25 @@ const StepTwoGenerator = () => {
                 bordered={false}
                 value={stepTwoData.fullAddress}
                 className="full-flex-item column-flex-direction" name="address" /> */}
-              <LocationSearchInput />
             </div>
           </Form>
         </div>
 
       </div>
       <div className="full-flex-item">
-        <MapContainer style={{
-          position: 'relative',
-          width: '100%',
-          height: '10rem'
-        }}
+        <MapContainer
+          style={{
+            position: 'relative',
+            width: '100%',
+            height: '10rem'
+          }}
           initialCenter={
             {
               lat: 23.8859,
               lng: 45.0792
             }
-          } />
+          }
+          zoom={10} />
       </div>
     </div>
 

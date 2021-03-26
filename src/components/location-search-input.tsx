@@ -30,8 +30,8 @@ export default ({ value, handleSelect, handleChange }: any) => {
                                 : 'suggestion-item';
                             // inline style for demonstration purpose
                             const style = suggestion.active
-                                ? { backgroundColor: '#fafafa', cursor: 'pointer' }
-                                : { backgroundColor: '#ffffff', cursor: 'pointer' };
+                                ? { backgroundColor: '#FCEB55', cursor: 'pointer' }
+                                : { backgroundColor: '#F5F5F5', cursor: 'pointer' };
                             return (
                                 <div
                                     {...getSuggestionItemProps(suggestion, {

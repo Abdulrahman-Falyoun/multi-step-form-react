@@ -139,24 +139,25 @@ const StepTwoGenerator = () => {
       </div>
       <div className="full-flex-item">
         <MapContainer
-          value={stepTwoData.fullAddress}
+          value={stepTwoData.fullAddress || ''}
           handleChange={(address: any) => {
             stepTwoData.fullAddress = address;
           }}
           handleSelect={(address: any) => {
-            console.log('address: ', address);
-            const { description } = address;
-            stepTwoData.fullAddress = description;
-            geocodeByAddress(address)
-              .then(results => getLatLng(results[0]))
-              .then(latLng => {
-                console.log('Success', latLng)
-                stepTwoData.lat = `${latLng.lat}`;
-                stepTwoData.lang = `${latLng.lng}`;
-              })
-              .catch(error => {
-                console.error('Error', error)
-              });
+            if (address) {
+              const { description } = address;
+              stepTwoData.fullAddress = description;
+              geocodeByAddress(address)
+                .then(results => getLatLng(results[0]))
+                .then(latLng => {
+                  console.log('Success', latLng)
+                  stepTwoData.lat = `${latLng.lat}`;
+                  stepTwoData.lang = `${latLng.lng}`;
+                })
+                .catch(error => {
+                  console.error('Error', error)
+                });
+            }
           }}
           style={{
             position: 'relative',
@@ -169,7 +170,7 @@ const StepTwoGenerator = () => {
               lng: 45.0792
             }
           }
-          zoom={-10} />
+          zoom={-5} />
       </div>
     </div>
 

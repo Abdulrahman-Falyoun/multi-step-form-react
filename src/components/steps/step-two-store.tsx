@@ -121,9 +121,9 @@ const StepTwoGenerator = () => {
 
 
 
-        <div>
+        {/* <div>
           <Form {...layout} form={form} name="control-hooks">
-            <div className="flex-row-flex-start-main-cross-center">
+            <div className="flex-row-flex-start-main-cross-center"> */}
               {/* <StepperInput
                 label={t("full address")}
                 onInputChanged={(e: any) => { stepTwoData.fullAddress = e.target.value; }}
@@ -132,9 +132,9 @@ const StepTwoGenerator = () => {
                 bordered={false}
                 value={stepTwoData.fullAddress}
                 className="full-flex-item column-flex-direction" name="address" /> */}
-            </div>
+            {/* </div>
           </Form>
-        </div>
+        </div> */}
 
       </div>
       <div className="full-flex-item">

@@ -13,6 +13,8 @@ export interface StoreDataInterface {
     phoneNumber?: number;
     productType?: string;
     fullAddress?: string;
+    lat?: string;
+    lang?: string;
 }
 
 export interface SocialMediaDataInterface {

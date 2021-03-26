@@ -11,6 +11,7 @@ import { useAppAsyncDispatch } from '../../redux/store';
 import { fillDataReducer, rootSelector, fetchProductCategories } from '../../redux/slices/root.slice';
 import { StoreDataInterface } from '../../interfaces/steps-data';
 import MapContainer from '../map-container';
+import { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 const layout = {
   labelCol: { span: 0 },
   wrapperCol: { span: 21 },
@@ -24,7 +25,6 @@ const StepTwoGenerator = () => {
   const [options, setOptions] = useState<Array<{ value: any, label: any }>>();
   const { t, i18n } = useTranslation('common');
   const [stepTwoData, setSteptwoData] = useState<StoreDataInterface>({ ...initialData });
-
 
 
   useEffect(() => {
@@ -51,7 +51,7 @@ const StepTwoGenerator = () => {
     <div className="step-two-wrapper">
       <p style={{ display: 'block' }}>{t('store')}</p>
       <div>
-        <div>
+        <div className="full-flex-item">
           <Form {...layout} form={form} name="control-hooks">
             <div className="flex-row-flex-start-main-cross-center">
               <StepperInput
@@ -88,7 +88,7 @@ const StepTwoGenerator = () => {
           </Form>
         </div>
 
-        <div>
+        <div className="full-flex-item">
           <Form {...layout} form={form} name="control-hooks">
             <div className="flex-row-flex-start-main-cross-center">
               <StepperInput
@@ -124,7 +124,7 @@ const StepTwoGenerator = () => {
         {/* <div>
           <Form {...layout} form={form} name="control-hooks">
             <div className="flex-row-flex-start-main-cross-center"> */}
-              {/* <StepperInput
+        {/* <StepperInput
                 label={t("full address")}
                 onInputChanged={(e: any) => { stepTwoData.fullAddress = e.target.value; }}
                 placeHolder={t("please enter your full address")}
@@ -132,13 +132,32 @@ const StepTwoGenerator = () => {
                 bordered={false}
                 value={stepTwoData.fullAddress}
                 className="full-flex-item column-flex-direction" name="address" /> */}
-            {/* </div>
+        {/* </div>
           </Form>
         </div> */}
 
       </div>
       <div className="full-flex-item">
         <MapContainer
+          value={stepTwoData.fullAddress}
+          handleChange={(address: any) => {
+            stepTwoData.fullAddress = address;
+          }}
+          handleSelect={(address: any) => {
+            console.log('address: ', address);
+            const { description } = address;
+            stepTwoData.fullAddress = description;
+            geocodeByAddress(address)
+              .then(results => getLatLng(results[0]))
+              .then(latLng => {
+                console.log('Success', latLng)
+                stepTwoData.lat = `${latLng.lat}`;
+                stepTwoData.lang = `${latLng.lng}`;
+              })
+              .catch(error => {
+                console.error('Error', error)
+              });
+          }}
           style={{
             position: 'relative',
             width: '100%',
@@ -150,7 +169,7 @@ const StepTwoGenerator = () => {
               lng: 45.0792
             }
           }
-          zoom={10} />
+          zoom={-10} />
       </div>
     </div>
 

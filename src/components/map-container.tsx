@@ -8,7 +8,7 @@ import LocationSearchInput from './location-search-input';
 const mapContainer = (props: any) => {
     return (
         <div>
-            <LocationSearchInput />
+            <LocationSearchInput {...props} />
             <Map className="form-map" {...props} />
 
         </div>

@@ -30,7 +30,7 @@ export interface BankDataInterface {
     bankName: string;
     branchName?: string;
     bankAccountNumber?: number;
-    swiftCode?: number;
+    swiftCode?: string;
     currency?: string;
     bankLetter?: any;
 }

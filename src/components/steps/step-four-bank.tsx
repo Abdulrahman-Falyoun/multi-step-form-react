@@ -155,17 +155,17 @@ const StepFourBank = () => {
                                 onInputChanged={(e: any) => {
                                     stepFourData.swiftCode = e.target.value;
                                 }}
-                                placeHolder="00"
+                                placeHolder="ANZBASPA..."
                                 size='large'
                                 bordered={false}
                                 value={stepFourData.swiftCode}
                                 className="full-flex-item column-flex-direction" name="swiftCode" label={t("swift code")}
-                                rules={[
-                                    {
-                                        pattern: /^[0-9]{2}$/,
-                                        message: 'Please only two digits(0...9) are allowed',
-                                    }
-                                ]}
+                                // rules={[
+                                //     {
+                                //         pattern: /^[0-9]{2}$/,
+                                //         message: 'Please only two digits(0...9) are allowed',
+                                //     }
+                                // ]}
                             />
                         </div>
                     </Form>

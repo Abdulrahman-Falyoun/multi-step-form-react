@@ -191,7 +191,7 @@ export const submitForm = (stepsData: StepsDataInterface): AppThunk => {
         bodyFormData.append('bank_letter', new Blob([stepsData.bankLetter]), 'bank_letter');
         bodyFormData.append('national_id', new Blob([stepsData.nationalId]), 'national_id');
         bodyFormData.append('trade_license', new Blob([stepsData.tradeLicense]), 'trade_license');
-
+        bodyFormData.append('tax_registration_certificate', new Blob([stepsData.taxRegistrationCertificate]), 'tax_registration_certificate')
         bodyFormData.append('params', JSON.stringify(Object.fromEntries(paramsMap)));
 
 

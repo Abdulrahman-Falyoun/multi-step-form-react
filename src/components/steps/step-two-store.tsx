@@ -11,6 +11,7 @@ import { useAppAsyncDispatch } from '../../redux/store';
 import { fillDataReducer, rootSelector, fetchProductCategories } from '../../redux/slices/root.slice';
 import { StoreDataInterface } from '../../interfaces/steps-data';
 import MapContainer from '../map-container';
+import LocationSearchInput from '../location-search-input';
 const layout = {
   labelCol: { span: 0 },
   wrapperCol: { span: 21 },
@@ -124,18 +125,18 @@ const StepTwoGenerator = () => {
         <div>
           <Form {...layout} form={form} name="control-hooks">
             <div className="flex-row-flex-start-main-cross-center">
-              <StepperInput
+              {/* <StepperInput
                 label={t("full address")}
                 onInputChanged={(e: any) => { stepTwoData.fullAddress = e.target.value; }}
                 placeHolder={t("please enter your full address")}
                 size='large'
                 bordered={false}
                 value={stepTwoData.fullAddress}
-                className="full-flex-item column-flex-direction" name="address" />
+                className="full-flex-item column-flex-direction" name="address" /> */}
+              <LocationSearchInput />
             </div>
           </Form>
         </div>
-
 
       </div>
       <div className="full-flex-item">
@@ -146,8 +147,8 @@ const StepTwoGenerator = () => {
         }}
           initialCenter={
             {
-              lat: -1.2884,
-              lng: 36.8233
+              lat: 23.8859,
+              lng: 45.0792
             }
           } />
       </div>

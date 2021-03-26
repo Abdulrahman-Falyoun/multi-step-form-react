@@ -6,7 +6,7 @@ import PlacesAutocomplete, {
 
 export default ({ value, handleSelect, handleChange }: any) => {
 
-
+    console.log('value: ', value);
 
     return (
         <PlacesAutocomplete

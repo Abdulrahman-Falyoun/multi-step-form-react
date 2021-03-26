@@ -25,8 +25,7 @@ const StepTwoGenerator = () => {
   const [options, setOptions] = useState<Array<{ value: any, label: any }>>();
   const { t, i18n } = useTranslation('common');
   const [stepTwoData, setSteptwoData] = useState<StoreDataInterface>({ ...initialData });
-
-
+  const [address, setAddress] = useState('');
   useEffect(() => {
     if (productsCategories) {
       const data = productsCategories.map((d: any) => {
@@ -139,8 +138,9 @@ const StepTwoGenerator = () => {
       </div>
       <div className="full-flex-item">
         <MapContainer
-          value={stepTwoData.fullAddress || ''}
-          handleChange={(address: any) => {
+          value={address}
+          handleChange={(address: string) => {
+            setAddress(address);
             stepTwoData.fullAddress = address;
           }}
           handleSelect={(address: any) => {
@@ -170,7 +170,7 @@ const StepTwoGenerator = () => {
               lng: 45.0792
             }
           }
-          zoom={-5} />
+          zoom={2} />
       </div>
     </div>
 

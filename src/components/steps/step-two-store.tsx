@@ -147,6 +147,7 @@ const StepTwoGenerator = () => {
             if (address) {
               const { description } = address;
               stepTwoData.fullAddress = description;
+              setAddress(address);
               geocodeByAddress(address)
                 .then(results => getLatLng(results[0]))
                 .then(latLng => {
@@ -170,7 +171,7 @@ const StepTwoGenerator = () => {
               lng: 45.0792
             }
           }
-          zoom={2} />
+          zoom={8} />
       </div>
     </div>
 

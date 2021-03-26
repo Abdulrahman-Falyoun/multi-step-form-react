@@ -182,7 +182,8 @@ export const submitForm = (stepsData: StepsDataInterface): AppThunk => {
         paramsMap.set('fulladdress', stepsData.fullAddress);
         paramsMap.set('accept_argument', stepsData.acceptArgument);
         paramsMap.set('snapchat_account', stepsData.snapchatAccount);
-
+        paramsMap.set('lat', stepsData.lat);
+        paramsMap.set('lon', stepsData.lang);
 
 
         // Forming body part request

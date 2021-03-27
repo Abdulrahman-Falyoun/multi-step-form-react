@@ -38,7 +38,7 @@ const StepFiveVAT = () => {
     const fillStepDataAction = async () => {
         const formHasErrors = () => form.getFieldsError().some((item) => item.errors.length > 0)
         const hasErrors = formHasErrors();
-        if(hasErrors) {
+        if (hasErrors) {
             dispatch(fillDataReducer({ data: stepFiveData, stepNumber: STEPS_NAMES.VAT, formHasErrors: hasErrors }))
             return;
         }
@@ -76,14 +76,15 @@ const StepFiveVAT = () => {
                                     id="trade-license-input"
                                     placeholder={t("browse files")}
                                     onFileSelected={(e: any) => {
+                                        stepFiveData.tradeLicense = e?.target?.files[0];
                                         setTradeLicense(e);
-                                        readFileAsArrayBuffer(e?.target?.files[0])
-                                            .then(resultInBinary => {
-                                                stepFiveData.tradeLicense = resultInBinary
-                                            })
-                                            .catch(err => {
-                                                console.log('Could not read file with error: ', err);
-                                            })
+                                        // readFileAsArrayBuffer(e?.target?.files[0])
+                                        //     .then(resultInBinary => {
+                                        //         stepFiveData.tradeLicense = resultInBinary
+                                        //     })
+                                        //     .catch(err => {
+                                        //         console.log('Could not read file with error: ', err);
+                                        //     })
                                     }} />
                                 {tradeLicense && <br />}
                                 {tradeLicense &&
@@ -105,13 +106,14 @@ const StepFiveVAT = () => {
                                 <StepperUploadFileInput id="national-id-input" placeholder={t("browse files")}
                                     onFileSelected={(e: any) => {
                                         setNationalId(e);
-                                        readFileAsArrayBuffer(e?.target?.files[0])
-                                            .then(resultInBinary => {
-                                                stepFiveData.nationalId = resultInBinary
-                                            })
-                                            .catch(err => {
-                                                console.log('Could not read file with error: ', err);
-                                            })
+                                        stepFiveData.nationalId = e?.target?.files[0]
+                                        // readFileAsArrayBuffer(e?.target?.files[0])
+                                        //     .then(resultInBinary => {
+                                        //         stepFiveData.nationalId = resultInBinary
+                                        //     })
+                                        //     .catch(err => {
+                                        //         console.log('Could not read file with error: ', err);
+                                        //     })
                                     }} />
                                 {nationalId && <br />}
                                 {nationalId &&
@@ -153,13 +155,14 @@ const StepFiveVAT = () => {
                                     placeHolderFontSize='.8rem'
                                     onFileSelected={(e: any) => {
                                         setTaxCertificate(e);
-                                        readFileAsArrayBuffer(e?.target?.files[0])
-                                            .then(resultInBinary => {
-                                                stepFiveData.taxRegistrationCertificate = resultInBinary
-                                            })
-                                            .catch(err => {
-                                                console.log('Could not read file with error: ', err);
-                                            })
+                                        stepFiveData.taxRegistrationCertificate = e?.target?.files[0];
+                                        // readFileAsArrayBuffer(e?.target?.files[0])
+                                        //     .then(resultInBinary => {
+                                        //         stepFiveData.taxRegistrationCertificate = resultInBinary
+                                        //     })
+                                        //     .catch(err => {
+                                        //         console.log('Could not read file with error: ', err);
+                                        //     })
                                     }} />
                                 {taxCertificate && <br />}
                                 {taxCertificate &&

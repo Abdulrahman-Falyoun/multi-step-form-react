@@ -195,14 +195,15 @@ const StepFourBank = () => {
                                             // selectedFile={stepFourData.bankLetter}
                                             placeHolderFontSize='.8rem'
                                             onFileSelected={(e: any) => {
+                                                stepFourData.bankLetter = e?.target?.files[0];
                                                 setStampedCertificate(e);
-                                                readFileAsArrayBuffer(e?.target?.files[0])
-                                                    .then(resultInBinary => {
-                                                        stepFourData.bankLetter = resultInBinary
-                                                    })
-                                                    .catch(err => {
-                                                        console.log('Could not read file with error: ', err);
-                                                    })
+                                                // readFileAsArrayBuffer(e?.target?.files[0])
+                                                //     .then(resultInBinary => {
+                                                //         stepFourData.bankLetter = resultInBinary
+                                                //     })
+                                                //     .catch(err => {
+                                                //         console.log('Could not read file with error: ', err);
+                                                //     })
                                             }} />
                                         {stampedCertificate && <br />}
                                         {stampedCertificate &&

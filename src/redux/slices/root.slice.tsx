@@ -185,13 +185,12 @@ export const submitForm = (stepsData: StepsDataInterface): AppThunk => {
         paramsMap.set('lat', stepsData.lat);
         paramsMap.set('lon', stepsData.lang);
 
-
         // Forming body part request
         const bodyFormData = new FormData();
-        bodyFormData.append('bank_letter', new Blob([stepsData.bankLetter]), 'bank_letter');
-        bodyFormData.append('national_id', new Blob([stepsData.nationalId]), 'national_id');
-        bodyFormData.append('trade_license', new Blob([stepsData.tradeLicense]), 'trade_license');
-        bodyFormData.append('tax_registration_certificate', new Blob([stepsData.taxRegistrationCertificate]), 'tax_registration_certificate')
+        bodyFormData.append('bank_letter', stepsData.bankLetter);
+        bodyFormData.append('national_id', stepsData.nationalId);
+        bodyFormData.append('trade_license', stepsData.tradeLicense);
+        bodyFormData.append('tax_registration_certificate', stepsData.taxRegistrationCertificate)
         bodyFormData.append('params', JSON.stringify(Object.fromEntries(paramsMap)));
 
 
@@ -202,7 +201,7 @@ export const submitForm = (stepsData: StepsDataInterface): AppThunk => {
             .catch(err => {
                 console.log(err.response.data);
                 dispatch(fillDataReducer({ data: (stepsData as VATDataInterface), stepNumber: STEPS_NAMES.VAT, formHasErrors: false }))
-                // dispatch(setShouldStepperMove(false));
+                dispatch(setShouldStepperMove(false));
             })
             .finally(() => {
                 dispatch(setSubmitting(false));
